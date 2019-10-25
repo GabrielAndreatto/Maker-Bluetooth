@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:checkableBehavior="single" >
+
+        <item
+            android:id="@+id/menu_navigation_board"
+            android:title="Board"
+            android:icon="@drawable/ic_developer_boards_light" />
+
+        <item
+            android:id="@+id/menu_navigation_btns"
+            android:title="Botão"
+            android:icon="@drawable/ic_button_light" />
+
+        <item
+            android:id="@+id/menu_navigation_terminal"
+            android:title="Terminal"
+            android:icon="@drawable/ic_keyboard_dark" />
+        <!--
+        <item
+            android:id="@+id/menu_navigation_game"
+            android:title="Video Game"
+            android:icon="@drawable/ic_videogame_light" />
+        -->
+        <item
+            android:id="@+id/menu_navigation_dimmer"
+            android:title="Dimmer"
+            android:icon="@drawable/ic_dimmer_light" />
+
+        <item
+            android:id="@+id/menu_navigation_timer"
+            android:title="Timer"
+            android:icon="@drawable/ic_timer_light" />
+
+        <item
+            android:id="@+id/menu_navigation_voz"
+            android:title="Comando por voz"
+            android:icon="@drawable/ic_voice_light" />
+
+        <item
+            android:id="@+id/menu_navigation_bluetooth_pareado"
+            android:icon="@drawable/ic_bluetooth_ligth"
+            android:title="Bluetooth Pareado" />
+
+        <item
+            android:id="@+id/menu_navigation_bluetooth_proximo"
+            android:icon="@drawable/ic_bluetooth_search_light"
+            android:title="Bluetooth Próximo" />
+
+        <item
+            android:id="@+id/menu_navigation_wifi"
+            android:icon="@drawable/ic_wifi_light"
+            android:title="Wifi" />
+
+    </group>
+
+    <item
+        android:id="@+id/submenu_outros"
+        android:title="Adicionar">
+
+        <menu>
+
+            <item
+                android:id="@+id/menu_navigation_add"
+                android:title="+ Board"
+                android:icon="@drawable/ic_developer_boards_light" />
+
+            <item
+                android:id="@+id/menu_navigation_btn"
+                android:title="+ Botão"
+                android:icon="@drawable/ic_button_light" />
+
+        </menu>
+
+    </item>
+
+    <item
+        android:id="@+id/submenu_settings"
+        android:title="Configurações">
+
+        <menu>
+
+            <item
+                android:id="@+id/menu_navigation_config"
+                android:icon="@drawable/ic_settings_light"
+                android:title="Configurações" />
+
+        </menu>
+
+    </item>
+
+</menu>
