@@ -15,20 +15,19 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/layout_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
 
+            <!-- divider vertical -->
             <ImageButton
-                android:id="@+id/img_board3"
+                android:id="@+id/btn_send"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
-                android:layout_margin="8dp"
                 android:layout_gravity="center"
-                android:background="@drawable/btn_one_cmd"/>
+                android:layout_margin="8dp"
+                android:background="@drawable/btn_one_cmd" />
 
-            <!-- divider vertical -->
             <android.support.v7.widget.LinearLayoutCompat
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
@@ -52,7 +51,6 @@
                     android:textAppearance="@android:style/TextAppearance.Holo.Small" />
 
                 <TextView
-                    android:id="@+id/textView_nome_btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Led amarelo"
@@ -68,7 +66,6 @@
 
 
                 <TextView
-                    android:id="@+id/textView_comando"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -76,7 +73,6 @@
                     android:textAppearance="@android:style/TextAppearance.Holo.Small" />
 
                 <TextView
-                    android:id="@+id/textView_comando_btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text=" A "

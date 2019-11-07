@@ -41,99 +41,44 @@ public class AppCompatActivityBluetooth extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //verificarCondiçãoDoBluetooth();
         bluetoothAdapter = bluetoothAdapter.getDefaultAdapter();
         sPUserConf = getApplicationContext().getSharedPreferences("login", Context.MODE_PRIVATE);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        verificarCondiçãoDoBluetooth();
-    }
+//    public void verificarCondiçãoDoBluetooth() {
+//
+//        if(bluetoothAdapter == null){
+//            Toast.makeText(getApplicationContext(), "Dispositivo não possui adaptador Bluetooth", Toast.LENGTH_LONG).show();
+//            finish();
+//        } else {
+//            if(!bluetoothAdapter.isEnabled()){
+//                startBluetoothDevice();
+//            }
+//        }
+//    }
+//
+//    public void startBluetoothDevice() {
+//        Intent enablelntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+//        startActivityForResult(enablelntent, CÓDIGO_PARA_ATIVAÇÃO_DO_BLUETOOTH);
+//    }
+//
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        switch(requestCode){
+//            case CÓDIGO_PARA_ATIVAÇÃO_DO_BLUETOOTH:
+//                if(resultCode == Activity.RESULT_OK){
+//                    Toast.makeText(getApplicationContext(), "Bluetooth foi ativado", Toast.LENGTH_LONG).show();
+//                } else {
+//                    Toast.makeText(getApplicationContext(), "Bluetooth não foi ativado", Toast.LENGTH_LONG).show();
+//                }
+//                break;
+//        }
+//    }
 
     public BluetoothAdapter getBluetoothAdapter() {
         return bluetoothAdapter;
-    }
-
-    public boolean isBluetoothDevice() {
-
-        Boolean condition = false;
-
-        if(bluetoothAdapter != null) {
-            condition = true;
-        }
-
-        return condition;
-    }
-
-    public boolean isEnabled() {
-
-        Boolean condition = false;
-
-        if(bluetoothAdapter.isEnabled()) {
-            condition = true;
-        }
-        return condition;
-    }
-
-    public void openBluetoothDevice() {
-        Intent enablelntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-        startActivityForResult(enablelntent, CÓDIGO_PARA_ATIVAÇÃO_DO_BLUETOOTH);
-    }
-
-    public void verificarCondiçãoDoBluetooth() {
-
-        // Get a handle to the default local Bluetooth adapter.
-        // bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-
-        // Verifica se o celular tem Bluetooth
-        if(bluetoothAdapter == null){
-            Toast.makeText(getApplicationContext(), "Dispositivo não possui adaptador Bluetooth", Toast.LENGTH_LONG).show();
-            // Finaliza a aplicação.
-            finish();
-        } else {
-            // Verifica se o bluetooth está desligado. Se sim, pede permissão para ligar.
-            if(!bluetoothAdapter.isEnabled()){
-                openBluetoothDevice();
-            }}
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch(requestCode){
-            case CÓDIGO_PARA_ATIVAÇÃO_DO_BLUETOOTH:
-                if(resultCode == Activity.RESULT_OK){
-                    Toast.makeText(getApplicationContext(), "Bluetooth foi ativado", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Bluetooth não foi ativado", Toast.LENGTH_LONG).show();
-                }
-                break;
-        }
-    }
-
-    public void sendMyCode(String cmd) {
-
-        conectarBluetooth();
-
-        // Verifica se há conexão estabelecida com o Bluetooth.
-        if(bluetoothSocket != null){
-
-            try{
-
-                outputStream = bluetoothSocket.getOutputStream();
-
-                byte[] msgBuffer = cmd.getBytes();
-                outputStream.write(msgBuffer);
-
-            } catch (Exception e) {
-                e.getMessage();
-            }
-
-        } else {
-            Toast.makeText(getApplicationContext(), "Bluetooth não está conectado", Toast.LENGTH_LONG).show();
-        }
-
     }
 
     protected void conectarBluetooth(final String id_board, final String mac_address) {
@@ -199,14 +144,6 @@ public class AppCompatActivityBluetooth extends AppCompatActivity {
         returnActivityOn();
     }
 
-    public InputStream getInputStream() {
-        return inputStream;
-    }
-
-    public OutputStream getOutputStream() {
-        return outputStream;
-    }
-
     protected void conectarBluetooth() {
 
         String mac_address = sPUserConf.getString("bluetooth_mac_address", "");
@@ -251,4 +188,58 @@ public class AppCompatActivityBluetooth extends AppCompatActivity {
         finish();
 
     }
+
+    public void sendMyCode(String cmd) {
+
+        conectarBluetooth();
+
+        // Verifica se há conexão estabelecida com o Bluetooth.
+        if(bluetoothSocket != null){
+
+            try{
+
+                outputStream = bluetoothSocket.getOutputStream();
+
+                byte[] msgBuffer = cmd.getBytes();
+                outputStream.write(msgBuffer);
+
+            } catch (Exception e) {
+                e.getMessage();
+            }
+
+        } else {
+            Toast.makeText(getApplicationContext(), "Bluetooth não está conectado", Toast.LENGTH_LONG).show();
+        }
+
+    }
+
+    public InputStream getInputStream() {
+        return inputStream;
+    }
+
+    public OutputStream getOutputStream() {
+        return outputStream;
+    }
+
+    public boolean isBluetoothDevice() {
+
+        Boolean condition = false;
+
+        if(bluetoothAdapter != null) {
+            condition = true;
+        }
+
+        return condition;
+    }
+
+    public boolean isEnabled() {
+
+        Boolean condition = false;
+
+        if(bluetoothAdapter.isEnabled()) {
+            condition = true;
+        }
+        return condition;
+    }
+
 }

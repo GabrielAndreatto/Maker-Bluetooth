@@ -17,12 +17,4 @@
         <item name="android:background">@android:color/white</item>
     </style>
 
-    <style name="SuperMaterialTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="SuperMaterialTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
-    <style name="containerChat" parent="Widget.AppCompat.ListView">
-        <item name="android:background">?android:attr/windowBackground</item>
-    </style>
-
 </resources>

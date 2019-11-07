@@ -41,7 +41,6 @@ public class BoardFormActivity extends AppCompatActivity {
     private AppCompatEditText editTextMacAddress;
     private AppCompatEditText editTextRede;
     private AppCompatEditText editTextIp;
-    private TextView msgDados;
 
     private ImageView bluetooth;
     private ImageView wifi;
@@ -105,18 +104,12 @@ public class BoardFormActivity extends AppCompatActivity {
         editTextRede.setText(this.board.getRede());
         editTextIp.setText(this.board.getIp());
 
-        msgDados.setText("MSG: \n" +
-                         "_ID "+this.board.getId()+"\n"
-                        +" Conection bluetooth "+this.board.getConectedBluetooth()+"\n"
-                        +" Conection wifi "+this.board.getConectedWifi()+"\n"
-                        +" created_at "+this.board.getCreated_at()+"\n"
-                        +" update_at " +this.board.getUpdated_at()+"\n"
-                    );
     }
 
     private void initilizeView() {
 
         toolbar = findViewById(R.id.toolbar_board);
+        toolbar.setTitle("Cadastro de Board");
         setSupportActionBar(toolbar);
 
         btnSalvar = (Button) findViewById(R.id.btn_salvar);
@@ -126,8 +119,6 @@ public class BoardFormActivity extends AppCompatActivity {
         editTextMacAddress = (AppCompatEditText) findViewById(R.id.cadastro_board_mac_addres);
         editTextRede = (AppCompatEditText) findViewById(R.id.cadastro_board_ip_nome);
         editTextIp = (AppCompatEditText) findViewById(R.id.cadastro_board_ip);
-
-        msgDados = (TextView) findViewById(R.id.textView_dados);
 
         bluetooth = (ImageView) findViewById(R.id.img_bluetooth);
         wifi = (ImageView) findViewById(R.id.img_wifi);
@@ -153,12 +144,12 @@ public class BoardFormActivity extends AppCompatActivity {
                     if(statusIntentAction.contains("adicionarToolbar")) {
                         // Mostra para o usuário uma mensagem de sucesso na operação
                         Toast.makeText(getApplicationContext(), "Board salvo com sucesso!", Toast.LENGTH_LONG) .show();
+                        startActivity(new Intent(getApplicationContext(), BoardListActivity.class));
                         // Depois de salvar destroy activity
                         finish(); //
                     } else {
                         // Mostra para o usuário uma mensagem de sucesso na operação
                         Toast.makeText(getApplicationContext(), "Board salvo com sucesso!!", Toast.LENGTH_LONG) .show();
-
                         // Depois de salvar, vai para a Lista dos objetos emprestados
                         startActivity(new Intent(getApplicationContext(), BoardListActivity.class));
                         finish();

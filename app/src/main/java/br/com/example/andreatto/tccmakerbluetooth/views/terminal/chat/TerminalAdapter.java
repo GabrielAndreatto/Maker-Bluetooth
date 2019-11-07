@@ -46,8 +46,6 @@ public class TerminalAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        Log.e("ADAPTER", "Number view: "+position);
-
         View view;
         TerminalMsg terminalMsg = mensagens.get(position);
 

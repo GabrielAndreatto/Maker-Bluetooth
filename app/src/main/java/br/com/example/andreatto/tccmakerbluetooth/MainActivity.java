@@ -14,12 +14,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import br.com.example.andreatto.tccmakerbluetooth.views.terminal.chat.TerminalChat;
 import br.com.example.andreatto.tccmakerbluetooth.views.form.BoardFormActivity;
-import br.com.example.andreatto.tccmakerbluetooth.views.listas.bluetoothActived.BluetoothActivedListActivity;
-import br.com.example.andreatto.tccmakerbluetooth.views.listas.bluetoothBonded.BluetoothBondedListActivity;
+import br.com.example.andreatto.tccmakerbluetooth.views.listas.buttons.ButtonsList;
+import br.com.example.andreatto.tccmakerbluetooth.views.listas.cards.CardsList;
+import br.com.example.andreatto.tccmakerbluetooth.views.terminal.chat.TerminalChat;
 import br.com.example.andreatto.tccmakerbluetooth.views.listas.board.BoardListActivity;
 import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceBluetooth;
 import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceConnectionBluetoothBind;
@@ -48,6 +49,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         initializeComponentsViews();
         initializeComponentsEvents();
 
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        initializeComponentsViews();
+        initializeComponentsEvents();
     }
 
     private void initializeComponentsViews() {
@@ -122,10 +130,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }else {
             super.onBackPressed();
         }
-
     }
 
-    // menu navigation drawer
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
@@ -136,71 +142,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             }
             case R.id.menu_navigation_btns: {
+                startActivity(new Intent(this, ButtonsList.class));
                 Toast.makeText(this, "Lista de Botões", Toast.LENGTH_SHORT).show();
                 break;
             }
+            case R.id.menu_navigation_cards: {
+                startActivity(new Intent(this, CardsList.class));
+                Toast.makeText(this, "Lista de Cards", Toast.LENGTH_SHORT).show();
+                break;
+            }
             case R.id.menu_navigation_terminal: {
-                Toast.makeText(this, "Terminal", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Terminal Chat", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, TerminalChat.class));
                 break;
             }
-
-            /*
-            case R.id.menu_navigation_game: {
-                Toast.makeText(this, "Video Game", Toast.LENGTH_SHORT).show();
-                break;
-            }
-            */
-
-            case R.id.menu_navigation_dimmer: {
-                Toast.makeText(this, "Dimmer", Toast.LENGTH_SHORT).show();
-                break;
-            }
-            case R.id.menu_navigation_timer: {
-                Toast.makeText(this, "Timer", Toast.LENGTH_SHORT).show();
-                break;
-            }
-            case R.id.menu_navigation_voz: {
-                Toast.makeText(this, "Voz", Toast.LENGTH_SHORT).show();
-                break;
-            }
-            case R.id.menu_navigation_bluetooth_pareado: {
-                startActivity(new Intent(getApplicationContext(), BluetoothBondedListActivity.class));
-                break;
-            }
-            case R.id.menu_navigation_bluetooth_proximo: {
-                startActivity(new Intent(getApplicationContext(), BluetoothActivedListActivity.class));
-                break;
-            }
-            case R.id.menu_navigation_wifi: {
-                Toast.makeText(this, "Wifi", Toast.LENGTH_SHORT).show();
-                break;
-            }
-
-            case R.id.menu_navigation_add: {
+            case R.id.menu_navigation_board_add: {
+                Toast.makeText(this, "Criar Board", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(this, "Adicionar", Toast.LENGTH_SHORT).show();
                 Bundle pkg = new Bundle();
-                pkg.putString("code", "adicionar");
-                Intent i = new Intent(this, BoardFormActivity.class);
+                pkg.putString("code", "adicionarToolbar");
+                Intent i = new Intent(new Intent(this, BoardFormActivity.class));
                 i.putExtras(pkg);
                 startActivity(i);
-
-                break;
-            }
-            case R.id.menu_navigation_btn: {
-                Toast.makeText(this, "Criar Botão", Toast.LENGTH_SHORT).show();
-                break;
-            }
-
-            case R.id.menu_navigation_config: {
-                Toast.makeText(this, "Configurações", Toast.LENGTH_SHORT).show();
                 break;
             }
             default:
         }
-
         drawerLayout.closeDrawer(GravityCompat.START);
-
         return true;
     }
-
 }

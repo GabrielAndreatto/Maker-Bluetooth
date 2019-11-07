@@ -25,18 +25,10 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cadastro de Boards"
-                android:textSize="32sp"
-                android:textStyle="bold" />
-
         </android.support.v7.widget.LinearLayoutCompat>
 
         <!-- Layout container -->
         <android.support.v7.widget.LinearLayoutCompat
-            android:id="@+id/linearLayout_container"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -50,7 +42,6 @@
                 android:layout_height="wrap_content">
 
                 <android.support.design.widget.TextInputLayout
-                    android:id="@+id/til_nome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" >
 
@@ -71,13 +62,11 @@
 
             <!-- DESCRICAO -->
             <android.support.v7.widget.LinearLayoutCompat
-                android:id="@+id/linearLayout_desc"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <android.support.design.widget.TextInputLayout
-                    android:id="@+id/til_desc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Descrição"
@@ -256,12 +245,6 @@
 
         </android.support.v7.widget.LinearLayoutCompat>
 
-        <TextView
-            android:id="@+id/textView_dados"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="16dp"
-            android:hint="Dados"/>
 
     </LinearLayout>
 

@@ -45,20 +45,7 @@ public class RecyclerBoardListAdapter extends RecyclerView.Adapter<ViewHolderBlu
 
     Activity activity;
 
-    private BluetoothSocket btSocket = null;
-    private OutputStream outStream = null;
-
-    // Flag criada para assegurar que os botoes nao vao gerar erros qdo o app nao esta conectado
-    // Bug
-    private boolean statusSocket = false;
-
-    // Well known SPP UUID
-    private static final UUID MY_UUID =
-            UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
-
     // SERVICE
-    // 1 - Bluetooth
-    private ServiceBluetooth serviceBluetooth;
     private Intent intentService;
     private ServiceConnectionBluetoothBind serviceConnection;
 
@@ -112,111 +99,10 @@ public class RecyclerBoardListAdapter extends RecyclerView.Adapter<ViewHolderBlu
             public void onClick(View v) {
 
                 if (board.getMacAddress().isEmpty()) {
-
                     Toast.makeText(activity, "Adicionar um mac address", Toast.LENGTH_LONG).show();
-
                 } else {
-
-                    // Toast.makeText(v.getContext().getApplicationContext(), "position"+board.getId(), Toast.LENGTH_SHORT).show();
-                    /*
-                        Bundle pkg = new Bundle();
-                        pkg.putInt("id_board", (int) board.getId());
-
-                        Intent intent = new Intent(activity, AppCompatActivityBluetoothCon.class);
-                        intent.putExtra("bluetooth_conect", pkg);
-
-                        activity.startActivityForResult(intent, 0102);
-                    */
-
                     serviceConnection.getServiceBluetooth().conectarBluetooth(board.getMacAddress());
-
                 }
-
-
-                /*
-                boolean statusConBoard = false;
-                Board boardConected = null;
-
-                for (Board tBoard: boards) {
-                    if(tBoard.getConectedBluetooth() == 1) {
-                        boardConected = tBoard;
-                    }
-                }
-
-                BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
-
-                if(board.getConectedBluetooth() == 1) {
-
-                    Toast.makeText(activity, "Desconectando!", Toast.LENGTH_SHORT).show();
-                    Log.d(TAG, "Desconectando...");
-
-                    BluetoothDevice device = btAdapter.getRemoteDevice(boardConected.getMacAddress());
-
-                    try {
-                        btSocket = device.createRfcommSocketToServiceRecord(MY_UUID);
-                    } catch (IOException e) {
-                        Log.d(TAG, "... CATCH btSocket createRfcommSocketToServiceRecord to Remote...");
-                    }
-
-                    // Discovery is resource intensive. Make sure it isn't going on when you attempt to connect and pass your message.
-                    btAdapter.cancelDiscovery();
-
-                    // Establish the connection. This will block until it connects.
-                    Log.d(TAG, "...Desconnecting to Remote...");
-                    try {
-                        btSocket.close();
-                    }catch (Exception e) {
-                        e.getMessage();
-                    } finally {
-                        Log.d(TAG, "...Finally...");
-                        Toast.makeText(activity, "Desconectado", Toast.LENGTH_SHORT).show();
-                        BoardDAO boardDAO = new BoardDAO(activity);
-                        boardDAO.conexBluetoothFromBoard(String.valueOf(board.getId()), 0);
-                        statusSocket = false;
-                    }
-
-                } else if(board.getMacAddress().isEmpty()) {
-                    Toast.makeText(activity, "Não é possivel conectar sem mac address", Toast.LENGTH_SHORT).show();
-                } else {
-                    BluetoothDevice device = btAdapter.getRemoteDevice(board.getMacAddress());
-                    try {
-                        btSocket = device.createRfcommSocketToServiceRecord(MY_UUID);
-                        Log.d(TAG, "... TRY btSocket createRfcommSocketToServiceRecord to Remote...");
-                    } catch (IOException e) {
-                        Log.d(TAG, "... CATCH btSocket createRfcommSocketToServiceRecord to Remote...");
-                        errorExit("Fatal Error", "In onResume() and socket create failed: " + e.getMessage() + ".");
-                    }
-
-                    // Discovery is resource intensive. Make sure it isn't going on when you attempt to connect and pass your message.
-                    btAdapter.cancelDiscovery();
-
-                    // Establish the connection. This will block until it connects.
-                    Log.d(TAG, "...Connecting to Remote...");
-                    try {
-                        btSocket.connect();
-                        BoardDAO boardDAO = new BoardDAO(activity);
-                        boardDAO.conexBluetoothFromBoard(String.valueOf(board.getId()), 1);
-                        statusSocket = true;
-                    } catch (IOException e) {
-                        try {
-                            btSocket.close();
-                            Toast.makeText(activity, "Bluetooth remoto possivelemte desconectado", Toast.LENGTH_LONG).show();
-                            statusSocket = false;
-                        } catch (IOException e2) {
-                            errorExit("Fatal Error", "In onResume() and unable to close socket during connection failure" + e2.getMessage() + ".");
-                        }
-                    }
-
-                    // Create a data stream so we can talk to server.
-                    // Establish the connection. This will block until it connects.
-                    Log.d(TAG, "...outStream to Remote...");
-                    try {
-                        outStream = btSocket.getOutputStream();
-                    } catch (IOException e) {
-                        errorExit("Fatal Error", "In onResume() and output stream creation failed:" + e.getMessage() + ".");
-                    }
-                }
-                */
 
             }
         });

@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cardview_id"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     app:cardCornerRadius="4dp"
-    app:cardElevation="8dp">
+    app:cardElevation="8dp" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,22 +18,13 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
 
-            <!-- Image button -->
-            <android.support.v7.widget.LinearLayoutCompat
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
+            <ImageButton
+                android:id="@+id/btn_sensor_main"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
                 android:layout_margin="8dp"
                 android:layout_gravity="center"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <Switch
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    tools:checked="true" />
-
-            </android.support.v7.widget.LinearLayoutCompat>
+                android:background="@drawable/btn_sensor_umidade"/>
 
             <!-- divider vertical -->
             <android.support.v7.widget.LinearLayoutCompat
@@ -45,82 +35,82 @@
 
             <!-- nome / descrição -->
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:layout_weight="2"
                 android:layout_margin="8dp"
                 android:orientation="vertical">
 
-                <!-- Nome -->
-                <android.support.v7.widget.LinearLayoutCompat
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:text="Nome: "
+                    android:textAppearance="@android:style/TextAppearance.Holo.Small" />
 
-                    <TextView
-                        android:id="@+id/textView_nome"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Nome: "
-                        android:textAppearance="@android:style/TextAppearance.Holo.Small" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Umidade"
+                    android:textAppearance="@android:style/TextAppearance.Holo.Medium" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Led amarelo"
-                        android:textAppearance="@android:style/TextAppearance.Holo.Medium" />
-
-                </android.support.v7.widget.LinearLayoutCompat>
-
-                <!-- divider vertical -->
+                <!-- divider horizontal -->
                 <android.support.v7.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:orientation="horizontal"
                     android:layout_marginTop="5dp"
-                    android:background="@android:color/darker_gray">
+                    android:background="@android:color/darker_gray" />
 
-                </android.support.v7.widget.LinearLayoutCompat>
 
-                <!-- Comando ON -->
-                <android.support.v7.widget.LinearLayoutCompat
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_marginTop="8dp"
+                    android:text="Comando: "
+                    android:textAppearance="@android:style/TextAppearance.Holo.Small" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" H "
+                    android:textAppearance="@android:style/TextAppearance.Holo.Medium" />
+
+            </LinearLayout>
+
+            <!-- divider vertical -->
+            <android.support.v7.widget.LinearLayoutCompat
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@android:color/darker_gray" />
+
+            <!-- valor retorno -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="2"
+                android:layout_margin="8dp"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_vertical">
 
                     <TextView
+                        android:id="@+id/sensor_valor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Comando IN: "
-                        android:textAppearance="@android:style/TextAppearance.Holo.Small" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text=" I "
+                        android:textSize="26sp"
+                        android:text="69 %"
                         android:textAppearance="@android:style/TextAppearance.Holo.Medium" />
 
                 </android.support.v7.widget.LinearLayoutCompat>
 
-                <!-- Comando OFF -->
-                <android.support.v7.widget.LinearLayoutCompat
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Comando OUT: "
-                        android:textAppearance="@android:style/TextAppearance.Holo.Small" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text=" O "
-                        android:textAppearance="@android:style/TextAppearance.Holo.Medium" />
-
-                </android.support.v7.widget.LinearLayoutCompat>
 
             </LinearLayout>
 
@@ -136,8 +126,7 @@
             <!-- botoes actions -->
             <android.support.v7.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:orientation="vertical">

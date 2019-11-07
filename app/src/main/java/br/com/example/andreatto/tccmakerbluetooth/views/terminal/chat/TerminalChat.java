@@ -1,19 +1,13 @@
 package br.com.example.andreatto.tccmakerbluetooth.views.terminal.chat;
 
-import android.app.ListActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
-import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -76,28 +70,13 @@ public class TerminalChat extends AppCompatActivity {
             @Override
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 
-                Log.e("TERMINAL", "SHARED_PREF CODE " + sharedPreferences.getInt("mssg_code", 0));
-
-                String msg = sharedPreferences.getString("mssg", "oi");
-                int code = sharedPreferences.getInt("mssg_code", 0);
+                String msg = sharedPreferences.getString("mensagem_chat", "Tente novamente");
+                String[] mensagemChatCode = msg.split("-");
 
                 terminalMsg = terminalPojo.getTerminalMsg(); // objeto cria mensagem
-                terminalMsg.setMensagem(msg); // mensagem escreve texto
-                terminalMsg.setCode(code); // mensagem escreve codigo cliente
+                terminalMsg.setMensagem(mensagemChatCode[1]); // mensagem escreve texto
+                terminalMsg.setCode(Integer.parseInt(mensagemChatCode[0])); // mensagem escreve codigo cliente
                 terminalAdapter.addMensagem(terminalMsg); // add lista de mensagem
-
-//                runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        // esse handler sobe a lista, amém
-//                        new Handler().postDelayed(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                terminalAdapter.notifyDataSetChanged();
-//                            }
-//                        }, 1);
-//                    }
-//                });
 
             }
         };
@@ -111,7 +90,7 @@ public class TerminalChat extends AppCompatActivity {
     private void initializeComponentsViews() {
 
         toolbarTerminal = findViewById(R.id.toolbar_terminal);
-        toolbarTerminal.setTitle("Chat Board");
+        toolbarTerminal.setTitle("Terminal Chat");
         setSupportActionBar(toolbarTerminal);
 
         ediTextMsg = (EditText) findViewById(R.id.editText_terminal_msg);

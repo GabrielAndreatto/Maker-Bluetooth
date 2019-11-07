@@ -8,6 +8,7 @@ import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.IBinder;
+import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
@@ -18,6 +19,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.UUID;
+
+import br.com.example.andreatto.tccmakerbluetooth.modelo.chat.MensagensPojo;
+import br.com.example.andreatto.tccmakerbluetooth.modelo.chat.PojoMensagem;
 
 public class ServiceBluetooth extends Service {
 
@@ -41,15 +45,13 @@ public class ServiceBluetooth extends Service {
     private SharedPreferences sharedPreferenceTerminal;
     private SharedPreferences.Editor sharedPreferenceEditor;
     private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener;
+    private SharedPreferences sharedPreferenceSensor;
+    private SharedPreferences.Editor sharedPreferenceSensorEditor;
 
     @Override
     public void onCreate() {
         super.onCreate();
-
         bluetoothAdapter = bluetoothAdapter.getDefaultAdapter();
-
-        toastTxt("BLTTH_SERVICE", "Create... ");
-        Log.e("BLTTH_SERVICE", "Bluetooth name: " + bluetoothAdapter.getName());
     }
 
     @Override
@@ -95,17 +97,14 @@ public class ServiceBluetooth extends Service {
                     e.printStackTrace();
                 }
 
-                // Discovery is resource intensive. Make sure it isn't going on when you attempt to connect and pass your message.
                 bluetoothAdapter.cancelDiscovery();
 
-                // Establish the connection. This will block until it connects.
                 try {
                     bluetoothSocket.connect();
                 } catch (IOException e) {
                     Log.d("BLTTH_SERVICE", "... Close socket during connection failure ...");
                 } finally {
-                    //initialBluetoothInOut();
-                    iniciar();
+                    iniciarChat();
                 }
 
             }
@@ -115,21 +114,15 @@ public class ServiceBluetooth extends Service {
         return bluetoothSocket;
     }
 
-    public void iniciar() {
-
-        // Reads bytes from this stream and stores them in the byte array
-        final byte[] msgBuffer = new byte[1024];
+    public void iniciarChat() {
 
         new Thread(new Runnable() {
             @Override
             public void run() {
 
-                // Verifica se há conexão estabelecida com o Bluetooth.
                 if (bluetoothSocket.isConnected()) {
-
                     try {
-
-                        //outputStream = bluetoothSocket.getOutputStream();
+//                        //outputStream = bluetoothSocket.getOutputStream();
                         inputStream = bluetoothSocket.getInputStream();
 
                         is = new DataInputStream(inputStream);
@@ -139,20 +132,64 @@ public class ServiceBluetooth extends Service {
                         sharedPreferenceEditor = sharedPreferenceTerminal.edit();
 
                         while (true) {
+                            if (inputStream.read() > 0) {
+                                final byte[] msgBuffer = new byte[1024];
+                                inputStream.read(msgBuffer);
 
-                            inputStream.read(msgBuffer);
+                                sharedPreferenceEditor.putString("mensagem_chat", 1 + "-" + new String(msgBuffer));
+                                sharedPreferenceEditor.apply();
 
-                            sharedPreferenceEditor.putString("mssg", new String(msgBuffer));
-                            sharedPreferenceEditor.putInt("mssg_code", 1);
-                            sharedPreferenceEditor.apply();
-
-                            Log.e("BLTTH_SERVICE", "iniciar().WHILE   ---> " + new String(msgBuffer));
+                                Log.e("iniciarChat", "Service ---> " + 1 + "-" + new String(msgBuffer));
+                            }
                         }
 
                     } catch (Exception e) {
                         e.printStackTrace();
                     } finally {
-                        Log.e("BLTTH_SERVICE", "iniciar().finally");
+                        Log.e("iniciarChat", "iniciar().finally");
+                    }
+                }
+            }
+        }).start();
+
+    }
+
+    public void iniciarSensor(final String cmd) {
+
+        enviarComando(cmd);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                if (bluetoothSocket.isConnected()) {
+                    try {
+
+                        //outputStream = bluetoothSocket.getOutputStream();
+                        inputStream = bluetoothSocket.getInputStream();
+
+                        is = new DataInputStream(inputStream);
+                        os = new DataOutputStream(bluetoothSocket.getOutputStream());
+
+                        sharedPreferenceSensor = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                        sharedPreferenceSensorEditor = sharedPreferenceSensor.edit();
+
+                        while (true) {
+                            if (inputStream.read() > 0) {
+                                final byte[] msgBuffer = new byte[1024];
+                                inputStream.read(msgBuffer);
+
+                                sharedPreferenceSensorEditor.putString("sensor", new String(msgBuffer));
+                                sharedPreferenceSensorEditor.apply();
+
+                                Log.e("iniciarSensor", "sensor ---> " + new String(msgBuffer));
+                            }
+                        }
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    } finally {
+                        Log.e("iniciarSensor", "iniciarSensor().finally");
                     }
                 }
             }
@@ -162,8 +199,7 @@ public class ServiceBluetooth extends Service {
 
     public void enviarComando(final String cmd) {
 
-        sharedPreferenceEditor.putString("mssg", cmd);
-        sharedPreferenceEditor.putInt("mssg_code", 0);
+        sharedPreferenceEditor.putString("mensagem_chat", 0 + "-" + cmd);
         sharedPreferenceEditor.apply();
 
         new Thread(new Runnable() {
@@ -178,8 +214,47 @@ public class ServiceBluetooth extends Service {
                         //outputStream.write(msgBufferTwo);
                         os.writeUTF(cmd);
 
-                        // SystemClock.sleep(3000);
-                        Log.e("BLTTH_SERVICE", "Enviando comando: " + cmd);
+                    } catch (Exception e) {
+                        e.getMessage();
+                    }
+
+                } else {
+                    Toast.makeText(getApplicationContext(),
+                                "Bluetooth não está conectado",
+                                Toast.LENGTH_LONG)
+                            .show();
+                }
+
+            }
+        }).start();
+
+    }
+
+    public void enviarComandoSensor(final String cmd) {
+
+        sharedPreferenceSensor = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        sharedPreferenceSensorEditor = sharedPreferenceSensor.edit();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                // Verifica se há conexão estabelecida com o Bluetooth.
+                if(bluetoothSocket.isConnected()){
+
+                    try{
+                        os.writeUTF(cmd);
+                        SystemClock.sleep(250);
+
+                        if (inputStream.read() > 0) {
+                            final byte[] msgBuffer = new byte[1024];
+                            inputStream.read(msgBuffer);
+
+                            sharedPreferenceSensorEditor.putString("sensor", new String(msgBuffer));
+                            sharedPreferenceSensorEditor.apply();
+
+                            Log.e("iniciarSensor", "sensor ---> " + new String(msgBuffer));
+                        }
 
                     } catch (Exception e) {
                         e.getMessage();

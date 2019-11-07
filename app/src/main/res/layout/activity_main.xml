@@ -22,15 +22,16 @@
 
             <include layout="@layout/card_send_cmd" />
 
-            <include layout="@layout/card_board_btn_one" />
-
-            <include layout="@layout/card_board_btn_switch" />
-
             <!--
+
             <include layout="@layout/card_btn_one_cmd" />
             <include layout="@layout/card_btn_two_cmd" />
-            -->
 
+            <include layout="@layout/card_board_btn_one" />
+            <include layout="@layout/card_board_btn_switch" />
+            <include layout="@layout/card_board_sensor" />
+
+            -->
             <!--
             <TextView
                 android:id="@+id/textView_mensagem_all"
@@ -51,7 +52,6 @@
                 android:layout_gravity="center"
                 android:textSize="32sp"
                 android:text="Main"/>
-
             -->
 
         </android.support.v7.widget.LinearLayoutCompat>

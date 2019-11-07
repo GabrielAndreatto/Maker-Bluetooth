@@ -57,7 +57,7 @@ public class BluetoothActivedListActivity extends AppCompatActivityBluetooth imp
         listview = (ListView) findViewById(R.id.listView_bluetooth_actived);
 
         toolbar = findViewById(R.id.toolbar_bluetooth_actived_list);
-        toolbar.setTitle("Bluetooth para parear  (" + lista.size() + ")");
+        toolbar.setTitle("Bluetooth próximo");
         setSupportActionBar(toolbar);
     }
 
@@ -124,7 +124,7 @@ public class BluetoothActivedListActivity extends AppCompatActivityBluetooth imp
         ArrayAdapter adapter = new ArrayAdapter(this, layout, nomes);
         listview.setAdapter(adapter);
         listview.setOnItemClickListener(this);
-        toolbar.setTitle("Bluetooth proximos nunca pareado  (" + lista.size() + ")");
+        toolbar.setTitle("Bluetooth proximo");
         if(lista.size() <= 0) {
             TextView text = new TextView(this);
             text.setText("Nenhum bluetooth próximo para pariar");

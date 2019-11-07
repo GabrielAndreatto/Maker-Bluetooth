@@ -2,7 +2,6 @@
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/card_view_send_cmd"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
@@ -15,7 +14,6 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/layout_header"
             android:layout_width="match_parent"
             android:layout_height="107dp"
             android:layout_gravity="center"
@@ -27,7 +25,6 @@
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 android:layout_margin="8dp"
-
                 android:background="@drawable/btn_one_cmd" />
 
             <!-- divider vertical -->

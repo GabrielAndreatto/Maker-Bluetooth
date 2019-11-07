@@ -54,7 +54,7 @@ public class BluetoothBondedListActivity extends AppCompatActivityBluetooth {
     public void initial() {
 
         toolbar = findViewById(R.id.toolbar_bluetooth_bonded_list);
-        toolbar.setTitle("Bluetooth pareados      (" + mBluetoothDeviceList.size() + ")");
+        toolbar.setTitle("Bluetooth pareado");
         setSupportActionBar(toolbar);
 
         recyclerView = findViewById(R.id.recyclerView_bluetooth_bonded);
@@ -101,7 +101,7 @@ public class BluetoothBondedListActivity extends AppCompatActivityBluetooth {
                 // Terminou a busca
                 Toast.makeText(context, "Busca finalizada. " + count + " novos devices pareados encontrados", Toast.LENGTH_LONG).show();
                 dialog.dismiss();
-                toolbar.setTitle("Bluetooth pareados      (" + mBluetoothDeviceList.size() + ")");
+                toolbar.setTitle("Bluetooth pareado");
             }
 
         }

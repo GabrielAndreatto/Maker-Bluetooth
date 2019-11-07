@@ -36,7 +36,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="url" value="jar:file:/Applications/Android%20Studio.app/Contents/plugins/android/lib/android.jar!/images/material_design_icons/editor/ic_bubble_chart_black_24dp.xml" />
+                                                <entry key="url" value="jar:file:/Applications/Android%20Studio.app/Contents/plugins/android/lib/android.jar!/images/material_design_icons/image/ic_view_compact_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -48,7 +48,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="opacityPercent" value="80" />
+                                                <entry key="opacityPercent" value="60" />
                                                 <entry key="trimmed" value="true" />
                                               </map>
                                             </option>
@@ -71,8 +71,8 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="imageAsset" value="$USER_HOME$/Pos Graduação - 2018/TCC - Aplicativo comunicação Arduino/App/imgs backup/ic_launcher_if.png" />
-                                      <entry key="outputName" value="ic_chart_user_dark" />
+                                      <entry key="imageAsset" value="$USER_HOME$/Desktop/umidade.svg" />
+                                      <entry key="outputName" value="ic_cards_dark" />
                                       <entry key="theme" value="HOLO_DARK" />
                                     </map>
                                   </option>
