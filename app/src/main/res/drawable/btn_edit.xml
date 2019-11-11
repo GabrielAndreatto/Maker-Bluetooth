@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="true" android:color="@color/colorPrimaryDark" android:drawable="@drawable/ic_edit_dark" >
+        <shape>
+            <solid android:color="@color/colorPrimaryDark" />
+            <padding android:bottom="3dp" android:left="3dp" android:right="3dp" android:top="3dp" />
+        </shape>
+    </item>
+    <item android:state_focused="true" >
+        <shape>
+            <solid android:color="@android:color/transparent" />
+            <padding android:bottom="3dp" android:left="3dp" android:right="3dp" android:top="3dp" />
+        </shape>
+    </item>
+    <item android:state_enabled="false">
+        <shape>
+            <solid android:color="@android:color/transparent" />
+            <padding android:bottom="3dp" android:left="3dp" android:right="3dp" android:top="3dp" />
+        </shape>
+    </item>
+    <item android:drawable="@drawable/ic_edit_light">
+        <shape>
+            <solid android:color="@color/colorPrimary" />
+            <padding android:bottom="3dp" android:left="3dp" android:right="3dp" android:top="3dp" />
+        </shape>
+    </item>
+
+</selector>

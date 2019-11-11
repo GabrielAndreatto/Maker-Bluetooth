@@ -85,14 +85,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void initializeComponentsEvents() {
 
-        btnSendCmd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // SERVICE
-                // 1 - Bluetooth
-                serviceConnection.getServiceBluetooth().enviarComando(commandSending.getText().toString());
-            }
-        });
+//        btnSendCmd.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // SERVICE
+//                // 1 - Bluetooth
+//                serviceConnection.getServiceBluetooth().enviarComando(commandSending.getText().toString());
+//            }
+//        });
 
     }
 

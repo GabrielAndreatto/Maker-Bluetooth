@@ -14,6 +14,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.UnsupportedEncodingException;
+
 import br.com.example.andreatto.tccmakerbluetooth.R;
 import br.com.example.andreatto.tccmakerbluetooth.dao.BoardDAO;
 import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceBluetooth;
@@ -72,7 +74,18 @@ public class CardsList extends AppCompatActivity {
         btnSensor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                serviceConnection.getServiceBluetooth().enviarComandoSensor("t");
+                final String valorSensor;
+                try {
+                    valorSensor = serviceConnection.getServiceBluetooth().getValueSensor("h");
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            sensorValue.setText(valorSensor);
+                        }
+                    });
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -89,7 +102,7 @@ public class CardsList extends AppCompatActivity {
 
                 String msg = sharedPreferences.getString("sensor", "Tente novamente");
 
-                sensorValue.setText(msg);
+                //sensorValue.setText(msg);
 
             }
         };

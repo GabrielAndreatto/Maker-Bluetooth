@@ -20,9 +20,9 @@
 
             <include layout="@layout/toolbar" />
 
-            <include layout="@layout/card_send_cmd" />
 
             <!--
+            <include layout="@layout/card_send_cmd" />
 
             <include layout="@layout/card_btn_one_cmd" />
             <include layout="@layout/card_btn_two_cmd" />

@@ -10,10 +10,12 @@ import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +29,7 @@ public class ButtonsList extends AppCompatActivity {
 
     // card que envia comando
     private ImageButton btnSendCmd;
+    private ImageView btnedit;
     private AppCompatEditText commandSending;
 
     // SERVICE
@@ -53,6 +56,7 @@ public class ButtonsList extends AppCompatActivity {
 
         // Card enviar 1 comando
         btnSendCmd = (ImageButton) findViewById(R.id.btn_send);
+        btnedit = (ImageView) findViewById(R.id.imageView_editar);
         commandSending = (AppCompatEditText) findViewById(R.id.edit_text_cmd);
 
         // SERVICE
@@ -74,6 +78,12 @@ public class ButtonsList extends AppCompatActivity {
             }
         });
 
+        btnedit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("BOTAO_EDIT", "Botão edit do card botões");
+            }
+        });
     }
 
     // Toolbar

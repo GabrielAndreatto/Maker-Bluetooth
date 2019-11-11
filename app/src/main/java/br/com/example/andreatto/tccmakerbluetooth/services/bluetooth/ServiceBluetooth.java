@@ -18,6 +18,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.UUID;
 
 import br.com.example.andreatto.tccmakerbluetooth.modelo.chat.MensagensPojo;
@@ -115,14 +116,12 @@ public class ServiceBluetooth extends Service {
     }
 
     public void iniciarChat() {
-
         new Thread(new Runnable() {
             @Override
             public void run() {
-
                 if (bluetoothSocket.isConnected()) {
                     try {
-//                        //outputStream = bluetoothSocket.getOutputStream();
+                        //outputStream = bluetoothSocket.getOutputStream();
                         inputStream = bluetoothSocket.getInputStream();
 
                         is = new DataInputStream(inputStream);
@@ -139,19 +138,18 @@ public class ServiceBluetooth extends Service {
                                 sharedPreferenceEditor.putString("mensagem_chat", 1 + "-" + new String(msgBuffer));
                                 sharedPreferenceEditor.apply();
 
-                                Log.e("iniciarChat", "Service ---> " + 1 + "-" + new String(msgBuffer));
+                                Log.e("iniciar_chat", "Service ---> " + 1 + "-" + new String(msgBuffer));
                             }
                         }
 
                     } catch (Exception e) {
                         e.printStackTrace();
                     } finally {
-                        Log.e("iniciarChat", "iniciar().finally");
+                        Log.e("iniciar_chat", "finally");
                     }
                 }
             }
         }).start();
-
     }
 
     public void iniciarSensor(final String cmd) {
@@ -272,5 +270,41 @@ public class ServiceBluetooth extends Service {
     public void toastTxt(String tag,  String text) {
         Toast.makeText(this, tag + text, Toast.LENGTH_LONG).show();
     }
+
+    public String getValueSensor(final String cmd) throws UnsupportedEncodingException {
+        Log.e("getValueSensor", "cmd: " +cmd);
+        final byte[] msgBuffer = new byte[1024];
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                try {
+                    if (bluetoothSocket.isConnected()) {
+
+                        os.writeUTF(cmd);
+
+                        while (inputStream.read() > 0) {
+                            Log.e("while", "inputStream");
+                        }
+
+                        if (inputStream.read() > 0) {
+                            inputStream.read(msgBuffer);
+                            Log.e("getValueSensor", "msg: "+new String(msgBuffer, "UTF-8"));
+                        }
+                    } else {
+                        Toast.makeText(getApplicationContext(), "BLuetooth Desconectado", Toast.LENGTH_LONG).show();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    Log.e("getValueSensor", "finally");
+                }
+
+            }
+        }).start();
+
+        return new String(msgBuffer, "UTF-8");
+    }
+
 
 }
