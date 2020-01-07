@@ -21,8 +21,7 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.UUID;
 
-import br.com.example.andreatto.tccmakerbluetooth.modelo.chat.MensagensPojo;
-import br.com.example.andreatto.tccmakerbluetooth.modelo.chat.PojoMensagem;
+import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.teste.BinderBluetooth;
 
 public class ServiceBluetooth extends Service {
 
@@ -45,21 +44,17 @@ public class ServiceBluetooth extends Service {
     // Preferences
     private SharedPreferences sharedPreferenceTerminal;
     private SharedPreferences.Editor sharedPreferenceEditor;
-    private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener;
-    private SharedPreferences sharedPreferenceSensor;
-    private SharedPreferences.Editor sharedPreferenceSensorEditor;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        Log.e("ServiceBluetooth", "onCreate(): ... ");
         bluetoothAdapter = bluetoothAdapter.getDefaultAdapter();
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-
-        Log.e("SERVICE", "onStartCommand: ... ");
-
+        Log.e("ServiceBluetooth", "onStartCommand(): " + startId + " ... ");
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -75,9 +70,7 @@ public class ServiceBluetooth extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         // TODO: Return the communication channel to the service.
-
-        Log.e("SERVICE", "onBind: ... ");
-
+        Log.e("ServiceBluetooth", "onBind(): ... ");
         return binder;
     }
 
@@ -105,7 +98,7 @@ public class ServiceBluetooth extends Service {
                 } catch (IOException e) {
                     Log.d("BLTTH_SERVICE", "... Close socket during connection failure ...");
                 } finally {
-                    iniciarChat();
+                    initialBluetoothIO();
                 }
 
             }
@@ -115,7 +108,7 @@ public class ServiceBluetooth extends Service {
         return bluetoothSocket;
     }
 
-    public void iniciarChat() {
+    public void initialBluetoothIO() {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -130,7 +123,30 @@ public class ServiceBluetooth extends Service {
                         sharedPreferenceTerminal = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                         sharedPreferenceEditor = sharedPreferenceTerminal.edit();
 
-                        while (true) {
+                        Log.e("initialBluetoothIO()", "iniciar_Bluetooth_IO");
+                        iniciarChat(true);
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    } finally {
+                        Log.e("iniciar_Bluetooth_IO", "finally");
+                    }
+                }
+            }
+        }).start();
+    }
+
+    public void iniciarChat(final boolean mChat) {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                if (bluetoothSocket.isConnected()) {
+                    try {
+
+                        //noinspection LoopConditionNotUpdatedInsideLoop
+                        while (mChat == true) {
+                            Log.e("CHAT", "chat: "+mChat);
                             if (inputStream.read() > 0) {
                                 final byte[] msgBuffer = new byte[1024];
                                 inputStream.read(msgBuffer);
@@ -150,49 +166,6 @@ public class ServiceBluetooth extends Service {
                 }
             }
         }).start();
-    }
-
-    public void iniciarSensor(final String cmd) {
-
-        enviarComando(cmd);
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                if (bluetoothSocket.isConnected()) {
-                    try {
-
-                        //outputStream = bluetoothSocket.getOutputStream();
-                        inputStream = bluetoothSocket.getInputStream();
-
-                        is = new DataInputStream(inputStream);
-                        os = new DataOutputStream(bluetoothSocket.getOutputStream());
-
-                        sharedPreferenceSensor = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                        sharedPreferenceSensorEditor = sharedPreferenceSensor.edit();
-
-                        while (true) {
-                            if (inputStream.read() > 0) {
-                                final byte[] msgBuffer = new byte[1024];
-                                inputStream.read(msgBuffer);
-
-                                sharedPreferenceSensorEditor.putString("sensor", new String(msgBuffer));
-                                sharedPreferenceSensorEditor.apply();
-
-                                Log.e("iniciarSensor", "sensor ---> " + new String(msgBuffer));
-                            }
-                        }
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    } finally {
-                        Log.e("iniciarSensor", "iniciarSensor().finally");
-                    }
-                }
-            }
-        }).start();
-
     }
 
     public void enviarComando(final String cmd) {
@@ -228,63 +201,24 @@ public class ServiceBluetooth extends Service {
 
     }
 
-    public void enviarComandoSensor(final String cmd) {
-
-        sharedPreferenceSensor = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        sharedPreferenceSensorEditor = sharedPreferenceSensor.edit();
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                // Verifica se há conexão estabelecida com o Bluetooth.
-                if(bluetoothSocket.isConnected()){
-
-                    try{
-                        os.writeUTF(cmd);
-                        SystemClock.sleep(250);
-
-                        if (inputStream.read() > 0) {
-                            final byte[] msgBuffer = new byte[1024];
-                            inputStream.read(msgBuffer);
-
-                            sharedPreferenceSensorEditor.putString("sensor", new String(msgBuffer));
-                            sharedPreferenceSensorEditor.apply();
-
-                            Log.e("iniciarSensor", "sensor ---> " + new String(msgBuffer));
-                        }
-
-                    } catch (Exception e) {
-                        e.getMessage();
-                    }
-
-                } else {
-                    Toast.makeText(getApplicationContext(), "Bluetooth não está conectado", Toast.LENGTH_LONG).show();
-                }
-
-            }
-        }).start();
-
-    }
-
     public void toastTxt(String tag,  String text) {
         Toast.makeText(this, tag + text, Toast.LENGTH_LONG).show();
     }
 
     public String getValueSensor(final String cmd) throws UnsupportedEncodingException {
         Log.e("getValueSensor", "cmd: " +cmd);
+        iniciarChat(false);
         final byte[] msgBuffer = new byte[1024];
         new Thread(new Runnable() {
             @Override
             public void run() {
-
                 try {
                     if (bluetoothSocket.isConnected()) {
 
                         os.writeUTF(cmd);
 
-                        while (inputStream.read() > 0) {
-                            Log.e("while", "inputStream");
+                        while (inputStream.read() <= 0) {
+                            Log.e("while", "input Stream");
                         }
 
                         if (inputStream.read() > 0) {
@@ -298,6 +232,7 @@ public class ServiceBluetooth extends Service {
                     e.printStackTrace();
                 } finally {
                     Log.e("getValueSensor", "finally");
+                    iniciarChat(false);
                 }
 
             }
@@ -305,6 +240,5 @@ public class ServiceBluetooth extends Service {
 
         return new String(msgBuffer, "UTF-8");
     }
-
 
 }

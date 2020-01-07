@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -58,15 +59,14 @@ public class CardsList extends AppCompatActivity {
         toolbar.setTitle("Lista de Cards");
         setSupportActionBar(toolbar);
 
-        btnSensor = (ImageButton) findViewById(R.id.btn_sensor_main);
-        sensorValue = (TextView) findViewById(R.id.sensor_valor);
+        btnSensor = findViewById(R.id.btn_sensor_main);
+        sensorValue = findViewById(R.id.sensor_valor);
 
         // SERVICE
         // 1 - Bluetooth
         intentService = new Intent(this, ServiceBluetooth.class);
         serviceConnection = new ServiceConnectionBluetoothBind();
         bindService(intentService, serviceConnection, 0);
-
     }
 
     private void initializeComponentsEvents() {
@@ -74,18 +74,22 @@ public class CardsList extends AppCompatActivity {
         btnSensor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String valorSensor;
-                try {
-                    valorSensor = serviceConnection.getServiceBluetooth().getValueSensor("h");
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            sensorValue.setText(valorSensor);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            String value = serviceConnection.getServiceBluetooth().getValueSensor("h");
+
+                            while(value.isEmpty()) {
+                            }
+                            sensorValue.setText(value);
+                            Log.e("BOTAO_CARD","valor retornado: "+value);
+
+                        } catch (UnsupportedEncodingException e) {
+                            e.printStackTrace();
                         }
-                    });
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
+                    }
+                });
             }
         });
 

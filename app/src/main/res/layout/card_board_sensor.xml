@@ -105,8 +105,8 @@
                         android:id="@+id/sensor_valor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="26sp"
-                        android:text="69 %"
+                        android:textSize="20sp"
+                        android:hint="69 %"
                         android:textAppearance="@android:style/TextAppearance.Holo.Medium" />
 
                 </android.support.v7.widget.LinearLayoutCompat>

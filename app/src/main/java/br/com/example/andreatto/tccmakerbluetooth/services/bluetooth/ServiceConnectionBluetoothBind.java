@@ -5,6 +5,8 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.util.Log;
 
+import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.teste.BinderBluetooth;
+
 public class ServiceConnectionBluetoothBind implements ServiceConnection {
 
     private ServiceBluetooth serviceBluetooth;
@@ -15,14 +17,17 @@ public class ServiceConnectionBluetoothBind implements ServiceConnection {
     public void onServiceConnected(ComponentName name, IBinder serviceBinder) {
         BinderBluetooth binderBluetooth = (BinderBluetooth) serviceBinder;
         this.serviceBluetooth = binderBluetooth.getServiceBluetooth();
+        Log.e("ServiceConnection", "onServiceConnected(): ... ");
     }
 
     @Override
     public void onServiceDisconnected(ComponentName name) {
         // Tarefas a serem executadas ao se desconectar do Service
+        Log.e("ServiceConnection", "onServiceDisconnected(): ... ");
     }
 
     public ServiceBluetooth getServiceBluetooth() {
+        Log.e("ServiceConnection", "getServiceBluetooth(): ... ");
         return serviceBluetooth;
     }
 
