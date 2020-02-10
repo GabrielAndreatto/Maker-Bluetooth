@@ -34,10 +34,12 @@ public class DBHelper extends SQLiteOpenHelper {
                 ");";
         db.execSQL(sql);
 
-        String sql1 = "CREATE TABLE tb_button_one (" +
+        String sql1 = "CREATE TABLE tb_button (" +
                 "_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT" +
                 ",nome TEXT" +
-                ",cmd_on_off TEXT" +
+                ",cmd_on TEXT" +
+                ",cmd_off TEXT" +
+                ",cmd_flag TEXT" +
                 ");";
         db.execSQL(sql1);
     }
