@@ -19,39 +19,57 @@ public class DBHelper extends SQLiteOpenHelper {
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = "CREATE TABLE tb_board (" +
+        String sql_board = "CREATE TABLE tb_board (" +
                 "_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT" +
-                ",nome TEXT" +
-                ",descricao TEXT" +
+                ",name TEXT" +
+                ",description TEXT" +
                 ",bluetooth_name TEXT" +
                 ",mac_address TEXT" +
                 ",rede TEXT" +
                 ",ip TEXT" +
                 ",conected_bluetooth INTEGER DEFAULT 0" +
                 ",conected_wifi INTEGER DEFAULT 0" +
+                ",used_at TEXT" +
                 ",created_at TEXT" +
                 ",updated_at TEXT" +
                 ");";
-        db.execSQL(sql);
+        db.execSQL(sql_board);
 
-        String sql1 = "CREATE TABLE tb_button (" +
+        String sql_actuators = "CREATE TABLE tb_actuator (" +
                 "_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT" +
-                ",nome TEXT" +
+                ",name TEXT" +
                 ",cmd_on TEXT" +
                 ",cmd_off TEXT" +
-                ",cmd_flag TEXT" +
+                ",type TEXT" +
+                ",used_at TEXT" +
+                ",created_at TEXT" +
+                ",updated_at TEXT" +
                 ");";
-        db.execSQL(sql1);
+        db.execSQL(sql_actuators);
+
+        String sql_sensors = "CREATE TABLE tb_sensor (" +
+                "_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT" +
+                ",name TEXT" +
+                ",command TEXT" +
+                ",value TEXT" +
+                ",icon TEXT" +
+                ",used_at TEXT" +
+                ",created_at TEXT" +
+                ",updated_at TEXT" +
+                ");";
+        db.execSQL(sql_sensors);
     }
 
     /**
      * Atualiza a estrutura da tabela no banco de dados, caso sua versão tenha mudado. */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        String sql = "DROP TABLE IF EXISTS tb_board";
-        db.execSQL(sql);
-        String sql1 = "DROP TABLE IF EXISTS tb_button";
-        db.execSQL(sql1);
+        String sql_board_drop = "DROP TABLE IF EXISTS tb_board";
+        db.execSQL(sql_board_drop);
+        String sql_actuator_drop = "DROP TABLE IF EXISTS tb_actuator";
+        db.execSQL(sql_actuator_drop);
+        String sql_sensor_drop = "DROP TABLE IF EXISTS tb_sensor";
+        db.execSQL(sql_sensor_drop);
         onCreate(db);
     }
 }

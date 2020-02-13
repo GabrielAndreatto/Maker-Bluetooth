@@ -1,7 +1,6 @@
 package br.com.example.andreatto.tccmakerbluetooth.views.listas.board;
 
 import android.app.Activity;
-import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -19,9 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.OutputStream;
 import java.util.List;
-import java.util.UUID;
 
 import br.com.example.andreatto.tccmakerbluetooth.R;
 import br.com.example.andreatto.tccmakerbluetooth.dao.BoardDAO;
@@ -31,7 +28,6 @@ import br.com.example.andreatto.tccmakerbluetooth.modelo.Board;
 import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceBluetooth;
 import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceConnectionBluetoothBind;
 import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.activitys.AppCompatActivityBluetoothCon;
-
 
 public class RecyclerBoardListAdapter extends RecyclerView.Adapter<ViewHolderBluetoothBonded> {
 
@@ -192,7 +188,6 @@ public class RecyclerBoardListAdapter extends RecyclerView.Adapter<ViewHolderBlu
 
                                 BoardDAO boardDAO = new BoardDAO(v.getContext().getApplicationContext());
                                 boardDAO.remover(board);
-                                alertDialog.cancel();
 
                                 try {
                                     Thread.sleep(100);
@@ -236,7 +231,6 @@ public class RecyclerBoardListAdapter extends RecyclerView.Adapter<ViewHolderBlu
                             @Override
                             public void onClick(View v) {
                                 alertDialog.cancel();
-
                             }
 
                         });

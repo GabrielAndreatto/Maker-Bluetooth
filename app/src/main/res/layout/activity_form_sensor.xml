@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.form.FormSensor">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/toolbar" />
+
+        <!-- Space -->
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+        </android.support.v7.widget.LinearLayoutCompat>
+
+        <!-- Layout container nome -->
+        <android.support.v7.widget.LinearLayoutCompat
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp">
+
+            <!-- NOME -->
+            <android.support.v7.widget.LinearLayoutCompat
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <!-- NOME widget -->
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/sensor_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:hint="Nome"
+                        android:inputType="text" >
+
+                        <!-- <requestFocus /> -->
+                    </android.support.v7.widget.AppCompatEditText>
+
+                </android.support.design.widget.TextInputLayout>
+
+            </android.support.v7.widget.LinearLayoutCompat>
+
+            <!-- Comando -->
+            <android.support.v7.widget.LinearLayoutCompat
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <!-- Comando widget -->
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/sensor_cmd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:hint="Comando"
+                        android:inputType="text" >
+
+                        <!-- <requestFocus /> -->
+                    </android.support.v7.widget.AppCompatEditText>
+
+                </android.support.design.widget.TextInputLayout>
+
+            </android.support.v7.widget.LinearLayoutCompat>
+
+            <!-- Icones -->
+            <android.support.v7.widget.LinearLayoutCompat
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <!-- Comando widget -->
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/sensor_icons"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:hint="Icons"
+                        android:inputType="text" >
+
+                        <!-- <requestFocus /> -->
+                    </android.support.v7.widget.AppCompatEditText>
+
+                </android.support.design.widget.TextInputLayout>
+
+            </android.support.v7.widget.LinearLayoutCompat>
+
+            <!-- Space border -->
+            <android.support.v7.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="8dp"
+                android:background="@color/cardview_dark_background">
+
+            </android.support.v7.widget.LinearLayoutCompat>
+
+            <!-- BOTAÕES Submit -->
+            <android.support.v7.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal" >
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/btn_cancel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    android:textSize="16sp"
+                    android:backgroundTint="@color/primaryDarkColor"
+                    android:text="CANCELAR"
+                    android:textAppearance="@android:style/TextAppearance.Holo.WindowTitle"
+                    android:textColor="@android:color/white"/>
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/btn_save"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    android:textSize="16sp"
+                    android:backgroundTint="@color/primaryDarkColor"
+                    android:text="SALVAR"
+                    android:textAppearance="@android:style/TextAppearance.Holo.WindowTitle"
+                    android:textColor="@android:color/white"/>
+
+            </android.support.v7.widget.LinearLayoutCompat>
+
+        </android.support.v7.widget.LinearLayoutCompat>
+
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

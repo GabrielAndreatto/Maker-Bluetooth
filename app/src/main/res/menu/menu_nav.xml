@@ -11,12 +11,12 @@
 
         <item
             android:id="@+id/menu_navigation_btns"
-            android:title="Botão"
+            android:title="Atuadores"
             android:icon="@drawable/ic_button_light" />
 
         <item
             android:id="@+id/menu_navigation_cards"
-            android:title="Card"
+            android:title="Sensores"
             android:icon="@drawable/ic_cards_light" />
 
         <item
@@ -38,7 +38,7 @@
             android:icon="@drawable/ic_timer_light" />
 
         <item
-            android:title="Comando por voz"
+            android:title="Voz"
             android:icon="@drawable/ic_voice_light" />
 
         <item
@@ -66,12 +66,12 @@
 
             <item
                 android:id="@+id/menu_navigation_btn_add"
-                android:title="+ Botão"
+                android:title="+ Atuadores"
                 android:icon="@drawable/ic_button_light" />
 
             <item
                 android:id="@+id/menu_navigation_card_add"
-                android:title="+ Card"
+                android:title="+ Sensores"
                 android:icon="@drawable/ic_cards_light" />
 
         </menu>

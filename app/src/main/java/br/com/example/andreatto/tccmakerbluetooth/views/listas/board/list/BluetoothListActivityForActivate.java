@@ -54,7 +54,6 @@ public class BluetoothListActivityForActivate extends AppCompatActivityBluetooth
     }
 
     private void updateLista() {
-        // Cria o array com o nome de cada device
         List nomes = new ArrayList();
         for (BluetoothDevice device : mBluetoothDeviceList) {
             nomes.add("Nome: " + device.getName() + "\nMac address: " + device.getAddress());

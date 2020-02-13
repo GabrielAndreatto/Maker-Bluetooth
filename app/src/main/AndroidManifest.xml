@@ -13,9 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/SuperMaterialTheme">
-
-        <activity android:name=".views.listas.buttons.ButtonsList"></activity>
-        <activity android:name=".views.listas.cards.CardsList" />
+        <activity android:name=".views.listas.sensors.ui.SensorValue"/>
+        <activity android:name=".views.listas.sensors.SensorListActivity" />
+        <activity android:name=".views.form.FormSensor" />
+        <activity android:name=".views.listas.buttons.ButtonsList" />
         <activity android:name=".views.terminal.chat.TerminalChat" />
         <activity android:name=".FirstActivity">
             <intent-filter>

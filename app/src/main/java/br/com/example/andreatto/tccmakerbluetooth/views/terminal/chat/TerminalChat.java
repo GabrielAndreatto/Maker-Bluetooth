@@ -55,8 +55,6 @@ public class TerminalChat extends AppCompatActivity {
     }
 
     private void initialListView() {
-        /**
-         * Define o Adapter que irá mostrar os dados na ListView. */
         listView = findViewById(R.id.terminal_chat_historico);
         listView.setAdapter(terminalAdapter);
         //setListAdapter(terminalAdapter);
@@ -84,7 +82,6 @@ public class TerminalChat extends AppCompatActivity {
 
         // sharedPreferenceTerminal = getSharedPreferences(getString(R.string.pref_msg_terminal), Context.MODE_PRIVATE);
         sharedPreferenceEditor = sharedPreferenceTerminal.edit();
-
     }
 
     private void initializeComponentsViews() {
@@ -118,8 +115,4 @@ public class TerminalChat extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
-    }
 }

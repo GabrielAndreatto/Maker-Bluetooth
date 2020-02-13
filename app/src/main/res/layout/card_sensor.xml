@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/cardViewSensor"
     android:layout_margin="8dp"
     app:cardCornerRadius="4dp"
     app:cardElevation="8dp" >
@@ -24,7 +25,7 @@
                 android:layout_height="64dp"
                 android:layout_margin="8dp"
                 android:layout_gravity="center"
-                android:background="@drawable/btn_sensor_umidade"/>
+                android:background="@drawable/ic_sensor_light"/>
 
             <!-- divider vertical -->
             <android.support.v7.widget.LinearLayoutCompat
@@ -35,23 +36,25 @@
 
             <!-- nome / descrição -->
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textSize="12sp"
                     android:text="Nome: "
                     android:textAppearance="@android:style/TextAppearance.Holo.Small" />
 
                 <TextView
+                    android:id="@+id/card_sensor_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Umidade"
+                    android:hint=""
                     android:textAppearance="@android:style/TextAppearance.Holo.Medium" />
 
                 <!-- divider horizontal -->
@@ -62,18 +65,19 @@
                     android:layout_marginTop="5dp"
                     android:background="@android:color/darker_gray" />
 
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:textSize="12sp"
                     android:text="Comando: "
                     android:textAppearance="@android:style/TextAppearance.Holo.Small" />
 
                 <TextView
+                    android:id="@+id/card_sensor_command"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" H "
+                    android:hint=""
                     android:textAppearance="@android:style/TextAppearance.Holo.Medium" />
 
             </LinearLayout>
@@ -86,33 +90,122 @@
                 android:background="@android:color/darker_gray" />
 
             <!-- valor retorno -->
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <android.support.v7.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:orientation="vertical">
 
+                <!-- L. Layout = valor retorno -->
                 <android.support.v7.widget.LinearLayoutCompat
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_gravity="center_horizontal"
-                    android:gravity="center_vertical">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/sensor_valor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="20sp"
-                        android:hint="69 %"
+                        android:textSize="12sp"
+                        android:gravity="top"
+                        android:layout_gravity="center_horizontal"
+                        android:hint="Valor" />
+
+                    <TextView
+                        android:id="@+id/card_sensor_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:textSize="26sp"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_vertical"
+                        android:hint="00%"
                         android:textAppearance="@android:style/TextAppearance.Holo.Medium" />
 
                 </android.support.v7.widget.LinearLayoutCompat>
 
+                <!-- L. Layout = icone relogio + dia e hora -->
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="bottom"
+                    android:gravity="bottom"
+                    android:orientation="vertical">
 
-            </LinearLayout>
+                    <android.support.v7.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
+
+                        <android.support.v7.widget.LinearLayoutCompat
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical" >
+
+                            <ImageView
+                                android:layout_width="32sp"
+                                android:layout_height="32sp"
+                                android:padding="4dp"
+                                android:layout_marginRight="4dp"
+                                android:src="@drawable/ic_clock_light" />
+
+                        </android.support.v7.widget.LinearLayoutCompat>
+
+                        <!-- L. Layout = dia e hora -->
+                        <android.support.v7.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <android.support.v7.widget.LinearLayoutCompat
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:layout_gravity="center"
+                                android:orientation="horizontal" >
+
+                                <TextView
+                                    android:id="@+id/card_sensor_hour"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:gravity="bottom|center_horizontal"
+                                    android:textSize="12sp"
+                                    android:hint="00:00:00" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginLeft="1dp"
+                                    android:gravity="bottom|center_horizontal"
+                                    android:textSize="12sp"
+                                    android:hint="h" />
+
+                            </android.support.v7.widget.LinearLayoutCompat>
+
+
+                            <TextView
+                                android:id="@+id/card_sensor_date"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:gravity="bottom|center_horizontal"
+                                android:textSize="10sp"
+                                android:hint="00/00/0000" />
+
+                        </android.support.v7.widget.LinearLayoutCompat>
+
+                    </android.support.v7.widget.LinearLayoutCompat>
+
+                </android.support.v7.widget.LinearLayoutCompat>
+
+            </android.support.v7.widget.LinearLayoutCompat>
 
             <!-- divider vertical -->
             <android.support.v7.widget.LinearLayoutCompat
@@ -132,7 +225,7 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/imageView_editar"
+                    android:id="@+id/imageView_edit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -149,7 +242,7 @@
                     android:background="@android:color/darker_gray" />
 
                 <ImageView
-                    android:id="@+id/imageView_deletar"
+                    android:id="@+id/imageView_delete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

@@ -24,7 +24,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="opacityPercent" value="80" />
+                                                <entry key="opacityPercent" value="60" />
                                                 <entry key="trimmed" value="true" />
                                               </map>
                                             </option>
@@ -36,7 +36,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="url" value="jar:file:/Applications/Android%20Studio.app/Contents/plugins/android/lib/android.jar!/images/material_design_icons/action/ic_delete_black_24dp.xml" />
+                                                <entry key="url" value="jar:file:/Applications/Android%20Studio.app/Contents/plugins/android/lib/android.jar!/images/material_design_icons/image/ic_wb_iridescent_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -72,8 +72,7 @@
                                   <option name="values">
                                     <map>
                                       <entry key="imageAsset" value="$USER_HOME$/Desktop/umidade.svg" />
-                                      <entry key="outputName" value="ic_delete_dark" />
-                                      <entry key="theme" value="HOLO_DARK" />
+                                      <entry key="outputName" value="ic_sensor_light" />
                                     </map>
                                   </option>
                                 </PersistentState>

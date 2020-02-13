@@ -2,5 +2,8 @@
     <string name="app_name">Maker Bluetooth</string>
     <string name="open_drawer">Abrir</string>
     <string name="close_drawer">Fechar</string>
+    <string name="submit">Salvar</string>
+    <string name="title_activity_sensor_values">SensorValues</string>
+    <string name="title_activity_sensor_value">SensorValue</string>
 
 </resources>

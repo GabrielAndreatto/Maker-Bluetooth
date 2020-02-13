@@ -20,16 +20,16 @@
 
             <include layout="@layout/toolbar" />
 
+            <include layout="@layout/card_send_cmd" />
 
             <!--
-            <include layout="@layout/card_send_cmd" />
 
             <include layout="@layout/card_btn_one_cmd" />
             <include layout="@layout/card_btn_two_cmd" />
 
             <include layout="@layout/card_board_btn_one" />
             <include layout="@layout/card_board_btn_switch" />
-            <include layout="@layout/card_board_sensor" />
+            <include layout="@layout/card_sensor" />
 
             -->
             <!--

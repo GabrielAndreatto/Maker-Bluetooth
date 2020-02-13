@@ -51,14 +51,15 @@ public class BoardDAO {
         // Encapsula no board do tipo ContentValues os
         // valores a serem persistidos no banco de dados
         ContentValues values = new ContentValues();
-        values.put("nome", board.getNome());
-        values.put("descricao", board.getDescricao());
+        values.put("name", board.getNome());
+        values.put("description", board.getDescricao());
         values.put("bluetooth_name", board.getBluetoothName());
         values.put("mac_address", board.getMacAddress());
         values.put("rede", board.getRede());
         values.put("ip", board.getIp());
         //values.put("conected_bluetooth", board.getConectedBluetooth());
         //values.put("conected_wifi", board.getConectedWifi());
+        values.put("used_at", " IS NULL");
         values.put("created_at", new UtilSimpleTools().getHoraDateFullCelular());
         values.put("updated_at", " IS NULL");
 
@@ -91,8 +92,8 @@ public class BoardDAO {
 
                 obj.setId(c.getLong(c.getColumnIndex("_id")));
 
-                obj.setNome(c.getString(c.getColumnIndex("nome")));
-                obj.setDescricao(c.getString(c.getColumnIndex("descricao")));
+                obj.setNome(c.getString(c.getColumnIndex("name")));
+                obj.setDescricao(c.getString(c.getColumnIndex("description")));
 
                 obj.setBluetoothName(c.getString(c.getColumnIndex("bluetooth_name")));
                 obj.setMacAddress(c.getString(c.getColumnIndex("mac_address")));
@@ -103,6 +104,7 @@ public class BoardDAO {
                 obj.setConectedBluetooth(c.getInt(c.getColumnIndex("conected_bluetooth")));
                 obj.setConectedWifi(c.getInt(c.getColumnIndex("conected_wifi")));
 
+                obj.setCreated_at(c.getString(c.getColumnIndex("used_at")));
                 obj.setCreated_at(c.getString(c.getColumnIndex("created_at")));
                 obj.setUpdated_at(c.getString(c.getColumnIndex("updated_at")));
 
@@ -154,14 +156,15 @@ public class BoardDAO {
 
         // a serem atualizados no banco de dados
         ContentValues values = new ContentValues();
-        values.put("nome", board.getNome());
-        values.put("descricao", board.getDescricao());
+        values.put("name", board.getNome());
+        values.put("description", board.getDescricao());
         values.put("bluetooth_name", board.getBluetoothName());
         values.put("mac_address", board.getMacAddress());
         values.put("rede", board.getRede());
         values.put("ip", board.getIp());
         // values.put("conected_bluetooth", board.getConectedBluetooth());
         // values.put("conected_wifi", board.getConectedWifi());
+        //values.put("used_at", System.currentTimeMillis());
         //values.put("created_at", System.currentTimeMillis());
         values.put("updated_at", new UtilSimpleTools().getHoraDateFullCelular());
 

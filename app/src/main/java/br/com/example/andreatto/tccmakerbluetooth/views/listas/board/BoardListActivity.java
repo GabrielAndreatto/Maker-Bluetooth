@@ -19,7 +19,6 @@ import br.com.example.andreatto.tccmakerbluetooth.R;
 import br.com.example.andreatto.tccmakerbluetooth.dao.BoardDAO;
 import br.com.example.andreatto.tccmakerbluetooth.views.form.BoardFormActivity;
 import br.com.example.andreatto.tccmakerbluetooth.modelo.Board;
-import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.activitys.AppCompatActivityBluetooth;
 
 public class BoardListActivity extends AppCompatActivity {
 
@@ -44,7 +43,7 @@ public class BoardListActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar_board);
         // toolbar.setTitle("Lista de Board  (" + boards.size() + ") ");
-        toolbar.setTitle("Lista de Board");
+        toolbar.setTitle("Boards");
         setSupportActionBar(toolbar);
 
         recyclerView = findViewById(R.id.recyclerView_board);

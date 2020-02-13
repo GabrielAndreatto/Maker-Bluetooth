@@ -17,4 +17,13 @@
         <item name="android:background">@android:color/white</item>
     </style>
 
+    <style name="SuperMaterialTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="SuperMaterialTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="SuperMaterialTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>

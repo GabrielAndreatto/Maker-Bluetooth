@@ -14,12 +14,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import br.com.example.andreatto.tccmakerbluetooth.util.AgileTools;
 import br.com.example.andreatto.tccmakerbluetooth.views.form.BoardFormActivity;
+import br.com.example.andreatto.tccmakerbluetooth.views.form.FormSensor;
 import br.com.example.andreatto.tccmakerbluetooth.views.listas.buttons.ButtonsList;
-import br.com.example.andreatto.tccmakerbluetooth.views.listas.cards.CardsList;
+import br.com.example.andreatto.tccmakerbluetooth.views.listas.sensors.SensorListActivity;
 import br.com.example.andreatto.tccmakerbluetooth.views.terminal.chat.TerminalChat;
 import br.com.example.andreatto.tccmakerbluetooth.views.listas.board.BoardListActivity;
 import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceBluetooth;
@@ -40,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ServiceBluetooth serviceBluetooth;
     private Intent intentService;
     private ServiceConnectionBluetoothBind serviceConnection;
+
+    private AgileTools tools = new AgileTools();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,14 +88,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void initializeComponentsEvents() {
 
-//        btnSendCmd.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // SERVICE
-//                // 1 - Bluetooth
-//                serviceConnection.getServiceBluetooth().enviarComando(commandSending.getText().toString());
-//            }
-//        });
+        btnSendCmd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), SensorListActivity.class));
+                //Toast.makeText(getApplicationContext(), "Data e Hora: "+ tools.getFullDateHour(), Toast.LENGTH_LONG).show();
+            }
+        });
 
     }
 
@@ -138,30 +140,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (menuItem.getItemId()) {
             case R.id.menu_navigation_board: {
                 startActivity(new Intent(this, BoardListActivity.class));
-                //Toast.makeText(this, "Lista de Boards", Toast.LENGTH_SHORT).show();
                 break;
             }
             case R.id.menu_navigation_btns: {
                 startActivity(new Intent(this, ButtonsList.class));
-                Toast.makeText(this, "Lista de Botões", Toast.LENGTH_SHORT).show();
                 break;
             }
             case R.id.menu_navigation_cards: {
-                startActivity(new Intent(this, CardsList.class));
-                Toast.makeText(this, "Lista de Cards", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, SensorListActivity.class));
                 break;
             }
             case R.id.menu_navigation_terminal: {
-                Toast.makeText(this, "Terminal Chat", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, TerminalChat.class));
                 break;
             }
             case R.id.menu_navigation_board_add: {
-                Toast.makeText(this, "Criar Board", Toast.LENGTH_SHORT).show();
-                // Toast.makeText(this, "Adicionar", Toast.LENGTH_SHORT).show();
                 Bundle pkg = new Bundle();
                 pkg.putString("code", "adicionarToolbar");
                 Intent i = new Intent(new Intent(this, BoardFormActivity.class));
+                i.putExtras(pkg);
+                startActivity(i);
+                break;
+            }
+            case R.id.menu_navigation_card_add: {
+                Bundle pkg = new Bundle();
+                pkg.putString("code", "new");
+                Intent i = new Intent(new Intent(this, FormSensor.class));
                 i.putExtras(pkg);
                 startActivity(i);
                 break;
