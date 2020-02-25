@@ -2,6 +2,7 @@ package br.com.example.andreatto.tccmakerbluetooth.views.listas.sensors;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;;
@@ -15,19 +16,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
 import br.com.example.andreatto.tccmakerbluetooth.R;
+import br.com.example.andreatto.tccmakerbluetooth.dao.IconsAppDAO;
 import br.com.example.andreatto.tccmakerbluetooth.dao.SensorDAO;
+import br.com.example.andreatto.tccmakerbluetooth.modelo.IconsApp;
 import br.com.example.andreatto.tccmakerbluetooth.modelo.Sensor;
 import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceBluetooth;
 import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceConnectionBluetoothBind;
-import br.com.example.andreatto.tccmakerbluetooth.util.AgileTools;
-import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.activitys.AppCompatActivityBluetoothCon;
-import br.com.example.andreatto.tccmakerbluetooth.views.form.FormSensor;
-import br.com.example.andreatto.tccmakerbluetooth.views.listas.sensors.ui.SensorValue;
+import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.activitys.AppCompatActivityBluetooth;
+import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.classes.AgileTools;
+import br.com.example.andreatto.tccmakerbluetooth.views.form.sensor.SensorFormActivity;
+import br.com.example.andreatto.tccmakerbluetooth.views.ui.SensorValue;
 
 public class RecyclerSensorListAdapter extends RecyclerView.Adapter<ViewHolderSensor> {
 
@@ -66,12 +68,6 @@ public class RecyclerSensorListAdapter extends RecyclerView.Adapter<ViewHolderSe
     public void onBindViewHolder(@NonNull ViewHolderSensor viewHolderSensor, final int position) {
         final Sensor sensorT = sensors.get(position);
 
-        if(sensorT.getUsed_at() != null || sensorT.getUsed_at().isEmpty()) {
-            String[] dataValue = getSplit(sensorT.getUsed_at(), " ");
-            hora = getSubString(dataValue[1], 0, 8);
-            dia = dataValue[0];
-        }
-
         if(sensorT.getName() != null) {
             viewHolderSensor.name.setText(sensorT.getName());
         } else {
@@ -87,16 +83,36 @@ public class RecyclerSensorListAdapter extends RecyclerView.Adapter<ViewHolderSe
         } else {
             viewHolderSensor.value.setText("");
         }
-//        String s = sensorT.getUsed_at().substring(10) + "h";
-        if(sensorT.getUsed_at() != null || sensorT.getUsed_at().isEmpty()) {
+        if(sensorT.getUsed_at() != null) {
+            String[] dataValue = getSplit(sensorT.getUsed_at(), " ");
+            try {
+                dia = dataValue[0];
+                hora = getSubString(dataValue[1], 0, 8);
+            } catch (Exception e) {
+                hora = "";
+                dia = "";
+            }
+
             viewHolderSensor.used_hour.setText(hora);
             viewHolderSensor.used_day.setText(dia);
-        } else {
-            viewHolderSensor.used_hour.setText("");
-            viewHolderSensor.used_day.setText("");
         }
+        if(sensorT.getIcon() != null) {
+            IconsAppDAO iconsAppDAOT = new IconsAppDAO(activity);
+            List<IconsApp> iconsAppListT = iconsAppDAOT.all();
+            IconsApp iconsAppT = iconsAppListT.get(Integer.parseInt(sensorT.getIcon()));
 
-        iconSensor = viewHolderSensor.itemView.findViewById(R.id.btn_sensor_main);
+            iconSensor = viewHolderSensor.itemView.findViewById(R.id.btn_sensor_main);
+            String uri = "@drawable/" + iconsAppT.getIcon();
+            int imageResource = activity.getResources().getIdentifier(uri, null,  activity.getPackageName());
+            Drawable res = activity.getResources().getDrawable(imageResource);
+            iconSensor.setImageDrawable(res);
+        } else {
+            iconSensor = viewHolderSensor.itemView.findViewById(R.id.btn_sensor_main);
+            String uri = "@drawable/ic_sensor_light";
+            int imageResource = activity.getResources().getIdentifier(uri, null,  activity.getPackageName());
+            Drawable res = activity.getResources().getDrawable(imageResource);
+            iconSensor.setImageDrawable(res);
+        }
         iconSensor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
@@ -127,7 +143,7 @@ public class RecyclerSensorListAdapter extends RecyclerView.Adapter<ViewHolderSe
                         pkg.putString("code", "edit");
                         pkg.putInt("sensor_id", (int) sensorT.getId());
 
-                        Intent i = new Intent(v.getContext().getApplicationContext(), FormSensor.class);
+                        Intent i = new Intent(v.getContext().getApplicationContext(), SensorFormActivity.class);
                         i.putExtras(pkg);
                         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
                         v.getContext().getApplicationContext().startActivity(i);
@@ -200,7 +216,7 @@ public class RecyclerSensorListAdapter extends RecyclerView.Adapter<ViewHolderSe
                                         }
 
                                         try {
-                                            Intent intent = new Intent(activity, AppCompatActivityBluetoothCon.class);
+                                            Intent intent = new Intent(activity, AppCompatActivityBluetooth.class);
                                             intent.putExtra("refresh", "ok");
 
                                             Thread.sleep(150);

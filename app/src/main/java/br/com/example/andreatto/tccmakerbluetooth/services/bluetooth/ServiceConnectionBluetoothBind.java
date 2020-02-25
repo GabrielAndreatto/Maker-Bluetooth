@@ -5,8 +5,6 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.util.Log;
 
-import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.teste.BinderBluetooth;
-
 public class ServiceConnectionBluetoothBind implements ServiceConnection {
 
     private ServiceBluetooth serviceBluetooth;

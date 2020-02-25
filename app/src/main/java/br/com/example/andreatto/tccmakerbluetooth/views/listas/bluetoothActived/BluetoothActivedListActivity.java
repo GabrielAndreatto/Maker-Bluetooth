@@ -78,7 +78,7 @@ public class BluetoothActivedListActivity extends AppCompatActivityBluetooth imp
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
 
                 // Apenas insere na lista os devices que ainda não estão pareados
-                if (device.getBondState() != BluetoothDevice.BOND_BONDED) {
+                if (device.getBondState() == BluetoothDevice.BOND_BONDED) {
                     lista.add(device);
                     Toast.makeText(context, "Encontrou: " + device.getName()+":" +
                             device.getAddress(), Toast.LENGTH_SHORT).show();
@@ -108,7 +108,7 @@ public class BluetoothActivedListActivity extends AppCompatActivityBluetooth imp
             bluetoothAdapter.cancelDiscovery();
         }
         bluetoothAdapter.startDiscovery();
-        dialog = ProgressDialog.show(this, "Bluetooth", "Buscando dispositivos Bluetooth...", false, true);
+        dialog = ProgressDialog.show(this, "Bluetooth próximo", "Buscando Bluetooth...", false, true);
 
     }
 
@@ -124,7 +124,7 @@ public class BluetoothActivedListActivity extends AppCompatActivityBluetooth imp
         ArrayAdapter adapter = new ArrayAdapter(this, layout, nomes);
         listview.setAdapter(adapter);
         listview.setOnItemClickListener(this);
-        toolbar.setTitle("Bluetooth proximo");
+        toolbar.setTitle("Bluetooth próximo");
         if(lista.size() <= 0) {
             TextView text = new TextView(this);
             text.setText("Nenhum bluetooth próximo para pariar");
@@ -163,21 +163,16 @@ public class BluetoothActivedListActivity extends AppCompatActivityBluetooth imp
     // Toolbar item menu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
-
             case R.id.icon_refresh_actived:
                 // buscar novos bluetooth pareados
                 discoveryBluetooth();
                 break;
             case R.id.about_menu:
-                Toast.makeText(this, "Sobre ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.sobre, Toast.LENGTH_SHORT).show();
                 break;
-
         }
-
         return super.onOptionsItemSelected(item);
-
     }
 
     @Override

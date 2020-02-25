@@ -19,68 +19,102 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
 
-            <ImageButton
-                android:id="@+id/btn_sensor_main"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:layout_margin="8dp"
-                android:layout_gravity="center"
-                android:background="@drawable/ic_sensor_light"/>
-
-            <!-- divider vertical -->
+            <!-- descricao NOME -->
             <android.support.v7.widget.LinearLayoutCompat
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:background="@android:color/darker_gray" />
-
-            <!-- nome / descrição -->
-            <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:layout_margin="8dp"
                 android:orientation="vertical">
 
-                <TextView
+                <android.support.v7.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:text="Nome: "
-                    android:textAppearance="@android:style/TextAppearance.Holo.Small" />
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/card_sensor_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint=""
-                    android:textAppearance="@android:style/TextAppearance.Holo.Medium" />
+                    <!-- descricao NOME -->
+                    <android.support.v7.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/card_sensor_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:hint="Sensor"
+                            android:textSize="16sp"
+                            android:textAppearance="@android:style/TextAppearance.Holo.Medium" />
+
+                    </android.support.v7.widget.LinearLayoutCompat>
+
+                </android.support.v7.widget.LinearLayoutCompat>
 
                 <!-- divider horizontal -->
                 <android.support.v7.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:orientation="horizontal"
-                    android:layout_marginTop="5dp"
-                    android:background="@android:color/darker_gray" />
+                    android:background="@android:color/darker_gray"/>
 
-                <TextView
-                    android:layout_width="match_parent"
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:textSize="12sp"
-                    android:text="Comando: "
-                    android:textAppearance="@android:style/TextAppearance.Holo.Small" />
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/card_sensor_command"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint=""
-                    android:textAppearance="@android:style/TextAppearance.Holo.Medium" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-            </LinearLayout>
+                        <ImageView
+                            android:id="@+id/btn_sensor_main"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:layout_margin="8dp"
+                            android:padding="8dp"
+                            android:src="@drawable/ic_sensor_light"/>
+
+                    </LinearLayout>
+
+                    <!-- divider vertical -->
+                    <android.support.v7.widget.LinearLayoutCompat
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:background="@android:color/darker_gray" />
+
+                    <android.support.v7.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:textSize="10sp"
+                            android:text="Comando"
+                            android:textAppearance="@android:style/TextAppearance.Holo.Small" />
+
+                        <TextView
+                            android:id="@+id/card_sensor_command"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textSize="16sp"
+                            android:hint="cmd"
+                            android:textAppearance="@android:style/TextAppearance.Holo.Medium" />
+
+                    </android.support.v7.widget.LinearLayoutCompat>
+
+
+
+                </android.support.v7.widget.LinearLayoutCompat>
+
+            </android.support.v7.widget.LinearLayoutCompat>
 
             <!-- divider vertical -->
             <android.support.v7.widget.LinearLayoutCompat
@@ -175,7 +209,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
                                     android:gravity="bottom|center_horizontal"
-                                    android:textSize="12sp"
+                                    android:textSize="14sp"
                                     android:hint="00:00:00" />
 
                                 <TextView
@@ -184,7 +218,7 @@
                                     android:layout_gravity="center_horizontal"
                                     android:layout_marginLeft="1dp"
                                     android:gravity="bottom|center_horizontal"
-                                    android:textSize="12sp"
+                                    android:textSize="14sp"
                                     android:hint="h" />
 
                             </android.support.v7.widget.LinearLayoutCompat>
@@ -196,7 +230,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
                                 android:gravity="bottom|center_horizontal"
-                                android:textSize="10sp"
+                                android:textSize="14sp"
                                 android:hint="00/00/0000" />
 
                         </android.support.v7.widget.LinearLayoutCompat>

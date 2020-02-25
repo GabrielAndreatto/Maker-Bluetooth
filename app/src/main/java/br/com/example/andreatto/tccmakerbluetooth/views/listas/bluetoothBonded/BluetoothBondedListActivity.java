@@ -115,7 +115,7 @@ public class BluetoothBondedListActivity extends AppCompatActivityBluetooth {
             bluetoothAdapter.cancelDiscovery();
         }
         bluetoothAdapter.startDiscovery();
-        dialog = ProgressDialog.show(this, "Bluetooth", "Buscando dispositivos Bluetooth...", false, true);
+        dialog = ProgressDialog.show(this, "Bluetooth pareado", "Buscando Bluetooth...", false, true);
 
     }
 

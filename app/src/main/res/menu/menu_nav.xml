@@ -10,19 +10,19 @@
             android:icon="@drawable/ic_developer_boards_light" />
 
         <item
-            android:id="@+id/menu_navigation_btns"
+            android:id="@+id/menu_navigation_actuators"
             android:title="Atuadores"
-            android:icon="@drawable/ic_button_light" />
+            android:icon="@drawable/ic_setting_power_light" />
 
         <item
-            android:id="@+id/menu_navigation_cards"
+            android:id="@+id/menu_navigation_sensors"
             android:title="Sensores"
-            android:icon="@drawable/ic_cards_light" />
+            android:icon="@drawable/ic_memory_light" />
 
         <item
             android:id="@+id/menu_navigation_terminal"
             android:title="Terminal Chat"
-            android:icon="@drawable/ic_keyboard_dark" />
+            android:icon="@drawable/ic_chart_user_light" />
         <!--
         <item
             android:id="@+id/menu_navigation_game"
@@ -31,7 +31,7 @@
         -->
         <item
             android:title="Dimmer"
-            android:icon="@drawable/ic_dimmer_light" />
+            android:icon="@drawable/ic_regua_horiz_light" />
 
         <item
             android:title="Timer"
@@ -42,10 +42,12 @@
             android:icon="@drawable/ic_voice_light" />
 
         <item
+            android:id="@+id/menu_navigation_bluetooth_pareado"
             android:icon="@drawable/ic_bluetooth_ligth"
             android:title="Bluetooth Pareado" />
 
         <item
+            android:id="@+id/menu_navigation_bluetooth_proximos"
             android:icon="@drawable/ic_bluetooth_search_light"
             android:title="Bluetooth Próximo" />
 
@@ -65,14 +67,14 @@
                 android:icon="@drawable/ic_developer_boards_light" />
 
             <item
-                android:id="@+id/menu_navigation_btn_add"
+                android:id="@+id/menu_navigation_actuator_add"
                 android:title="+ Atuadores"
-                android:icon="@drawable/ic_button_light" />
+                android:icon="@drawable/ic_setting_power_light" />
 
             <item
-                android:id="@+id/menu_navigation_card_add"
+                android:id="@+id/menu_navigation_sensor_add"
                 android:title="+ Sensores"
-                android:icon="@drawable/ic_cards_light" />
+                android:icon="@drawable/ic_memory_light" />
 
         </menu>
 

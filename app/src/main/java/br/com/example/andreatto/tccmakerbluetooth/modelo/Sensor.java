@@ -6,7 +6,7 @@ public class Sensor {
     private String name;
     private String command;
     private String value;
-    private String icon;
+    private String iconId;
 
     private String used_at;
     private String created_at;
@@ -14,12 +14,12 @@ public class Sensor {
 
     public Sensor() {}
 
-    public Sensor(long id, String name, String command, String value, String icon, String used_at, String created_at, String updated_at) {
+    public Sensor(long id, String name, String command, String value, String iconId, String used_at, String created_at, String updated_at) {
         this.id = id;
         this.name = name;
         this.command = command;
         this.value = value;
-        this.icon = icon;
+        this.iconId = iconId;
         this.used_at = used_at;
         this.created_at = created_at;
         this.updated_at = updated_at;
@@ -58,11 +58,11 @@ public class Sensor {
     }
 
     public String getIcon() {
-        return icon;
+        return iconId;
     }
 
-    public void setIcon(String icon) {
-        this.icon = icon;
+    public void setIcon(String iconId) {
+        this.iconId = iconId;
     }
 
     public String getUsed_at() {

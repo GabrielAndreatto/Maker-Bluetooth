@@ -101,7 +101,7 @@ public class TerminalChat extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(!ediTextMsg.getText().toString().isEmpty()) {
-                    serviceConnection.getServiceBluetooth().enviarComando(ediTextMsg.getText().toString());
+                    serviceConnection.getServiceBluetooth().sendCommand(ediTextMsg.getText().toString());
                 }
             }
         });

@@ -4,55 +4,47 @@ import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import br.com.example.andreatto.tccmakerbluetooth.dao.SensorDAO;
-import br.com.example.andreatto.tccmakerbluetooth.modelo.Sensor;
 import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceBluetooth;
 import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.activitys.AppCompatActivityBluetooth;
+import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.classes.Print;
 
 public class FirstActivity extends AppCompatActivityBluetooth {
+
+    Print print = new Print();
+    public static final int CODE_ACTIVATION_BLUETOOTH = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        verificarCondiçãoDoBluetooth();
-
-    }
-
-    public void verificarCondiçãoDoBluetooth() {
-
-        if(bluetoothAdapter == null){
-            Toast.makeText(getApplicationContext(), "Dispositivo não possui Bluetooth", Toast.LENGTH_LONG).show();
+        if(!verifyBluetoothAdapter()){
+            print.toast(getApplicationContext(), "Dispositivo não possui Bluetooth", true);
             finish();
         } else {
-            if(!bluetoothAdapter.isEnabled()){
-                startBluetoothDevice();
-            } else {
-                goMainActivity();
-            }
+            isEnable();
+        }
+    }
+
+    public void isEnable() {
+        if(enableBluetooth()){
+            goMainActivity();
+        } else {
+            startBluetoothDevice();
         }
     }
 
     public void startBluetoothDevice() {
         Intent enablelntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-        startActivityForResult(enablelntent, CÓDIGO_PARA_ATIVAÇÃO_DO_BLUETOOTH);
+        startActivityForResult(enablelntent, CODE_ACTIVATION_BLUETOOTH);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch(requestCode){
-            case CÓDIGO_PARA_ATIVAÇÃO_DO_BLUETOOTH:
+            case CODE_ACTIVATION_BLUETOOTH:
                 if(resultCode == Activity.RESULT_OK){
                     Toast.makeText(getApplicationContext(), "Bluetooth foi ativado", Toast.LENGTH_LONG).show();
                     goMainActivity();

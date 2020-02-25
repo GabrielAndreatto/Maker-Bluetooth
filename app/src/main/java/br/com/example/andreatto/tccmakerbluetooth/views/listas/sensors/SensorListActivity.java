@@ -12,8 +12,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -22,8 +20,8 @@ import br.com.example.andreatto.tccmakerbluetooth.dao.SensorDAO;
 import br.com.example.andreatto.tccmakerbluetooth.modelo.Sensor;
 import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceBluetooth;
 import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceConnectionBluetoothBind;
-import br.com.example.andreatto.tccmakerbluetooth.util.Print;
-import br.com.example.andreatto.tccmakerbluetooth.views.form.FormSensor;
+import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.classes.Print;
+import br.com.example.andreatto.tccmakerbluetooth.views.form.sensor.SensorFormActivity;
 
 public class SensorListActivity extends AppCompatActivity {
 
@@ -38,8 +36,7 @@ public class SensorListActivity extends AppCompatActivity {
     private ServiceConnectionBluetoothBind serviceConnection;
 
     private Print print = new Print();
-    private Bundle pkg;
-    private View view;
+    private Bundle rpkg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +50,7 @@ public class SensorListActivity extends AppCompatActivity {
             SensorDAO sensorDAO = new SensorDAO(getApplicationContext());
             sensors = sensorDAO.all();
         } catch (Exception e) {
-            print("SensorDAO query.all() ERROR", true);
+            print.toast(getApplicationContext(), "SensorDAO query.all() ERROR", true);
         }
 
         recyclerView = findViewById(R.id.recyclerView_sensor);
@@ -67,7 +64,6 @@ public class SensorListActivity extends AppCompatActivity {
         bindService(intentService, serviceConnection, 0);
 
         toolbar = findViewById(R.id.toolbar_sensor);
-        // toolbar.setTitle("Lista de Board  (" + boards.size() + ") ");
         toolbar.setTitle("Sensores");
         setSupportActionBar(toolbar);
     }
@@ -86,12 +82,12 @@ public class SensorListActivity extends AppCompatActivity {
             case R.id.add_menu:
                 Bundle pkg = new Bundle();
                 pkg.putString("code", "new");
-                Intent i = new Intent(this, FormSensor.class);
+                Intent i = new Intent(this, SensorFormActivity.class);
                 i.putExtras(pkg);
                 startActivityForResult(i, 200);
                 break;
             case R.id.about_menu:
-                Toast.makeText(this, "Sobre ", Toast.LENGTH_SHORT).show();
+                print.toast(this, "Sobre ", true);
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -107,21 +103,13 @@ public class SensorListActivity extends AppCompatActivity {
                     Log.e("requestCode", String.valueOf(requestCode));
                     Log.e("resultCode", String.valueOf(resultCode));
                     if(!intent.getExtras().isEmpty()) {
-                        pkg = intent.getExtras();
                         if(intent.getExtras() != null) {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
                                     initial();
-                                    if(pkg.getString("action").contains("new")) {
-                                        print("Cadastro realizado com sucesso", true);
-                                    }
-                                    if(pkg.getString("action").contains("edit")){
-                                        print("Editado com sucesso", true);
-                                    }
                                 }
                             });
-
                         }
                     }
                 }
@@ -133,23 +121,10 @@ public class SensorListActivity extends AppCompatActivity {
         }
     }
 
-    void print(String msg, Boolean longTime) {
-        print.toast(getApplicationContext(), msg, longTime);
-    }
-
-    void logE(String tag, String msg) {
-        print.logE(tag, msg);
-    }
-
     @Override
     protected void onRestart() {
         super.onRestart();
-        logE("onRestart", "onRestart");
         initial();
     }
 
-    @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
-    }
 }

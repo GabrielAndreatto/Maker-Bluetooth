@@ -5,5 +5,11 @@
     <string name="submit">Salvar</string>
     <string name="title_activity_sensor_values">SensorValues</string>
     <string name="title_activity_sensor_value">SensorValue</string>
+    <string name="title_activity_form_actuator">FormActuatorActivity</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="section_format">Fragment</string>
+
+    <string name="sobre">Sobre ">> implementando... >>" </string>
 </resources>

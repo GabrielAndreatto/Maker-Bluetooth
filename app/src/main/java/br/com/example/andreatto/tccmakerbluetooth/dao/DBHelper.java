@@ -14,6 +14,31 @@ public class DBHelper extends SQLiteOpenHelper {
         super(context, NOME_DO_BANCO, null, VERSAO_DO_BANCO);
     }
 
+    String iconsSensors =
+            "INSERT INTO [tb_icons] ([name], [icon]) VALUES " +
+                    "('Digital','ic_touch_light')," +
+                    "('Clock','ic_clock_light')," +
+                    "('Board','ic_developer_boards_light')," +
+                    "('Dimmer','ic_dimmer_light')," +
+                    "('Enviar','ic_send_dark')," +
+                    "('Sensor','ic_sensor_light')," +
+                    "('Timer','ic_timer_light')," +
+                    "('Voice','ic_voice_light')," +
+                    "('Wifi','ic_wifi_light')," +
+                    "('Sol','ic_sol_light')," +
+                    "('Lâmpada','ic_lamp_light')," +
+                    "('Fumaça','ic_fume_light')," +
+                    "('Fogo','ic_fire_light')," +
+                    "('Umidade','ic_opacity_light')," +
+                    "('Digital','ic_digital_light')," +
+                    "('Relógio','ic_relogio_light')," +
+                    "('Adicionar','ic_add_light')," +
+                    "('Dastância','ic_distance_light')," +
+                    "('Vento','ic_vento_light')," +
+                    "('Luz','ic_luz_light')," +
+                    "('Power','ic_power_light')," +
+                    "('Umidade','ic_umidade_gota_custom_blue')";
+
     /**
      * Cria a tabela no banco de dados, caso ela não exista.
      */
@@ -41,6 +66,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 ",cmd_on TEXT" +
                 ",cmd_off TEXT" +
                 ",type TEXT" +
+                ",actived INTEGER DEFAULT 0" +
                 ",used_at TEXT" +
                 ",created_at TEXT" +
                 ",updated_at TEXT" +
@@ -58,6 +84,16 @@ public class DBHelper extends SQLiteOpenHelper {
                 ",updated_at TEXT" +
                 ");";
         db.execSQL(sql_sensors);
+
+        String sql_icons = "CREATE TABLE tb_icons (" +
+                "_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT" +
+                ",name TEXT" +
+                ",icon TEXT" +
+                ");";
+        db.execSQL(sql_icons);
+
+        db.execSQL(iconsSensors);
+
     }
 
     /**
@@ -70,6 +106,9 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(sql_actuator_drop);
         String sql_sensor_drop = "DROP TABLE IF EXISTS tb_sensor";
         db.execSQL(sql_sensor_drop);
+        String sql_sensor_icons_drop = "DROP TABLE IF EXISTS tb_icons";
+        db.execSQL(sql_sensor_icons_drop);
+
         onCreate(db);
     }
 }

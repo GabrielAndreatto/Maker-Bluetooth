@@ -2,9 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.com.example.andreatto.tccmakerbluetooth">
 
+    <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.BLUETOOTH" />
 
     <application
         android:allowBackup="true"
@@ -13,10 +13,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/SuperMaterialTheme">
-        <activity android:name=".views.listas.sensors.ui.SensorValue"/>
+        <activity android:name=".views.listas.actuators.api.DeleteActuatorActivity"></activity>
+        <activity android:name=".views.listas.actuators.ActuatorActivityTab" />
+        <activity android:name=".views.form.actuator.ActuatorFormActivity" />
+        <activity android:name=".views.form.sensor.IconsSensorActivity" />
+        <activity android:name=".views.ui.SensorValue" />
         <activity android:name=".views.listas.sensors.SensorListActivity" />
-        <activity android:name=".views.form.FormSensor" />
-        <activity android:name=".views.listas.buttons.ButtonsList" />
+        <activity android:name=".views.form.sensor.SensorFormActivity" />
         <activity android:name=".views.terminal.chat.TerminalChat" />
         <activity android:name=".FirstActivity">
             <intent-filter>
@@ -27,11 +30,10 @@
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".util.bluetooth.activitys.AppCompatActivityBluetooth" />
-        <activity android:name=".util.bluetooth.activitys.AppCompatActivityBluetoothCon" />
-        <activity android:name=".views.form.BoardFormActivity" />
-        <activity android:name=".views.form.list.BluetoothListActivityForActivateForm" />
-        <activity android:name=".views.listas.board.BoardListActivity" />
-        <activity android:name=".views.listas.board.list.BluetoothListActivityForActivate" />
+        <activity android:name=".views.form.board.BoardFormActivity" />
+        <activity android:name=".views.listas.bluetoothList.BluetoothListActivityForActivateForm" />
+        <activity android:name=".views.listas.boards.BoardListActivity" />
+        <activity android:name=".views.listas.boards.list.BluetoothListActivityForActivate" />
         <activity android:name=".views.listas.bluetoothBonded.BluetoothBondedListActivity" />
         <activity android:name=".views.listas.bluetoothActived.BluetoothActivedListActivity" />
 

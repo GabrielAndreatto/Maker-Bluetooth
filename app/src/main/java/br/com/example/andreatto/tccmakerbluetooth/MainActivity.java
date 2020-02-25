@@ -14,15 +14,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
-import br.com.example.andreatto.tccmakerbluetooth.util.AgileTools;
-import br.com.example.andreatto.tccmakerbluetooth.views.form.BoardFormActivity;
-import br.com.example.andreatto.tccmakerbluetooth.views.form.FormSensor;
-import br.com.example.andreatto.tccmakerbluetooth.views.listas.buttons.ButtonsList;
+import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.classes.Print;
+import br.com.example.andreatto.tccmakerbluetooth.views.form.actuator.ActuatorFormActivity;
+import br.com.example.andreatto.tccmakerbluetooth.views.form.board.BoardFormActivity;
+import br.com.example.andreatto.tccmakerbluetooth.views.listas.actuators.ActuatorActivityTab;
+import br.com.example.andreatto.tccmakerbluetooth.views.listas.boards.BoardListActivity;
 import br.com.example.andreatto.tccmakerbluetooth.views.listas.sensors.SensorListActivity;
 import br.com.example.andreatto.tccmakerbluetooth.views.terminal.chat.TerminalChat;
-import br.com.example.andreatto.tccmakerbluetooth.views.listas.board.BoardListActivity;
 import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceBluetooth;
 import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceConnectionBluetoothBind;
 
@@ -31,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
+
+    private Print print = new Print();
 
     // card que envia comando
     private AppCompatButton btnSendCmd;
@@ -42,8 +43,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Intent intentService;
     private ServiceConnectionBluetoothBind serviceConnection;
 
-    private AgileTools tools = new AgileTools();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +50,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         initializeComponentsViews();
         initializeComponentsEvents();
-
     }
 
     @Override
@@ -66,10 +64,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer);
         drawerLayout.addDrawerListener(toggle);
-
         toggle.syncState();
 
         navigationView = (NavigationView) findViewById(R.id.navigationView);
@@ -87,15 +83,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void initializeComponentsEvents() {
-
         btnSendCmd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), SensorListActivity.class));
-                //Toast.makeText(getApplicationContext(), "Data e Hora: "+ tools.getFullDateHour(), Toast.LENGTH_LONG).show();
+                serviceConnection.getServiceBluetooth().sendCommand(commandSending.getText().toString());
             }
         });
-
     }
 
     // Toolbar
@@ -108,17 +101,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     // Toolbar item menu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
-            case R.id.add_menu:
-                Toast.makeText(this, "Adicionar", Toast.LENGTH_SHORT).show();
-                break;
-
             case R.id.about_menu:
-                Toast.makeText(this, "Sobre ", Toast.LENGTH_SHORT).show();
+                print.toast(getApplicationContext(), "Sobre", true);
                 break;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -126,7 +113,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     // navigation drawer Menu toggle
     @Override
     public void onBackPressed() {
-
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         }else {
@@ -136,17 +122,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-
         switch (menuItem.getItemId()) {
             case R.id.menu_navigation_board: {
                 startActivity(new Intent(this, BoardListActivity.class));
                 break;
             }
-            case R.id.menu_navigation_btns: {
-                startActivity(new Intent(this, ButtonsList.class));
+            case R.id.menu_navigation_actuators: {
+                startActivity(new Intent(this, ActuatorActivityTab.class));
                 break;
             }
-            case R.id.menu_navigation_cards: {
+            case R.id.menu_navigation_sensors: {
                 startActivity(new Intent(this, SensorListActivity.class));
                 break;
             }
@@ -162,10 +147,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(i);
                 break;
             }
-            case R.id.menu_navigation_card_add: {
+            case R.id.menu_navigation_sensor_add: {
                 Bundle pkg = new Bundle();
                 pkg.putString("code", "new");
-                Intent i = new Intent(new Intent(this, FormSensor.class));
+                Intent i = new Intent(new Intent(this, ActuatorFormActivity.class));
                 i.putExtras(pkg);
                 startActivity(i);
                 break;

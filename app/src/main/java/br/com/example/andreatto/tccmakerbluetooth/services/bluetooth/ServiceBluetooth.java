@@ -19,8 +19,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.UUID;
 
-import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.teste.BinderBluetooth;
-
 public class ServiceBluetooth extends Service {
 
     private IBinder binder = new BinderBluetooth(this);
@@ -36,7 +34,7 @@ public class ServiceBluetooth extends Service {
     private DataOutputStream os;
 
     // Preferences
-    private SharedPreferences sharedPreferenceTerminal;
+    private SharedPreferences sharedPreference;
     private SharedPreferences.Editor sharedPreferenceEditor;
 
     @Override
@@ -82,6 +80,9 @@ public class ServiceBluetooth extends Service {
                 } catch (IOException e) {
                     Log.d("BLTTH_SERVICE", "... Close socket during connection failure ...");
                 } finally {
+                    sharedPreference = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                    sharedPreferenceEditor = sharedPreference.edit();
+
                     initialBluetoothIO();
                 }
             }
@@ -102,27 +103,23 @@ public class ServiceBluetooth extends Service {
                         is = new DataInputStream(inputStream);
                         os = new DataOutputStream(bluetoothSocket.getOutputStream());
 
-                        sharedPreferenceTerminal = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                        sharedPreferenceEditor = sharedPreferenceTerminal.edit();
-
-                        iniciarChat(true);
+                        initialServerComunication(true);
 
                     } catch (Exception e) {
                         e.printStackTrace();
-                    } finally {
                     }
                 }
             }
         }).start();
     }
 
-    public void iniciarChat(final boolean mChat) {
+    public void initialServerComunication(final boolean state) {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 if (bluetoothSocket.isConnected()) {
                     try {
-                        while (mChat == true) {
+                        while (state == true) {
                             if (inputStream.read() > 0) {
 
                                 final byte[] msgBuffer = new byte[1024];
@@ -134,14 +131,13 @@ public class ServiceBluetooth extends Service {
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
-                    } finally {
                     }
                 }
             }
         }).start();
     }
 
-    public void enviarComando(final String cmd) {
+    public void sendCommand(final String cmd) {
         sharedPreferenceEditor.putString("mensagem_chat", 0 + "-" + cmd);
         sharedPreferenceEditor.apply();
         new Thread(new Runnable() {

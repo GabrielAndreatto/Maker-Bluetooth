@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardview_switch"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <!-- Image button -->
+            <android.support.v7.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:layout_margin="8dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.SwitchCompat
+                    android:id="@+id/switch_actuator_onoff"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp" />
+
+            </android.support.v7.widget.LinearLayoutCompat>
+
+            <!-- divider vertical -->
+            <android.support.v7.widget.LinearLayoutCompat
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@android:color/darker_gray" />
+
+            <!-- nome -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="8dp"
+                android:orientation="vertical">
+
+                <!-- Nome -->
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nome: "
+                        android:textAppearance="@android:style/TextAppearance.Holo.Small" />
+
+                    <TextView
+                        android:id="@+id/textView_nome_onoff"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Led amarelo"
+                        android:textAppearance="@android:style/TextAppearance.Holo.Medium" />
+
+                </android.support.v7.widget.LinearLayoutCompat>
+
+                <!-- divider vertical -->
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:orientation="horizontal"
+                    android:layout_margin="4dp"
+                    android:background="@android:color/darker_gray" />
+
+                <!-- Comando ON -->
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Comando IN: "
+                        android:textAppearance="@android:style/TextAppearance.Holo.Small" />
+
+                    <TextView
+                        android:id="@+id/textView_command_on"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=" I "
+                        android:textAppearance="@android:style/TextAppearance.Holo.Medium" />
+
+                </android.support.v7.widget.LinearLayoutCompat>
+
+                <!-- Comando OFF -->
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Comando OUT: "
+                        android:textAppearance="@android:style/TextAppearance.Holo.Small" />
+
+                    <TextView
+                        android:id="@+id/textView_command_off"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=" O "
+                        android:textAppearance="@android:style/TextAppearance.Holo.Medium" />
+
+                </android.support.v7.widget.LinearLayoutCompat>
+
+            </LinearLayout>
+
+            <!-- divider vertical -->
+            <android.support.v7.widget.LinearLayoutCompat
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@android:color/darker_gray" />
+
+            <!-- botoes actions -->
+            <android.support.v7.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/imageView_editar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="8dp"
+                    android:src="@drawable/btn_edit" />
+
+                <!-- divider -->
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:orientation="horizontal"
+                    android:background="@android:color/darker_gray" />
+
+                <ImageView
+                    android:id="@+id/imageView_deletar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="8dp"
+                    android:src="@drawable/btn_delete" />
+
+            </android.support.v7.widget.LinearLayoutCompat>
+
+        </LinearLayout>
+
+        <!-- divider -->
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@android:color/darker_gray" />
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
