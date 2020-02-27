@@ -24,6 +24,7 @@ import br.com.example.andreatto.tccmakerbluetooth.R;
 import br.com.example.andreatto.tccmakerbluetooth.dao.BoardDAO;
 import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.activitys.AppCompatActivityBluetooth;
 import br.com.example.andreatto.tccmakerbluetooth.views.form.board.BoardFormActivity;
+import br.com.example.andreatto.tccmakerbluetooth.views.listas.bluetoothBonded.BluetoothBondedListActivity;
 import br.com.example.andreatto.tccmakerbluetooth.views.listas.boards.list.BluetoothListActivityForActivate;
 import br.com.example.andreatto.tccmakerbluetooth.modelo.Board;
 import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceBluetooth;
@@ -108,11 +109,11 @@ public class RecyclerBoardListAdapter extends RecyclerView.Adapter<ViewHolderBlu
 
                 //Toast.makeText(v.getContext().getApplicationContext(), "position"+board.getId(), Toast.LENGTH_SHORT).show();
                 Bundle pkg = new Bundle();
+                pkg.putString("code", "bluetooth-edit");
                 pkg.putString("id_board", String.valueOf(board.getId()));
-
-                Intent intent = new Intent(activity, BluetoothListActivityForActivate.class);
-                intent.putExtra("idBoard", pkg);
-                activity.startActivityForResult(intent, 0101);
+                Intent i = new Intent(new Intent(activity, BluetoothBondedListActivity.class));
+                i.putExtras(pkg);
+                activity.startActivityForResult(i, 202);
 
             }
         });

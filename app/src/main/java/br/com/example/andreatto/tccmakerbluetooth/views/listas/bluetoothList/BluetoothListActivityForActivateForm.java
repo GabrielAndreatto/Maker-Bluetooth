@@ -19,7 +19,7 @@ import java.util.List;
 import br.com.example.andreatto.tccmakerbluetooth.R;
 import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.activitys.AppCompatActivityBluetooth;
 
-public class BluetoothListActivityForActivateForm extends AppCompatActivityBluetooth implements AdapterView.OnItemClickListener {
+public class  BluetoothListActivityForActivateForm extends AppCompatActivityBluetooth implements AdapterView.OnItemClickListener {
 
     private Toolbar toolbar;
     private ProgressDialog dialog;

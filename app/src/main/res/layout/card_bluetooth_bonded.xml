@@ -9,12 +9,14 @@
     android:layout_marginBottom="8dp"
     android:layout_marginLeft="8dp"
     app:cardCornerRadius="4dp"
-    app:cardElevation="8dp" >
+    app:cardElevation="8dp">
 
     <LinearLayout
+        android:id="@+id/card_ble_bonded"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,10 +30,17 @@
                 android:padding="8dp">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
                     android:layout_gravity="center"
+                    android:layout_marginLeft="8dp"
                     android:src="@drawable/ic_bluetooth_ligth" />
+
+                <LinearLayout
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="16dp"
+                    android:background="@color/secondaryTextColor"/>
 
                 <!-- nome / MAC -->
                 <LinearLayout
@@ -39,7 +48,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="2"
-                    android:layout_marginLeft="8dp"
+                    android:layout_marginLeft="16dp"
                     android:layout_marginRight="8dp"
                     android:orientation="vertical">
 
@@ -54,6 +63,7 @@
                         android:id="@+id/textView_Bluetooth_bonded_mac"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
                         android:hint="Mac_Addres"
                         android:textAppearance="@android:style/TextAppearance.Holo.Small" />
 

@@ -64,7 +64,7 @@ public class BluetoothListActivityForActivate extends AppCompatActivityBluetooth
         ArrayAdapter adapter = new ArrayAdapter(this, layout, nomes);
         listview.setAdapter(adapter);
         listview.setOnItemClickListener(this);
-        toolbar.setTitle("Bluetooth  (" + mBluetoothDeviceList.size() + ")");
+        toolbar.setTitle("Bluetooth Bonded");
 
     }
 

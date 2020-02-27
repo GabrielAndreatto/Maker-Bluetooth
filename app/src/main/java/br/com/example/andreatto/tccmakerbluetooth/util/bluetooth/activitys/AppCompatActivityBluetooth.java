@@ -1,11 +1,9 @@
 package br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.activitys;
 
 import android.bluetooth.BluetoothAdapter;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 
 public class AppCompatActivityBluetooth extends AppCompatActivity {
 

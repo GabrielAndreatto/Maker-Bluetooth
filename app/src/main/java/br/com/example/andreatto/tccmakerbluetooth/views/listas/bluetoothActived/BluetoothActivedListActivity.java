@@ -49,7 +49,6 @@ public class BluetoothActivedListActivity extends AppCompatActivityBluetooth imp
         }
 
         initial();
-
     }
 
     private void initial() {

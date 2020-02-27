@@ -23,7 +23,7 @@ import java.util.List;
 import br.com.example.andreatto.tccmakerbluetooth.R;
 import br.com.example.andreatto.tccmakerbluetooth.dao.BoardDAO;
 import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.classes.Print;
-import br.com.example.andreatto.tccmakerbluetooth.views.listas.bluetoothList.BluetoothListActivityForActivateForm;
+import br.com.example.andreatto.tccmakerbluetooth.views.listas.bluetoothBonded.BluetoothBondedListActivity;
 import br.com.example.andreatto.tccmakerbluetooth.modelo.Board;
 
 public class BoardFormActivity extends AppCompatActivity {
@@ -161,7 +161,11 @@ public class BoardFormActivity extends AppCompatActivity {
         bluetooth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivityForResult(new Intent(getApplicationContext(), BluetoothListActivityForActivateForm.class), 0101);
+                Bundle pkg = new Bundle();
+                pkg.putString("code", "bluetooth-macAddress");
+                Intent i = new Intent(new Intent(getApplicationContext(), BluetoothBondedListActivity.class));
+                i.putExtras(pkg);
+                startActivityForResult(i, 202);
             }
         });
 
@@ -198,12 +202,17 @@ public class BoardFormActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        Bundle pkg = data.getExtras();
         switch (requestCode){
 
             case 0101:
-                Bundle pkg = data.getExtras();
                 editTextBluetoothName.setText(pkg.getString("nome"));
                 editTextMacAddress.setText(pkg.getString("mac_address"));
+                break;
+            case 202:
+                print.toast(getApplicationContext(), "code: " + pkg.getString("code") + "Mac-Address: " + pkg.getString("mac-address"), true);
+                editTextBluetoothName.setText(pkg.getString("bluetooth-name"));
+                editTextMacAddress.setText(pkg.getString("bluetooth-mac-address"));
                 break;
            default:
 

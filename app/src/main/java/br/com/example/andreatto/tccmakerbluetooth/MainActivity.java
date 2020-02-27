@@ -18,7 +18,10 @@ import android.view.View;
 import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.classes.Print;
 import br.com.example.andreatto.tccmakerbluetooth.views.form.actuator.ActuatorFormActivity;
 import br.com.example.andreatto.tccmakerbluetooth.views.form.board.BoardFormActivity;
+import br.com.example.andreatto.tccmakerbluetooth.views.form.sensor.SensorFormActivity;
 import br.com.example.andreatto.tccmakerbluetooth.views.listas.actuators.ActuatorActivityTab;
+import br.com.example.andreatto.tccmakerbluetooth.views.listas.bluetoothActived.BluetoothActivedListActivity;
+import br.com.example.andreatto.tccmakerbluetooth.views.listas.bluetoothBonded.BluetoothBondedListActivity;
 import br.com.example.andreatto.tccmakerbluetooth.views.listas.boards.BoardListActivity;
 import br.com.example.andreatto.tccmakerbluetooth.views.listas.sensors.SensorListActivity;
 import br.com.example.andreatto.tccmakerbluetooth.views.terminal.chat.TerminalChat;
@@ -139,6 +142,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(new Intent(this, TerminalChat.class));
                 break;
             }
+            case R.id.menu_navigation_bluetooth_pareado: {
+                Bundle pkg = new Bundle();
+                pkg.putString("code", "bluetooth-none");
+                Intent i = new Intent(new Intent(this, BluetoothBondedListActivity.class));
+                i.putExtras(pkg);
+                startActivityForResult(i, 101);
+                break;
+            }
+            case R.id.menu_navigation_bluetooth_proximos: {
+                startActivity(new Intent(this, BluetoothActivedListActivity.class));
+                break;
+            }
             case R.id.menu_navigation_board_add: {
                 Bundle pkg = new Bundle();
                 pkg.putString("code", "adicionarToolbar");
@@ -147,10 +162,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(i);
                 break;
             }
-            case R.id.menu_navigation_sensor_add: {
+            case R.id.menu_navigation_actuator_add: {
                 Bundle pkg = new Bundle();
                 pkg.putString("code", "new");
                 Intent i = new Intent(new Intent(this, ActuatorFormActivity.class));
+                i.putExtras(pkg);
+                startActivity(i);
+                break;
+            }
+            case R.id.menu_navigation_sensor_add: {
+                Bundle pkg = new Bundle();
+                pkg.putString("code", "new");
+                Intent i = new Intent(new Intent(this, SensorFormActivity.class));
                 i.putExtras(pkg);
                 startActivity(i);
                 break;

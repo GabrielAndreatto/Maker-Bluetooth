@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -20,21 +21,48 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.example.andreatto.tccmakerbluetooth.R;
+import br.com.example.andreatto.tccmakerbluetooth.modelo.Actuator;
 import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.activitys.AppCompatActivityBluetooth;
+import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.classes.Print;
 
 public class BluetoothBondedListActivity extends AppCompatActivityBluetooth {
 
     private Toolbar toolbar;
-
     private RecyclerView recyclerView;
     private RecyclerBluetoothBondedListAdapter adapter;
     private List<BluetoothDevice> mBluetoothDeviceList;
     private ProgressDialog dialog;
 
+    private Print print = new Print();
+    private Bundle pacote = new Bundle();
+    private String code;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bluetooth_bonded_list);
+
+        pacote = getIntent().getExtras();
+        if(!pacote.isEmpty() || getIntent().getExtras() != null) {
+
+            code = pacote.getString("code");
+            print.logE("CODE", code);
+
+            if (code.equals("bluetooth-none")) {
+                print.logE("CODE", "bluetooth-none");
+            }
+
+            if (code.equals("bluetooth-macAddress")) {
+                print.logE("CODE", "bluetooth-macAddress");
+            }
+
+            if (code.equals("bluetooth-edit")) {
+                if(! pacote.getString("id_board").isEmpty()) {
+                    pacote.getString("id_board");
+                    print.logE("CODE", "bluetooth-idBoard: "+pacote.getString("id_board"));
+                }
+            }
+        }
 
         mBluetoothDeviceList = new ArrayList<BluetoothDevice>(bluetoothAdapter.getBondedDevices());
         // Registra o receiver para receber as mensagens de dispositivos pareados
@@ -46,9 +74,12 @@ public class BluetoothBondedListActivity extends AppCompatActivityBluetooth {
             // Dispara a busca
             bluetoothAdapter.cancelDiscovery();
         }
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
         initial();
-
     }
 
     public void initial() {
@@ -59,10 +90,17 @@ public class BluetoothBondedListActivity extends AppCompatActivityBluetooth {
 
         recyclerView = findViewById(R.id.recyclerView_bluetooth_bonded);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        initialAdpter();
+    }
 
-        adapter = new RecyclerBluetoothBondedListAdapter(mBluetoothDeviceList);
-        recyclerView.setAdapter(adapter);
-
+    public void initialAdpter() {
+        if (code.equals("bluetooth-edit")) {
+            adapter = new RecyclerBluetoothBondedListAdapter(this, code, pacote.getString("id_board"),  mBluetoothDeviceList);
+            recyclerView.setAdapter(adapter);
+        } else {
+            adapter = new RecyclerBluetoothBondedListAdapter(this, code, pacote.getString("id_board"), mBluetoothDeviceList);
+            recyclerView.setAdapter(adapter);
+        }
     }
 
     // Receiver para receber os broadcasts do Bluetooth
@@ -80,7 +118,6 @@ public class BluetoothBondedListActivity extends AppCompatActivityBluetooth {
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
 
                 Log.e("TEXTE", "Iniciou o ACTION_FOUND");
-
 
                 // Recupera o device da intent
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
@@ -101,14 +138,13 @@ public class BluetoothBondedListActivity extends AppCompatActivityBluetooth {
                 // Terminou a busca
                 Toast.makeText(context, "Busca finalizada. " + count + " novos devices pareados encontrados", Toast.LENGTH_LONG).show();
                 dialog.dismiss();
-                toolbar.setTitle("Bluetooth pareado");
+                initialAdpter();
             }
 
         }
     };
 
     public void discoveryBluetooth() {
-
         // Garante que não existe outra busca sendo realizada
         if(bluetoothAdapter.isDiscovering()) {
             // Dispara a busca
@@ -116,7 +152,6 @@ public class BluetoothBondedListActivity extends AppCompatActivityBluetooth {
         }
         bluetoothAdapter.startDiscovery();
         dialog = ProgressDialog.show(this, "Bluetooth pareado", "Buscando Bluetooth...", false, true);
-
     }
 
     // Toolbar
@@ -129,9 +164,7 @@ public class BluetoothBondedListActivity extends AppCompatActivityBluetooth {
     // Toolbar item menu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
-
             case R.id.icon_refresh:
                 // buscar novos bluetooth pareados
                 discoveryBluetooth();
@@ -139,22 +172,14 @@ public class BluetoothBondedListActivity extends AppCompatActivityBluetooth {
             case R.id.about_menu:
                 Toast.makeText(this, "Sobre ", Toast.LENGTH_SHORT).show();
                 break;
-
         }
-
         return super.onOptionsItemSelected(item);
-
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
         //Log.e("onRestart", "onRestart");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
     }
 
     @Override
@@ -173,4 +198,25 @@ public class BluetoothBondedListActivity extends AppCompatActivityBluetooth {
         super.finalize();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+
+        switch (requestCode) {
+            case 101:
+                Log.e("onActivityResult", "requestCode: " + requestCode);
+                Bundle pkg = intent.getExtras();
+
+                if(pkg.getString("code").equals("bluetooth-returned")) {
+
+                    Log.e("onActivityResult", "onActivityResult: " + pkg.getString("mac-address"));
+
+                    print.toast(getApplicationContext(), "onActivityResult: " + pkg.getString("mac-address"), true);
+                    initial();
+                }
+
+                break;
+
+        }
+    }
 }

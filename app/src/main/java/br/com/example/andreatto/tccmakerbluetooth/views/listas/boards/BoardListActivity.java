@@ -107,6 +107,10 @@ public class BoardListActivity extends AppCompatActivity {
                 initial();
                 break;
 
+            case 202:
+                 Toast.makeText(getApplicationContext(), "bluetooth Mac Address", Toast.LENGTH_LONG).show();
+                initial();
+                break;
             case 0101:
                 // Toast.makeText(getApplicationContext(), "activity result", Toast.LENGTH_LONG).show();
                 initial();

@@ -14,7 +14,7 @@
         android:id="@+id/recyclerView_bluetooth_bonded"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/toolbar_bluetooth_bonded_list">
+        tools:listitem="@layout/card_bluetooth_bonded">
 
     </android.support.v7.widget.RecyclerView>
 
