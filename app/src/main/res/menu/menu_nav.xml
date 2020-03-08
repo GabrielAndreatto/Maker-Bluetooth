@@ -28,7 +28,7 @@
             android:id="@+id/menu_navigation_game"
             android:title="Video Game"
             android:icon="@drawable/ic_videogame_light" />
-        -->
+
         <item
             android:title="Dimmer"
             android:icon="@drawable/ic_regua_horiz_light" />
@@ -40,7 +40,7 @@
         <item
             android:title="Voz"
             android:icon="@drawable/ic_voice_light" />
-
+        -->
         <item
             android:id="@+id/menu_navigation_bluetooth_pareado"
             android:icon="@drawable/ic_bluetooth_ligth"

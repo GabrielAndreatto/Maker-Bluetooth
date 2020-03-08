@@ -39,7 +39,7 @@ public class BoardListActivity extends AppCompatActivity {
 
     public void initial() {
         BoardDAO boardDAO = new BoardDAO(this);
-        boards  = boardDAO.listaTodos();
+        boards  = boardDAO.all();
 
         toolbar = findViewById(R.id.toolbar_board);
         // toolbar.setTitle("Lista de Board  (" + boards.size() + ") ");
@@ -88,6 +88,13 @@ public class BoardListActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         Log.e("onRestart", "onRestart");
+        initial();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e("onResume", "onResume");
         initial();
     }
 

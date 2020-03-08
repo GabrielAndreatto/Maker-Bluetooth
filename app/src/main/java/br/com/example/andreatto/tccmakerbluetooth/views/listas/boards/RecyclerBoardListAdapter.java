@@ -11,6 +11,7 @@ import android.support.annotation.RequiresApi;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,11 +22,9 @@ import android.widget.Toast;
 import java.util.List;
 
 import br.com.example.andreatto.tccmakerbluetooth.R;
-import br.com.example.andreatto.tccmakerbluetooth.dao.BoardDAO;
-import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.activitys.AppCompatActivityBluetooth;
 import br.com.example.andreatto.tccmakerbluetooth.views.form.board.BoardFormActivity;
 import br.com.example.andreatto.tccmakerbluetooth.views.listas.bluetoothBonded.BluetoothBondedListActivity;
-import br.com.example.andreatto.tccmakerbluetooth.views.listas.boards.list.BluetoothListActivityForActivate;
+import br.com.example.andreatto.tccmakerbluetooth.views.listas.boards.api.DeleteBoardActivity;
 import br.com.example.andreatto.tccmakerbluetooth.modelo.Board;
 import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceBluetooth;
 import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceConnectionBluetoothBind;
@@ -69,36 +68,33 @@ public class RecyclerBoardListAdapter extends RecyclerView.Adapter<ViewHolderBlu
     @Override
     public void onBindViewHolder(@NonNull final ViewHolderBluetoothBonded viewHolderBluetoothBonded, final int position) {
 
-        final Board board = boards.get(position);
+        final Board boardT = boards.get(position);
 
         //viewHolderBluetoothBonded.nome.setText(board.getNome() +" -> "+ board.getMacAddress().length());
-        viewHolderBluetoothBonded.nome.setText(board.getNome());
-        viewHolderBluetoothBonded.descr.setText(board.getDescricao());
-        viewHolderBluetoothBonded.bluetoothName.setText(board.getBluetoothName());
-        viewHolderBluetoothBonded.mac_address.setText(board.getMacAddress());
-        viewHolderBluetoothBonded.rede.setText(board.getRede());
-        viewHolderBluetoothBonded.ip.setText(board.getIp());
+        viewHolderBluetoothBonded.nome.setText(boardT.getNome());
+        viewHolderBluetoothBonded.descr.setText(boardT.getDescricao());
+        viewHolderBluetoothBonded.bluetoothName.setText(boardT.getBluetoothName());
+        viewHolderBluetoothBonded.mac_address.setText(boardT.getMacAddress());
+        viewHolderBluetoothBonded.rede.setText(boardT.getRede());
+        viewHolderBluetoothBonded.ip.setText(boardT.getIp());
 
-        if(board.getConectedBluetooth() == 1) { // true
+        if(boardT.getConectedBluetooth() == 1) { // true
             viewHolderBluetoothBonded.itemView.findViewById(R.id.cardview_id).setBackgroundColor(viewHolderBluetoothBonded.itemView.getResources().getColor(R.color.board_conected));
             viewHolderBluetoothBonded.imgBoard.setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
         }else {
             viewHolderBluetoothBonded.imgBoard.setColorFilter(Color.BLUE, PorterDuff.Mode.MULTIPLY);
             //viewHolderBluetoothBonded.itemView.findViewById(R.id.cardview_id).setBackgroundColor(viewHolderBluetoothBonded.itemView.getResources().getColor(R.color.board_desconected));
-
         }
         imageViewBoard = viewHolderBluetoothBonded.itemView.findViewById(R.id.img_board);
         imageViewBoard.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View v) {
-
-                if (board.getMacAddress().isEmpty()) {
+                if(boardT.getMacAddress().isEmpty()) {
                     Toast.makeText(activity, "Adicionar um mac address", Toast.LENGTH_LONG).show();
                 } else {
-                    serviceConnection.getServiceBluetooth().conectarBluetooth(board.getMacAddress());
+                    serviceConnection.getServiceBluetooth().conectarBluetooth(boardT.getMacAddress());
                 }
-
             }
         });
 
@@ -106,15 +102,13 @@ public class RecyclerBoardListAdapter extends RecyclerView.Adapter<ViewHolderBlu
         imageViewBluetooth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 //Toast.makeText(v.getContext().getApplicationContext(), "position"+board.getId(), Toast.LENGTH_SHORT).show();
                 Bundle pkg = new Bundle();
                 pkg.putString("code", "bluetooth-edit");
-                pkg.putString("id_board", String.valueOf(board.getId()));
+                pkg.putString("id_board", String.valueOf(boardT.getId()));
                 Intent i = new Intent(new Intent(activity, BluetoothBondedListActivity.class));
                 i.putExtras(pkg);
                 activity.startActivityForResult(i, 202);
-
             }
         });
 
@@ -122,7 +116,7 @@ public class RecyclerBoardListAdapter extends RecyclerView.Adapter<ViewHolderBlu
         imageViewWifi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext().getApplicationContext(), String.format("Conectar Wifi%d", position), Toast.LENGTH_SHORT).show();
+                Toast.makeText(v.getContext().getApplicationContext(), String.format("Conectar Wifi %d", position), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -136,19 +130,18 @@ public class RecyclerBoardListAdapter extends RecyclerView.Adapter<ViewHolderBlu
 
                         Bundle pkg = new Bundle();
                         pkg.putString("code", "editar");
-                        pkg.putInt("board_id", (int) board.getId());
-                        pkg.putString("board_nome", board.getNome());
-                        pkg.putString("board_descr", board.getDescricao());
-                        pkg.putString("board_bluetooth_name", board.getBluetoothName());
-                        pkg.putString("board_mac_address", board.getMacAddress());
-                        pkg.putString("board_rede", board.getRede());
-                        pkg.putString("board_ip", board.getIp());
+                        pkg.putInt("board_id", (int) boardT.getId());
+                        pkg.putString("board_nome", boardT.getNome());
+                        pkg.putString("board_descr", boardT.getDescricao());
+                        pkg.putString("board_bluetooth_name", boardT.getBluetoothName());
+                        pkg.putString("board_mac_address", boardT.getMacAddress());
+                        pkg.putString("board_rede", boardT.getRede());
+                        pkg.putString("board_ip", boardT.getIp());
 
                         Intent i = new Intent(v.getContext().getApplicationContext(), BoardFormActivity.class);
                         i.putExtras(pkg);
                         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
                         v.getContext().getApplicationContext().startActivity(i);
-
                     }
                 });
             }
@@ -185,11 +178,23 @@ public class RecyclerBoardListAdapter extends RecyclerView.Adapter<ViewHolderBlu
                             @Override
                             public void onClick(View v) {
 
-                                BoardDAO boardDAO = new BoardDAO(v.getContext().getApplicationContext());
-                                boardDAO.remover(board);
-
                                 try {
-                                    Thread.sleep(100);
+                                    // chamar activity para deletar atuador
+                                    Bundle pkg = new Bundle();
+                                    pkg.putString("code", "delete");
+                                    pkg.putInt("board_id", (int) boardT.getId());
+
+                                    Intent i = new Intent(v.getContext().getApplicationContext(), DeleteBoardActivity.class);
+                                    i.putExtras(pkg);
+                                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    v.getContext().getApplicationContext().startActivity(i);
+
+                                    Log.e("btnDelete", "onClick Remover Board: "+ boardT.getId());
+
+                                } catch (Exception e) {
+                                    e.getMessage();
+                                    Log.e("REMOVE", "ERROR Board: ");
+                                } finally {
                                     activity.runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
@@ -197,32 +202,21 @@ public class RecyclerBoardListAdapter extends RecyclerView.Adapter<ViewHolderBlu
                                             notifyItemRangeChanged(position, boards.size());
                                         }
                                     });
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
 
-                                try {
-                                    Thread.sleep(200);
                                     activity.runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            showMessageSnack(viewGroup, board.getNome());
+                                            showMessageSnack(viewGroup, boardT.getNome());
                                         }
                                     });
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
 
-                                try {
-                                    Intent intent = new Intent(activity, AppCompatActivityBluetooth.class);
-                                    intent.putExtra("refresh", "ok");
-
-                                    Thread.sleep(150);
-                                    activity.startActivityForResult(intent, 201);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
+                                    activity.runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            alertDialog.cancel();
+                                        }
+                                    });
                                 }
-                                alertDialog.cancel();
                             }
                         });
 
@@ -235,8 +229,6 @@ public class RecyclerBoardListAdapter extends RecyclerView.Adapter<ViewHolderBlu
                         });
                     }
                 });
-
-
             }
         });
     }

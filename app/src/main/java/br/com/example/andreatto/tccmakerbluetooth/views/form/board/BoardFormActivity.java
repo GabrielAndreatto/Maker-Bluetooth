@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatEditText;
@@ -31,9 +32,9 @@ public class BoardFormActivity extends AppCompatActivity {
     private Board board;
     private int boardId = 0;
     private String statusIntentAction;
+    private FloatingActionButton fab;
 
     private Toolbar toolbar;
-    private Button btnSalvar;
     private AppCompatEditText editTextNome;
     private AppCompatEditText editTextDescricao;
     private AppCompatEditText editTextBluetoothName;
@@ -56,7 +57,6 @@ public class BoardFormActivity extends AppCompatActivity {
             initilizeView();
             listenerActions();
         } else {
-
             Bundle pacote = getIntent().getExtras();
             statusIntentAction = pacote.getString("code"); // enviado a partir da toolbar
             Log.e("CODE", "Params ... " + statusIntentAction);
@@ -69,7 +69,6 @@ public class BoardFormActivity extends AppCompatActivity {
                 initilizeView();
                 setValuesInitilizeView();
                 listenerActions();
-
             }
 
             if(pacote.getString("code").contains("adicionar")) {
@@ -77,16 +76,14 @@ public class BoardFormActivity extends AppCompatActivity {
                 initilizeView();
                 listenerActions();
             }
-
         }
-
     }
 
     public void getBoard() {
 
         List<Board> boardList = new ArrayList<Board>();
         BoardDAO boardDAO = new BoardDAO(this);
-        boardList = boardDAO.listaTodos();
+        boardList = boardDAO.all();
 
         for (Board tmpBoard: boardList) {
             if(tmpBoard.getId() == boardId) {
@@ -113,7 +110,7 @@ public class BoardFormActivity extends AppCompatActivity {
         toolbar.setTitle("Cadastro de Board");
         setSupportActionBar(toolbar);
 
-        btnSalvar = (Button) findViewById(R.id.btn_salvar);
+        fab = findViewById(R.id.fab);
         editTextNome = (AppCompatEditText) findViewById(R.id.cadastro_board_nome);
         editTextDescricao = (AppCompatEditText) findViewById(R.id.cadastro_board_descricao);
         editTextBluetoothName = (AppCompatEditText) findViewById(R.id.cadastro_board_bluetooth_name);
@@ -126,7 +123,7 @@ public class BoardFormActivity extends AppCompatActivity {
     }
 
     private void listenerActions() {
-        btnSalvar.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
@@ -218,4 +215,5 @@ public class BoardFormActivity extends AppCompatActivity {
 
         }
     }
+
 }

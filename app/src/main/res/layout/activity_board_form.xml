@@ -219,33 +219,26 @@
 
             </android.support.v7.widget.LinearLayoutCompat>
 
-            <!-- BOTAO -->
-            <android.support.v7.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:gravity=""
-                android:layout_marginTop="16dp"
-                android:orientation="horizontal" >
-
-                <android.support.v7.widget.AppCompatButton
-                    android:id="@+id/btn_salvar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:textSize="16sp"
-                    android:backgroundTint="@color/primaryDarkColor"
-                    android:text="SALVAR"
-                    android:textAppearance="@android:style/TextAppearance.Holo.WindowTitle"
-                    android:textColor="@android:color/white"/>
-
-            </android.support.v7.widget.LinearLayoutCompat>
-
         </android.support.v7.widget.LinearLayoutCompat>
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="32dp" >
+
+            <!-- fab button -->
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:src="@drawable/ic_add_dark"
+                android:contentDescription="@string/submit"
+                android:layout_margin="16dp" />
+
+        </FrameLayout>
 
     </LinearLayout>
-
 
 </android.support.v4.widget.NestedScrollView>
 

@@ -11,14 +11,14 @@ import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.classes.Print;
 
 public class DeleteActuatorActivity extends AppCompatActivity {
 
-    Print print = new Print();
-    Bundle pacote = new Bundle();
-    Bundle pkg = new Bundle();
-    String code;
+    private Print print = new Print();
+    private Bundle pacote = new Bundle();
+    private Bundle pkg = new Bundle();
+    private String code;
 
-    Actuator actuator;
-    List<Actuator> actuatorList = new ArrayList<>();
-    ActuactorDAO actuatorDAO = new ActuactorDAO(this);
+    private Actuator actuator;
+    private List<Actuator> actuatorList = new ArrayList<>();
+    private ActuactorDAO actuatorDAO = new ActuactorDAO(this);
     private int actuatorId;
     private String nameActuatorDelete;
     private int idActuatorDelete;
@@ -72,7 +72,6 @@ public class DeleteActuatorActivity extends AppCompatActivity {
     }
 
     private void deleteActuator() {
-
         try{
             actuatorDAO.remover(actuator);
             // actuatorDAO.removerWithId(actuatorId);

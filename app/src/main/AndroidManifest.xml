@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/SuperMaterialTheme">
-        <activity android:name=".views.listas.actuators.api.DeleteActuatorActivity"></activity>
+        <activity android:name=".views.listas.boards.api.DeleteBoardActivity"></activity>
+        <activity android:name=".views.listas.actuators.api.DeleteActuatorActivity" />
         <activity android:name=".views.listas.actuators.ActuatorActivityTab" />
         <activity android:name=".views.form.actuator.ActuatorFormActivity" />
         <activity android:name=".views.form.sensor.IconsSensorActivity" />

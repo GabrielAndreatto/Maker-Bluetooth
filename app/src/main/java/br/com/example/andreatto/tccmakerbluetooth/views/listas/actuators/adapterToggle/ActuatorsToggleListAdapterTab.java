@@ -176,7 +176,6 @@ public class ActuatorsToggleListAdapterTab extends RecyclerView.Adapter<ViewHold
                                     });
 
                                 }
-
                             }
                         });
 

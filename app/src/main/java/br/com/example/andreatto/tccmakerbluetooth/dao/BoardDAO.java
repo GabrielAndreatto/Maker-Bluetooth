@@ -26,7 +26,6 @@ public class BoardDAO {
      * Caso o board não exista no banco de dados, ele o adiciona.
      * Caso o board exista no banco de dados, apenas atualiza os valores dos campos modificados. *
      * @param board */
-    
     public void salvar(Board board) {
         /**
          * Se o ID do board é nulo é porque ele ainda não existe no banco de dados, * logo subentende-se que queremos adicionar o board no banco de dados. * Sendo assim, chamaremos o método adiciona() já definido no DAO.
@@ -76,7 +75,7 @@ public class BoardDAO {
 
     /**
      * Lista todos os registros da tabela “objeto_emprestado” */
-    public List<Board> listaTodos() {
+    public List<Board> all() {
         // Cria um List para guardar os boards consultados no banco de dados
         List<Board> boards = new ArrayList<Board>();
 
@@ -132,7 +131,7 @@ public class BoardDAO {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
         Board obj = new Board();
-        List<Board> boards = this.listaTodos();
+        List<Board> boards = this.all();
 
         for (Board tmpBoard: boards) {
             if(String.valueOf(tmpBoard.getId()) == idBoard) {
@@ -238,7 +237,7 @@ public class BoardDAO {
         // Instancia uma conexão com o banco de dados, em modo de gravação
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        db.delete("tb_board", "_id=?", new String[] {String.valueOf(board.getId())} );
+        db.delete("tb_board", "_id=?", new String[] {String.valueOf(board.getId())});
         db.close();
     }
 }
