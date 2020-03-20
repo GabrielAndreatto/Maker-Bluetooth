@@ -6,11 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
-import android.support.design.widget.Snackbar;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SwitchCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +13,13 @@ import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.widget.SwitchCompat;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
@@ -239,7 +241,7 @@ public class ActuatorsOnoffListAdapterTab extends RecyclerView.Adapter<ViewHolde
         View snackView = snackbar.getView();
         snackView.setBackgroundColor(v.getResources().getColor(R.color.secondaryTextColor));
 
-        TextView snackActionView  = snackView.findViewById(android.support.design.R.id.snackbar_action);
+        TextView snackActionView  = snackView.findViewById(R.id.snackbar_action);
         snackActionView.setTextColor(v.getResources().getColor(android.R.color.white, null));
 
         snackbar.show();

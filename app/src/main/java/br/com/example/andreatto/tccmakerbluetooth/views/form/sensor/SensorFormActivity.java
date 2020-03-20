@@ -3,17 +3,20 @@ package br.com.example.andreatto.tccmakerbluetooth.views.form.sensor;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +33,7 @@ public class SensorFormActivity extends AppCompatActivity {
     private Toolbar toolbarSensor;
     private ImageView imageViewSensorIcon;
     private EditText editTextName, editTextCommand;
-    private Button save, cancel;
+    private FloatingActionButton fab;
 
     Bundle pacote;
     String code;
@@ -102,8 +105,7 @@ public class SensorFormActivity extends AppCompatActivity {
     private void initialUI() {
         editTextName = findViewById(R.id.sensor_name);
         editTextCommand = findViewById(R.id.sensor_cmd);
-        save = findViewById(R.id.btn_save);
-        cancel = findViewById(R.id.btn_cancel);
+        fab = findViewById(R.id.fab);
         imageViewSensorIcon = findViewById(R.id.imageView_sensor_icon);
 
         toolbarSensor = findViewById(R.id.toolbar_board);
@@ -128,7 +130,7 @@ public class SensorFormActivity extends AppCompatActivity {
             }
         });
 
-        save.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 initialObject();
@@ -151,12 +153,6 @@ public class SensorFormActivity extends AppCompatActivity {
                         }
                     }
                 });
-            }
-        });
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clearInputsUI();
             }
         });
     }

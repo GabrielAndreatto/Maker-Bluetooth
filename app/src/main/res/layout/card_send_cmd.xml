@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -8,19 +8,19 @@
     app:cardCornerRadius="4dp"
     app:cardElevation="8dp" >
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="107dp"
             android:layout_gravity="center"
             android:gravity="center"
             android:orientation="horizontal">
 
-            <android.support.v7.widget.AppCompatButton
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button_send_cmd"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
@@ -28,21 +28,21 @@
                 android:background="@drawable/btn_one_cmd" />
 
             <!-- divider vertical -->
-            <android.support.v7.widget.LinearLayoutCompat
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:background="@android:color/darker_gray"
                 android:orientation="vertical" />
 
             <!-- nome / descrição -->
-            <LinearLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:layout_weight="2"
                 android:orientation="vertical">
 
-                <android.support.v7.widget.AppCompatEditText
+                <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edit_text_cmd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -50,26 +50,26 @@
                     android:layout_weight="3"
                     android:hint="Insira um comando.."/>
 
-            </LinearLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
             <!-- divider vertical -->
-            <android.support.v7.widget.LinearLayoutCompat
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:background="@android:color/darker_gray"
                 android:orientation="vertical">
 
-            </android.support.v7.widget.LinearLayoutCompat>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
             <!-- botoes actions -->
-            <android.support.v7.widget.LinearLayoutCompat
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imageView_editar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -78,7 +78,7 @@
                     android:src="@drawable/ic_edit_light" />
 
                 <!-- divider -->
-                <android.support.v7.widget.LinearLayoutCompat
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginLeft="8dp"
@@ -86,7 +86,7 @@
                     android:background="@android:color/darker_gray"
                     android:orientation="horizontal" />
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imageView_deletar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -94,12 +94,12 @@
                     android:layout_margin="8dp"
                     android:src="@drawable/ic_delete_light" />
 
-            </android.support.v7.widget.LinearLayoutCompat>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
-        </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <!-- divider -->
 
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>

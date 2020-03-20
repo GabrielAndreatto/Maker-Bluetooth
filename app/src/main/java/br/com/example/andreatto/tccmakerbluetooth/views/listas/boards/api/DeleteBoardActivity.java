@@ -1,7 +1,8 @@
 package br.com.example.andreatto.tccmakerbluetooth.views.listas.boards.api;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,6 @@ public class DeleteBoardActivity extends AppCompatActivity {
         if(!pacote.isEmpty() || getIntent().getExtras() != null) {
 
             code = pacote.getString("code");
-
             print.logE("CODE", code);
 
             if (code.contains("delete")) {

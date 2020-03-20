@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.LinearLayoutCompat
+<androidx.appcompat.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,49 +10,66 @@
     <include layout="@layout/toolbar" />
 
     <!-- Icones -->
-    <android.support.v7.widget.LinearLayoutCompat
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_gravity="center"
         android:orientation="vertical" >
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="8dp"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:hint="Escolha um icone" />
+
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageView_sensor_icon"
             android:layout_width="128dp"
             android:layout_height="128dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
             android:src="@drawable/ic_touch_light" />
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp">
 
             <!-- NOME widget -->
-            <android.support.v7.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="Click para escolher um icone" />
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-    </android.support.v7.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <!-- Comando -->
-    <android.support.v7.widget.LinearLayoutCompat
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:orientation="vertical" >
 
-        <android.support.design.widget.TextInputLayout
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:hint="Configuração" />
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
             <!-- Comando widget -->
-            <android.support.v7.widget.AppCompatEditText
+            <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/sensor_cmd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -62,14 +79,14 @@
                 android:inputType="text" >
 
                 <!-- <requestFocus /> -->
-            </android.support.v7.widget.AppCompatEditText>
+            </androidx.appcompat.widget.AppCompatEditText>
 
             <!-- NOME -->
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" >
 
-                <android.support.v7.widget.AppCompatEditText
+                <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/sensor_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -77,50 +94,35 @@
                     android:hint="Nome"
                     android:inputType="text" />
 
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-    </android.support.v7.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <!-- BOTAÕES Submit -->
-    <android.support.v7.widget.LinearLayoutCompat
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
 
-        <android.support.v7.widget.LinearLayoutCompat
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="horizontal" >
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp" >
 
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_cancel"
-                android:layout_width="match_parent"
+            <!-- fab button -->
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_margin="8dp"
-                android:textSize="16sp"
-                android:backgroundTint="@color/primaryDarkColor"
-                android:text="CANCELAR"
-                android:textAppearance="@android:style/TextAppearance.Holo.WindowTitle"
-                android:textColor="@android:color/white"/>
+                android:layout_gravity="end|bottom"
+                android:src="@drawable/ic_add_dark"
+                android:contentDescription="@string/submit"
+                android:layout_margin="32dp" />
 
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_save"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_margin="8dp"
-                android:textSize="16sp"
-                android:backgroundTint="@color/primaryDarkColor"
-                android:text="SALVAR"
-                android:textAppearance="@android:style/TextAppearance.Holo.WindowTitle"
-                android:textColor="@android:color/white"/>
+        </FrameLayout>
 
-        </android.support.v7.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
-    </android.support.v7.widget.LinearLayoutCompat>
-
-</android.support.v7.widget.LinearLayoutCompat>
+</androidx.appcompat.widget.LinearLayoutCompat>

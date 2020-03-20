@@ -5,17 +5,19 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;;
-import android.support.annotation.RequiresApi;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
@@ -29,6 +31,8 @@ import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceConn
 import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.activitys.AppCompatActivityBluetooth;
 import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.classes.AgileTools;
 import br.com.example.andreatto.tccmakerbluetooth.views.form.sensor.SensorFormActivity;
+import br.com.example.andreatto.tccmakerbluetooth.views.listas.actuators.api.DeleteActuatorActivity;
+import br.com.example.andreatto.tccmakerbluetooth.views.listas.sensors.api.DeleteSensorActivity;
 import br.com.example.andreatto.tccmakerbluetooth.views.ui.SensorValue;
 
 public class RecyclerSensorListAdapter extends RecyclerView.Adapter<ViewHolderSensor> {
@@ -184,13 +188,23 @@ public class RecyclerSensorListAdapter extends RecyclerView.Adapter<ViewHolderSe
                                     @RequiresApi(api = Build.VERSION_CODES.M)
                                     @Override
                                     public void onClick(View v) {
-                                        SensorDAO sensorDAO = new SensorDAO(v.getContext().getApplicationContext());
-                                        sensorDAO.remover(sensorT);
 
-                                        Log.e("iconSensorDelete", "iconSensorDelete: "+sensorT.getId());
+                                        try{
+                                            // chamar activity para deletar atuador
+                                            Bundle pkg = new Bundle();
+                                            pkg.putString("code", "delete");
+                                            pkg.putInt("sensor_id", (int) sensorT.getId());
 
-                                        try {
-                                            Thread.sleep(100);
+                                            Intent i = new Intent(v.getContext().getApplicationContext(), DeleteSensorActivity.class);
+                                            i.putExtras(pkg);
+                                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                            v.getContext().getApplicationContext().startActivity(i);
+
+                                            Log.e("btnDelete", "btnDelete Remover sensor: "+sensorT.getId());
+
+                                        } catch (Exception e) {
+                                            Log.e("REMOVE", "ERROR Sensor: ");
+                                        } finally {
                                             activity.runOnUiThread(new Runnable() {
                                                 @Override
                                                 public void run() {
@@ -198,34 +212,21 @@ public class RecyclerSensorListAdapter extends RecyclerView.Adapter<ViewHolderSe
                                                     notifyItemRangeChanged(position, sensors.size());
                                                 }
                                             });
-                                        } catch (InterruptedException e) {
-                                            e.printStackTrace();
-                                        }
 
-                                        try {
-                                            Thread.sleep(200);
                                             activity.runOnUiThread(new Runnable() {
-                                                @RequiresApi(api = Build.VERSION_CODES.M)
                                                 @Override
                                                 public void run() {
                                                     showMessageSnack(viewGroup, sensorT.getName());
                                                 }
                                             });
-                                        } catch (InterruptedException e) {
-                                            e.printStackTrace();
+
+                                            activity.runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    alertDialog.cancel();
+                                                }
+                                            });
                                         }
-
-                                        try {
-                                            Intent intent = new Intent(activity, AppCompatActivityBluetooth.class);
-                                            intent.putExtra("refresh", "ok");
-
-                                            Thread.sleep(150);
-                                            activity.startActivityForResult(intent, 201);
-                                        } catch (InterruptedException e) {
-                                            e.printStackTrace();
-                                        }
-
-                                        alertDialog.cancel();
                                     }
                                 });
 
@@ -236,11 +237,8 @@ public class RecyclerSensorListAdapter extends RecyclerView.Adapter<ViewHolderSe
                                     }
 
                                 });
-
                             }
                         });
-
-
                     }
                 });
             }
@@ -254,7 +252,7 @@ public class RecyclerSensorListAdapter extends RecyclerView.Adapter<ViewHolderSe
         View snackView = snackbar.getView();
         snackView.setBackgroundColor(v.getResources().getColor(R.color.secondaryTextColor));
 
-        TextView snackActionView  = snackView.findViewById(android.support.design.R.id.snackbar_action);
+        TextView snackActionView  = snackView.findViewById(R.id.snackbar_action);
         snackActionView.setTextColor(v.getResources().getColor(android.R.color.white, null));
 
         snackbar.show();

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="br.com.example.andreatto.tccmakerbluetooth">
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
@@ -12,8 +13,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/SuperMaterialTheme">
-        <activity android:name=".views.listas.boards.api.DeleteBoardActivity"></activity>
+        android:theme="@style/SuperMaterialTheme"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        <activity android:name=".views.listas.sensors.api.DeleteSensorActivity"></activity>
+        <activity android:name=".views.listas.boards.api.DeleteBoardActivity" />
         <activity android:name=".views.listas.actuators.api.DeleteActuatorActivity" />
         <activity android:name=".views.listas.actuators.ActuatorActivityTab" />
         <activity android:name=".views.form.actuator.ActuatorFormActivity" />

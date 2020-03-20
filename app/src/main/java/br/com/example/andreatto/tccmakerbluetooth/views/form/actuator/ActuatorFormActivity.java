@@ -1,13 +1,17 @@
 package br.com.example.andreatto.tccmakerbluetooth.views.form.actuator;
 
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.TextInputEditText;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.Switch;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatEditText;
+import androidx.appcompat.widget.SwitchCompat;
+import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,12 +31,12 @@ public class ActuatorFormActivity extends AppCompatActivity {
     String code;
 
     RadioButton radioToggle, radioOnoff;
-    Switch switchActuator;
+    SwitchCompat switchActuator;
 
     String name, commandOn, commandOff;
-    TextInputEditText textInputEditTextName;
-    TextInputEditText textInputEditTextCmdOn;
-    TextInputEditText textInputEditTextCmdOff;
+    AppCompatEditText textInputEditTextName;
+    AppCompatEditText textInputEditTextCmdOn;
+    AppCompatEditText textInputEditTextCmdOff;
 
     Actuator actuator;
     List<Actuator> actuatorList = new ArrayList<>();

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardview_id"
@@ -12,24 +12,24 @@
     app:cardCornerRadius="4dp"
     app:cardElevation="8dp" >
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:orientation="vertical">
 
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="8dp">
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/img_board"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
@@ -38,7 +38,7 @@
                     android:background="@drawable/btn_board_conect" />
 
                 <!-- divider vertical -->
-                <android.support.v7.widget.LinearLayoutCompat
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
@@ -46,7 +46,7 @@
 
 
                 <!-- nome / descrição -->
-                <LinearLayout
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -55,38 +55,36 @@
                     android:layout_marginRight="8dp"
                     android:orientation="vertical">
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/textView_nome"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Nome"
                         android:textAppearance="@android:style/TextAppearance.Holo.Medium" />
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/textView_descricao"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Descrição"
                         android:textAppearance="@android:style/TextAppearance.Holo.Small" />
 
-                </LinearLayout>
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <!-- divider vertical -->
-                <android.support.v7.widget.LinearLayoutCompat
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:background="@android:color/darker_gray">
-
-                </android.support.v7.widget.LinearLayoutCompat>
+                    android:background="@android:color/darker_gray"/>
 
                 <!-- botoes actions -->
-                <android.support.v7.widget.LinearLayoutCompat
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <ImageView
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/imageView_editar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -98,7 +96,7 @@
                         android:src="@drawable/btn_edit" />
 
                     <!-- divider -->
-                    <android.support.v7.widget.LinearLayoutCompat
+                    <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginRight="8dp"
@@ -106,7 +104,7 @@
                         android:orientation="horizontal"
                         android:background="@android:color/darker_gray" />
 
-                    <ImageView
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/imageView_deletar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -114,36 +112,36 @@
                         android:layout_margin="8dp"
                         android:src="@drawable/btn_delete" />
 
-                </android.support.v7.widget.LinearLayoutCompat>
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
-            </LinearLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
             <!-- divider -->
-            <android.support.v7.widget.LinearLayoutCompat
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:background="@android:color/darker_gray">
 
-            </android.support.v7.widget.LinearLayoutCompat>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
-        </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <!-- Dados conecções -->
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <!-- Bluetooth -->
-            <android.support.v7.widget.LinearLayoutCompat
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.8"
                 android:orientation="vertical">
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -154,7 +152,7 @@
 
 
                 <!-- divider vertical -->
-                <android.support.v7.widget.LinearLayoutCompat
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:orientation="horizontal"
@@ -162,7 +160,7 @@
                     android:layout_marginLeft="8dp"
                     android:background="@android:color/darker_gray" />
 
-                <LinearLayout
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -170,9 +168,8 @@
                     android:gravity="left"
                     android:orientation="horizontal">
 
-                    <!-- divider vertical -->
-
-                    <ImageView
+                    <!-- Image -->
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/imageView_bluetooth"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -182,19 +179,19 @@
                         android:src="@drawable/btn_bluetooth" />
 
                     <!-- divider vertical -->
-                    <android.support.v7.widget.LinearLayoutCompat
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="1dp"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
                         android:layout_marginRight="8dp"
                         android:background="@android:color/darker_gray" />
 
-                    <LinearLayout
+                    <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <TextView
+                        <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/textView_nome_bluetooth"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -204,7 +201,7 @@
                             android:textAppearance="@android:style/TextAppearance.Holo.Small"
                             android:hint="nome"/>
 
-                        <TextView
+                        <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/textView_mac_address"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -214,14 +211,14 @@
                             android:textAppearance="@android:style/TextAppearance.Holo.Small"
                             android:hint="Mac Address "/>
 
-                    </LinearLayout>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
 
-                </LinearLayout>
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
-            </android.support.v7.widget.LinearLayoutCompat>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
             <!-- borda right vertical  -->
-            <LinearLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
@@ -229,13 +226,13 @@
                 android:background="@android:color/darker_gray"/>
 
             <!-- Wifi -->
-            <android.support.v7.widget.LinearLayoutCompat
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -244,9 +241,8 @@
                     android:textAppearance="@android:style/TextAppearance.Holo.Medium"
                     android:text="Wifi"/>
 
-
                 <!-- divider vertical -->
-                <android.support.v7.widget.LinearLayoutCompat
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:orientation="horizontal"
@@ -254,7 +250,7 @@
                     android:layout_marginLeft="8dp"
                     android:background="@android:color/darker_gray" />
 
-                <LinearLayout
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="8dp"
@@ -262,7 +258,7 @@
                     android:gravity="left"
                     android:orientation="horizontal">
 
-                    <ImageView
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/imageView_wifi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -272,19 +268,19 @@
                         android:src="@drawable/btn_wifi" />
 
                     <!-- divider vertical -->
-                    <android.support.v7.widget.LinearLayoutCompat
+                    <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="1dp"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
                         android:layout_marginRight="8dp"
                         android:background="@android:color/darker_gray" />
 
-                    <LinearLayout
+                    <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <TextView
+                        <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/textView_rede"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -295,7 +291,7 @@
                             android:textAppearance="@android:style/TextAppearance.Holo.Small"
                             android:hint="Nome"/>
 
-                        <TextView
+                        <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/textView_ip"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -306,16 +302,14 @@
                             android:textAppearance="@android:style/TextAppearance.Holo.Small"
                             android:hint="127.0.0.1"/>
 
-                    </LinearLayout>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
 
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
-                </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-            </android.support.v7.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
-        </LinearLayout>
-
-    </LinearLayout>
-
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>

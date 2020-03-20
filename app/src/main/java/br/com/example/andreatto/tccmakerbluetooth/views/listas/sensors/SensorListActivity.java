@@ -2,16 +2,17 @@ package br.com.example.andreatto.tccmakerbluetooth.views.listas.sensors;
 
 import android.content.Intent;
 import android.os.Build;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
@@ -42,6 +43,12 @@ public class SensorListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor_list);
+        initial();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         initial();
     }
 
@@ -119,12 +126,6 @@ public class SensorListActivity extends AppCompatActivity {
                 initial();
                 break;
         }
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        initial();
     }
 
 }

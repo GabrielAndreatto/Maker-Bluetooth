@@ -2,12 +2,14 @@ package br.com.example.andreatto.tccmakerbluetooth.views.form.sensor;
 
 import android.content.Intent;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import java.util.List;
 
@@ -18,7 +20,7 @@ import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.classes.Print;
 
 public class IconsSensorActivity extends AppCompatActivity {
 
-    private android.support.v7.widget.Toolbar toolbar;
+    private Toolbar toolbar;
     private GridView gridView;
     private Print print = new Print();
 

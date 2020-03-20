@@ -1,7 +1,9 @@
 package br.com.example.andreatto.tccmakerbluetooth.views.listas.actuators.api;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 

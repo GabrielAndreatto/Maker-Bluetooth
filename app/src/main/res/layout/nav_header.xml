@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.appcompat.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="210dp"
@@ -9,14 +9,14 @@
     android:padding="16dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_marginTop="8dp"
         android:scaleType="centerCrop"
         android:src="@mipmap/ic_icone_app" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -24,18 +24,18 @@
         android:text="Gabriel Andreatto Alves"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="E-mail"
         android:text="gabriel.andreatto.1@gmail.com"/>
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="Oficina"
         android:text="IF SJBV - Instituto Federal de Educação, Ciência e Tecnologia de São Paulo"/>
 
-</LinearLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>
