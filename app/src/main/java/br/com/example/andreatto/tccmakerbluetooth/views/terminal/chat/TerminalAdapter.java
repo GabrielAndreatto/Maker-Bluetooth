@@ -1,7 +1,6 @@
 package br.com.example.andreatto.tccmakerbluetooth.views.terminal.chat;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

@@ -2,8 +2,6 @@ package br.com.example.andreatto.tccmakerbluetooth.services.bluetooth;
 
 import android.os.Binder;
 
-import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceBluetooth;
-
 public class BinderBluetooth extends Binder {
 
     private ServiceBluetooth serviceBluetooth;

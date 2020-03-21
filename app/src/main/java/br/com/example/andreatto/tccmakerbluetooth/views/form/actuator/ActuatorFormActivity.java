@@ -3,7 +3,6 @@ package br.com.example.andreatto.tccmakerbluetooth.views.form.actuator;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
-import android.widget.Switch;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
@@ -11,7 +10,6 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
 import java.util.List;

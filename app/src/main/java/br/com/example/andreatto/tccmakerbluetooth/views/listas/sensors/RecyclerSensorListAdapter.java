@@ -23,15 +23,12 @@ import java.util.List;
 
 import br.com.example.andreatto.tccmakerbluetooth.R;
 import br.com.example.andreatto.tccmakerbluetooth.dao.IconsAppDAO;
-import br.com.example.andreatto.tccmakerbluetooth.dao.SensorDAO;
 import br.com.example.andreatto.tccmakerbluetooth.modelo.IconsApp;
 import br.com.example.andreatto.tccmakerbluetooth.modelo.Sensor;
 import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceBluetooth;
 import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceConnectionBluetoothBind;
-import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.activitys.AppCompatActivityBluetooth;
 import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.classes.AgileTools;
 import br.com.example.andreatto.tccmakerbluetooth.views.form.sensor.SensorFormActivity;
-import br.com.example.andreatto.tccmakerbluetooth.views.listas.actuators.api.DeleteActuatorActivity;
 import br.com.example.andreatto.tccmakerbluetooth.views.listas.sensors.api.DeleteSensorActivity;
 import br.com.example.andreatto.tccmakerbluetooth.views.ui.SensorValue;
 

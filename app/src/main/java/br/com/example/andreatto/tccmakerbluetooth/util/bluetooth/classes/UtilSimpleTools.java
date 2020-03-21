@@ -1,7 +1,5 @@
 package br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.classes;
 
-import android.util.Log;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;

@@ -17,6 +17,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
+import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceBluetooth;
+import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceConnectionBluetoothBind;
 import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.classes.Print;
 import br.com.example.andreatto.tccmakerbluetooth.views.form.actuator.ActuatorFormActivity;
 import br.com.example.andreatto.tccmakerbluetooth.views.form.board.BoardFormActivity;
@@ -27,8 +29,6 @@ import br.com.example.andreatto.tccmakerbluetooth.views.listas.bluetoothBonded.B
 import br.com.example.andreatto.tccmakerbluetooth.views.listas.boards.BoardListActivity;
 import br.com.example.andreatto.tccmakerbluetooth.views.listas.sensors.SensorListActivity;
 import br.com.example.andreatto.tccmakerbluetooth.views.terminal.chat.TerminalChat;
-import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceBluetooth;
-import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceConnectionBluetoothBind;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 

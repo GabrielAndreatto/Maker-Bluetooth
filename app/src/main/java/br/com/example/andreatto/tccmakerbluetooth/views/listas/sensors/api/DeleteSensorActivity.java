@@ -1,14 +1,13 @@
 package br.com.example.andreatto.tccmakerbluetooth.views.listas.sensors.api;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.example.andreatto.tccmakerbluetooth.dao.SensorDAO;
-import br.com.example.andreatto.tccmakerbluetooth.modelo.Actuator;
 import br.com.example.andreatto.tccmakerbluetooth.modelo.Sensor;
 import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.classes.Print;
 

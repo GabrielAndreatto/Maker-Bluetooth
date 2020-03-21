@@ -18,8 +18,8 @@ import java.util.List;
 
 import br.com.example.andreatto.tccmakerbluetooth.R;
 import br.com.example.andreatto.tccmakerbluetooth.dao.BoardDAO;
-import br.com.example.andreatto.tccmakerbluetooth.views.form.board.BoardFormActivity;
 import br.com.example.andreatto.tccmakerbluetooth.modelo.Board;
+import br.com.example.andreatto.tccmakerbluetooth.views.form.board.BoardFormActivity;
 
 public class BoardListActivity extends AppCompatActivity {
 

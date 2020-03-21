@@ -2,10 +2,8 @@ package br.com.example.andreatto.tccmakerbluetooth.views.listas.bluetoothBonded;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothDevice;
-
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;

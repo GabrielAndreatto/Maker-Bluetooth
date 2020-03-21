@@ -24,12 +24,12 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.List;
 
 import br.com.example.andreatto.tccmakerbluetooth.R;
-import br.com.example.andreatto.tccmakerbluetooth.views.form.board.BoardFormActivity;
-import br.com.example.andreatto.tccmakerbluetooth.views.listas.bluetoothBonded.BluetoothBondedListActivity;
-import br.com.example.andreatto.tccmakerbluetooth.views.listas.boards.api.DeleteBoardActivity;
 import br.com.example.andreatto.tccmakerbluetooth.modelo.Board;
 import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceBluetooth;
 import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceConnectionBluetoothBind;
+import br.com.example.andreatto.tccmakerbluetooth.views.form.board.BoardFormActivity;
+import br.com.example.andreatto.tccmakerbluetooth.views.listas.bluetoothBonded.BluetoothBondedListActivity;
+import br.com.example.andreatto.tccmakerbluetooth.views.listas.boards.api.DeleteBoardActivity;
 
 public class RecyclerBoardListAdapter extends RecyclerView.Adapter<ViewHolderBluetoothBonded> {
 
