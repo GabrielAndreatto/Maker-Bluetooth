@@ -1,217 +1,245 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".views.form.actuator.ActuatorFormActivity">
 
-    <include layout="@layout/toolbar_actuator" />
-
-    <!-- tipos Botões -->
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            android:hint="Modelos" />
+        <include layout="@layout/toolbar_actuator" />
 
+        <!-- Confiuração -->
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
+            <!-- tipos Botões -->
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:orientation="vertical" >
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="vertical">
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/button_send"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:background="@drawable/btn_one_cmd" />
-
+                <!-- Label -->
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:hint="TOGGLE"/>
+                    android:layout_marginLeft="8dp"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:hint="Modelos" />
+
+                <!-- Botões -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Botõe toggle -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:orientation="vertical" >
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/button_send"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:background="@drawable/btn_one_cmd" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:hint="TOGGLE"/>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!-- Divider V -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@color/secondaryTextColor"
+                        android:orientation="horizontal"/>
+
+                    <!-- Switch -->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:orientation="vertical" >
+
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/switch_actuator"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:hint="ON/OFF"/>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <!-- Divider V -->
+            <!-- Divider H -->
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp"
                 android:background="@color/secondaryTextColor"
                 android:orientation="horizontal"/>
 
-            <!-- Switch -->
+            <!-- Radio Group -->
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:orientation="vertical" >
-
-                <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/switch_actuator"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="8dp"
+                android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:hint="ON/OFF"/>
+                    android:layout_marginLeft="8dp"
+                    android:textStyle="bold"
+                    android:textSize="12sp"
+                    android:hint="Selecione um botão" />
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_gravity="left"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:id="@+id/radio_toggle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:hint="TOGGLE - Enviar 1 comando"
+                        android:onClick="onRadioButtonClicked"/>
+
+                    <RadioButton
+                        android:id="@+id/radio_onoff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:hint="ON/OFF - Interruptor com 2 comandos"
+                        android:onClick="onRadioButtonClicked"/>
+
+                </RadioGroup>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <!-- Divider H -->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp"
+                android:background="@color/secondaryTextColor"
+                android:orientation="horizontal"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <!-- Text fields -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:hint="Configuração" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/textInputEditText_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="8dp"
+                android:hint="Nome"/>
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/textInputEditText_cmdOn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="8dp"
+                android:hint="Comando ON" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/textInputEditText_cmdOff"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="8dp"
+                android:hint="Comando OFF" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <!-- fabButton -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!-- fab button -->
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|bottom"
+                    android:src="@drawable/ic_add_dark"
+                    android:contentDescription="@string/submit"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="32dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginLeft="16dp" />
+
+            </FrameLayout>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <!-- Divider H -->
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
-        android:background="@color/secondaryTextColor"
-        android:orientation="horizontal"/>
-
-    <!-- Radio Group -->
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginLeft="8dp"
-        android:orientation="vertical">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:textStyle="bold"
-            android:textSize="12sp"
-            android:hint="Selecione um botão" />
-
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            android:layout_gravity="left"
-            android:orientation="vertical">
-
-            <RadioButton
-                android:id="@+id/radio_toggle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:hint="TOGGLE - Enviar 1 comando"
-                android:onClick="onRadioButtonClicked"/>
-
-            <RadioButton
-                android:id="@+id/radio_onoff"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:hint="ON/OFF - Interruptor com 2 comandos"
-                android:onClick="onRadioButtonClicked"/>
-
-        </RadioGroup>
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <!-- Divider H -->
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
-        android:background="@color/secondaryTextColor"
-        android:orientation="horizontal"/>
-
-    <!-- Text fields -->
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:orientation="vertical">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:textStyle="bold"
-            android:textSize="12sp"
-            android:hint="Configuração" />
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/textInputEditText_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
-            android:hint="Nome"/>
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/textInputEditText_cmdOn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
-            android:hint="Comando ON" />
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/textInputEditText_cmdOff"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginLeft="8dp"
-            android:hint="Comando OFF" />
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <!-- fab button -->
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
-            android:src="@drawable/ic_add_dark"
-            android:contentDescription="@string/submit"
-            android:layout_margin="32dp" />
-
-    </FrameLayout>
-
-</androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.core.widget.NestedScrollView>

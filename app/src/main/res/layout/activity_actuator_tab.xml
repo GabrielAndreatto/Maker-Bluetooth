@@ -19,6 +19,8 @@
             android:id="@+id/tab_actuators"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fillViewport="true"
+            app:tabMaxWidth="0dp"
             app:tabGravity="fill"
             app:tabIndicatorColor="@color/colorAccent"
             app:tabMode="fixed"
