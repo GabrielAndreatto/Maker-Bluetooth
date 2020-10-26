@@ -37,7 +37,7 @@ dependencies {
     //GJon
     implementation 'com.google.code.gson:gson:2.8.6'
 
-    //
+    // Firebase
     implementation 'com.google.firebase:firebase-core:17.2.3'
     implementation 'androidx.legacy:legacy-support-v13:1.0.0'
 }
