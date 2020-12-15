@@ -4,18 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/darker_gray"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
     tools:context=".adMob.AdMobFragmentBanner">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
-        android:layout_marginBottom="35dp"
-        android:text="@string/hello_world"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@id/adView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <!--    <TextView-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="35dp"-->
+    <!--        android:layout_marginBottom="35dp"-->
+    <!--        android:text="@string/hello_world"-->
+    <!--        android:textSize="25sp"-->
+    <!--        app:layout_constraintBottom_toTopOf="@id/adView"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent" />-->
 
     <!-- view for AdMob Banner Ad -->
     <com.google.android.gms.ads.AdView
@@ -24,8 +27,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="25dp"
-        android:background="@color/colorAccent"
         app:adSize="BANNER"
         app:adUnitId="@string/adMob_ad_unit_id"
         app:layout_constraintBottom_toBottomOf="parent"

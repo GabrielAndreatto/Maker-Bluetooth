@@ -52,7 +52,6 @@ public class BoardListActivity extends AppCompatActivity {
 
         adapter = new RecyclerBoardListAdapter(boards, this);
         recyclerView.setAdapter(adapter);
-
     }
 
     // Toolbar

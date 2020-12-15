@@ -22,7 +22,7 @@
 
             <fragment
                 android:name="br.com.example.andreatto.tccmakerbluetooth.adMob.AdMobFragmentBanner"
-                android:id="@+id/fragment_language_menu"
+                android:id="@+id/fragment_adMob_banner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
