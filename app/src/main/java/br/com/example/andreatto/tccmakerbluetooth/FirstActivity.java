@@ -68,8 +68,10 @@ public class FirstActivity extends AppCompatActivityBluetooth {
             public void run() {
                 // SERVICE
                 // 1 - Bluetooth
-                Intent intent = new Intent(getApplicationContext(), ServiceBluetooth.class);
-                startService(intent);
+                if (!enableBluetooth()) {
+                    Intent intent = new Intent(getApplicationContext(), ServiceBluetooth.class);
+                    startService(intent);
+                }
                 // ServiceBluetooth systemService = getSystemService(ServiceBluetooth.class);
 
             }

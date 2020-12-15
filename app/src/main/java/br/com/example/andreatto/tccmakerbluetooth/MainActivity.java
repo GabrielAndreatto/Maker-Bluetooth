@@ -15,6 +15,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.navigation.NavigationView;
 
 import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceBluetooth;
@@ -88,12 +89,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void initializeComponentsEvents() {
-        btnSendCmd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                serviceConnection.getServiceBluetooth().sendCommand(commandSending.getText().toString());
-            }
-        });
+//        btnSendCmd.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                serviceConnection.getServiceBluetooth().sendCommand(commandSending.getText().toString());
+//            }
+//        });
     }
 
     // Toolbar

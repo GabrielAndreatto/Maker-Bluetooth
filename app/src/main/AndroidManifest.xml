@@ -3,9 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="br.com.example.andreatto.tccmakerbluetooth">
 
+    <!-- Include required permissions for Google Mobile Ads to run. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -15,7 +17,16 @@
         android:supportsRtl="true"
         android:theme="@style/SuperMaterialTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".views.listas.sensors.api.DeleteSensorActivity"></activity>
+
+        <!--
+        This is the sample AdMob App ID. Insert your own AdMob App ID in quotes
+        https://googlemobileadssdk.page.link/admob-android-update-manifest
+        -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/adMob_app_id" />
+
+        <activity android:name=".views.listas.sensors.api.DeleteSensorActivity" />
         <activity android:name=".views.listas.boards.api.DeleteBoardActivity" />
         <activity android:name=".views.listas.actuators.api.DeleteActuatorActivity" />
         <activity android:name=".views.listas.actuators.ActuatorActivityTab" />

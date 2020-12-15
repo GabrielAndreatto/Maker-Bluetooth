@@ -17,6 +17,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.security.PublicKey;
 import java.util.UUID;
 
 public class ServiceBluetooth extends Service {
@@ -160,4 +161,6 @@ public class ServiceBluetooth extends Service {
             }
         }).start();
     }
+
+
 }

@@ -19,10 +19,22 @@
             android:orientation="vertical" >
 
             <include layout="@layout/toolbar" />
-            
-            <include layout="@layout/card_send_cmd" />
+
+            <fragment
+                android:name="br.com.example.andreatto.tccmakerbluetooth.adMob.AdMobFragmentBanner"
+                android:id="@+id/fragment_language_menu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+<!--            <include-->
+<!--                android:id="@+id/fragment_language_menu"-->
+<!--                layout="@layout/fragment_ad_mob"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:visibility="visible" />-->
 
             <!--
+            <include layout="@layout/card_send_cmd" />
             <include layout="@layout/card_btn_one_cmd" />
             <include layout="@layout/card_btn_two_cmd" />
 
@@ -54,7 +66,6 @@
             -->
 
         </androidx.appcompat.widget.LinearLayoutCompat>
-
     </ScrollView>
 
 
