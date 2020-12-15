@@ -54,7 +54,7 @@ public class TabToggle extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.tab1, container,false);
+        View view = inflater.inflate(R.layout.actuator_toggle_tab, container,false);
         return view;
     }
 

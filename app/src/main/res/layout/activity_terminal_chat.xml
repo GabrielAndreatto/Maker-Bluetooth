@@ -70,4 +70,10 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
+    <fragment
+        android:id="@+id/fragment_adMob_banner"
+        android:name="br.com.example.andreatto.tccmakerbluetooth.adMob.AdMobFragmentBanner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </androidx.appcompat.widget.LinearLayoutCompat>

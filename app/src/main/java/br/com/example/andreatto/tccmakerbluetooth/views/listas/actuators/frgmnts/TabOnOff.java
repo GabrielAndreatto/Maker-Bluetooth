@@ -53,7 +53,7 @@ public class TabOnOff extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.e("TabOnOff", "TabOnOff onCreateView: ");
-        View view = inflater.inflate(R.layout.tab2, container,false);
+        View view = inflater.inflate(R.layout.actuator_on_off_tab, container,false);
         return view;
     }
 
