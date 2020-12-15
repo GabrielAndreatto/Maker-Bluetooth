@@ -11,9 +11,16 @@
     <ListView
         android:id="@+id/listView_bluetooth_actived"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_marginTop="8dp">
 
     </ListView>
+
+    <fragment
+        android:id="@+id/fragment_adMob_banner"
+        android:name="br.com.example.andreatto.tccmakerbluetooth.adMob.AdMobFragmentBanner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
