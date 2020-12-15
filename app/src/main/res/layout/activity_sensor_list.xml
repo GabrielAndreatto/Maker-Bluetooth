@@ -11,9 +11,17 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_sensor"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         tools:listitem="@layout/card_sensor">
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <fragment
+        android:id="@+id/fragment_adMob_banner"
+        android:name="br.com.example.andreatto.tccmakerbluetooth.adMob.AdMobFragmentBanner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
