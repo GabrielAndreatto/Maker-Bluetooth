@@ -20,6 +20,7 @@ import br.com.example.andreatto.tccmakerbluetooth.dao.BoardDAO;
 
 public class RecyclerBluetoothBondedListAdapter extends RecyclerView.Adapter<ViewHolderBluetoothBondedList> {
 
+    private static final String LOG_PAGE = "RecyclerBluetoothBondedListAdapter";
     private Activity activity;
     private List<BluetoothDevice> mBluetoothDeviceList;
     private String code, idBoard;
@@ -50,26 +51,31 @@ public class RecyclerBluetoothBondedListAdapter extends RecyclerView.Adapter<Vie
             public void onClick(View v) {
 
                 if(code.equals("bluetooth-none")) {
+                    Log.e(LOG_PAGE, "bluetooth-none");
                     Toast.makeText(activity, "Bluetooth name: " + mBluetoothDeviceT.getName() +  " | Mac Address: " + mBluetoothDeviceT.getAddress(), Toast.LENGTH_SHORT).show();
                 }
                 if(code.equals("bluetooth-macAddress")) {
+                    Log.e(LOG_PAGE, "bluetooth-macAddress-adapter");
                     Bundle pkgT = new Bundle();
                     pkgT.putString("code", "bluetooth-macAddress");
                     pkgT.putString("bluetooth-name", mBluetoothDeviceT.getName());
                     pkgT.putString("bluetooth-mac-address", mBluetoothDeviceT.getAddress());
                     Intent returnIntent = new Intent();
                     returnIntent.putExtras(pkgT);
-                    activity.setResult(202,returnIntent);
+                    activity.setResult(202, returnIntent);
                     activity.finish();
                 }
                 if(code.equals("bluetooth-edit")) {
-                    Log.e("idBoardT", "idBoardT: "+idBoard);
+                    Log.e(LOG_PAGE, "bluetooth-edit: ");
                     try{
                         BoardDAO boardDAO = new BoardDAO(activity);
                         boardDAO.atualizarBluetoothBoard(idBoard, mBluetoothDeviceT.getAddress(), mBluetoothDeviceT.getName());
+                        Log.e(LOG_PAGE, "bluetooth-edit try: ");
                     } catch (Exception e) {
+                        Log.e(LOG_PAGE, "bluetooth-edit catch: ");
                         activity.finish();
                     } finally {
+                        Log.e(LOG_PAGE, "bluetooth-edit finally: ");
                         Bundle pkgT = new Bundle();
                         pkgT.putString("bluetooth-name", mBluetoothDeviceT.getName());
                         pkgT.putString("bluetooth-mac-address", mBluetoothDeviceT.getAddress());
@@ -88,4 +94,18 @@ public class RecyclerBluetoothBondedListAdapter extends RecyclerView.Adapter<Vie
         return mBluetoothDeviceList.size();
     }
 
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+
+        Log.e(LOG_PAGE, "bluetooth-macAddress-adapter-finalize");
+        Bundle pkgT = new Bundle();
+        pkgT.putString("code", "bluetooth-macAddress");
+        pkgT.putString("bluetooth-name", "");
+        pkgT.putString("bluetooth-mac-address", "");
+        Intent returnIntent = new Intent();
+        returnIntent.putExtras(pkgT);
+        activity.setResult(202, returnIntent);
+        activity.finish();
+    }
 }

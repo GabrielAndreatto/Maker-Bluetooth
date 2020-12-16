@@ -27,6 +27,7 @@ import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.classes.Print;
 
 public class BluetoothBondedListActivity extends AppCompatActivityBluetooth {
 
+    private static final String LOG_PAGE = "BluetoothBondedListActivity";
     private Toolbar toolbar;
     private RecyclerView recyclerView;
     private RecyclerBluetoothBondedListAdapter adapter;
@@ -46,20 +47,20 @@ public class BluetoothBondedListActivity extends AppCompatActivityBluetooth {
         if(!pacote.isEmpty() || getIntent().getExtras() != null) {
 
             code = pacote.getString("code");
-            print.logE("CODE", code);
+            print.logE(LOG_PAGE, code);
 
             if (code.equals("bluetooth-none")) {
-                print.logE("CODE", "bluetooth-none");
+                print.logE(LOG_PAGE, "bluetooth-none");
             }
 
             if (code.equals("bluetooth-macAddress")) {
-                print.logE("CODE", "bluetooth-macAddress");
+                print.logE(LOG_PAGE, "bluetooth-macAddress");
             }
 
             if (code.equals("bluetooth-edit")) {
-                if(! pacote.getString("id_board").isEmpty()) {
+                if(!pacote.getString("id_board").isEmpty()) {
                     pacote.getString("id_board");
-                    print.logE("CODE", "bluetooth-idBoard: "+pacote.getString("id_board"));
+                    print.logE(LOG_PAGE, "bluetooth-edit-id: "+pacote.getString("id_board"));
                 }
             }
         }
@@ -83,7 +84,6 @@ public class BluetoothBondedListActivity extends AppCompatActivityBluetooth {
     }
 
     public void initial() {
-
         toolbar = findViewById(R.id.toolbar_bluetooth_bonded_list);
         toolbar.setTitle("Bluetooth pareado");
         setSupportActionBar(toolbar);
@@ -95,7 +95,7 @@ public class BluetoothBondedListActivity extends AppCompatActivityBluetooth {
 
     public void initialAdpter() {
         if (code.equals("bluetooth-edit")) {
-            adapter = new RecyclerBluetoothBondedListAdapter(this, code, pacote.getString("id_board"),  mBluetoothDeviceList);
+            adapter = new RecyclerBluetoothBondedListAdapter(this, code, pacote.getString("id_board"), mBluetoothDeviceList);
             recyclerView.setAdapter(adapter);
         } else {
             adapter = new RecyclerBluetoothBondedListAdapter(this, code, pacote.getString("id_board"), mBluetoothDeviceList);
@@ -117,7 +117,7 @@ public class BluetoothBondedListActivity extends AppCompatActivityBluetooth {
             // Se um device foi encontrado
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
 
-                Log.e("TEXTE", "Iniciou o ACTION_FOUND");
+                Log.e("mReceiver", "Bluetooth Iniciou o ACTION_FOUND");
 
                 // Recupera o device da intent
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);

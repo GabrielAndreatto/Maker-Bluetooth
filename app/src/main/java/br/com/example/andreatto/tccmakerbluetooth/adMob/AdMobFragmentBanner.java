@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.bluetooth.BluetoothAdapter;
 import android.os.Bundle;
 import android.content.Context;
 import android.util.Log;
@@ -19,11 +18,10 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import br.com.example.andreatto.tccmakerbluetooth.R;
-import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.classes.Print;
 
 public class AdMobFragmentBanner extends Fragment {
     // Remove the below line after defining your own ad unit ID.
-    private static final String TOAST_PAGE = "_MAKER_";
+    private static final String TAG_PAGE = "AdMobFragmentBanner";
     private static final String TOAST_TEXT = "Test ads dMob.";
     private static final String DEVICE_ID = "R9QN803HPDE";
     AdView adView;
@@ -54,6 +52,7 @@ public class AdMobFragmentBanner extends Fragment {
 
     private void intiAdMob(View view) {
         MobileAds.initialize(getActivity(), getString(R.string.adMob_app_id));
+
         // Load an ad into the AdMob banner view.
         adView = view.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder()
@@ -67,39 +66,39 @@ public class AdMobFragmentBanner extends Fragment {
             @Override
             public void onAdLoaded() {
                 // Code to be executed when an ad finishes loading.
-                Log.e(TOAST_PAGE, "onAdLoaded");
+                Log.e(TAG_PAGE, "onAdLoaded");
             }
 
             @Override
-            public void onAdFailedToLoad(int adError) {
-                // Code to be executed when an ad request fails.
-                Log.e(TOAST_PAGE, "onAdFailedToLoad");
+            public void onAdFailedToLoad(int i) {
+                super.onAdFailedToLoad(i);
+                Log.e(TAG_PAGE, "onAdFailedToLoad");
             }
 
             @Override
             public void onAdOpened() {
                 // Code to be executed when an ad opens an overlay that
                 // covers the screen.
-                Log.e(TOAST_PAGE, "onAdOpened");
+                Log.e(TAG_PAGE, "onAdOpened");
             }
 
             @Override
             public void onAdClicked() {
                 // Code to be executed when the user clicks on an ad.
-                Log.e(TOAST_PAGE, "onAdClicked");
+                Log.e(TAG_PAGE, "onAdClicked");
             }
 
             @Override
             public void onAdLeftApplication() {
                 // Code to be executed when the user has left the app.
-                Log.e(TOAST_PAGE, "onAdLeftApplication");
+                Log.e(TAG_PAGE, "onAdLeftApplication");
             }
 
             @Override
             public void onAdClosed() {
                 // Code to be executed when the user is about to return
                 // to the app after tapping on an ad.
-                Log.e(TOAST_PAGE, "onAdClosed");
+                Log.e(TAG_PAGE, "onAdClosed");
             }
         });
     }

@@ -25,11 +25,11 @@ import java.util.List;
 import br.com.example.andreatto.tccmakerbluetooth.R;
 import br.com.example.andreatto.tccmakerbluetooth.dao.BoardDAO;
 import br.com.example.andreatto.tccmakerbluetooth.modelo.Board;
-import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.classes.Print;
 import br.com.example.andreatto.tccmakerbluetooth.views.listas.bluetoothBonded.BluetoothBondedListActivity;
 
 public class BoardFormActivity extends AppCompatActivity {
 
+    private static final String TAG_PAGE = "BoardFormActivity";
     private Board board;
     private int boardId = 0;
     private String statusIntentAction;
@@ -46,21 +46,19 @@ public class BoardFormActivity extends AppCompatActivity {
     private ImageView bluetooth;
     private ImageView wifi;
 
-    Print print = new Print();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board_form);
 
-        if(getIntent().getExtras().isEmpty() || getIntent().getExtras() == null ) {
+        if (getIntent().getExtras().isEmpty() || getIntent().getExtras() == null) {
             board = new Board();
             initilizeView();
             listenerActions();
         } else {
             Bundle pacote = getIntent().getExtras();
             statusIntentAction = pacote.getString("code"); // enviado a partir da toolbar
-            Log.e("CODE", "Params ... " + statusIntentAction);
+            Log.e(TAG_PAGE, "Params ... " + statusIntentAction);
 
             if (pacote.getString("code").contains("editar")) {
 
@@ -72,7 +70,7 @@ public class BoardFormActivity extends AppCompatActivity {
                 listenerActions();
             }
 
-            if(pacote.getString("code").contains("adicionar")) {
+            if (pacote.getString("code").contains("adicionar")) {
                 board = new Board();
                 initilizeView();
                 listenerActions();
@@ -81,17 +79,15 @@ public class BoardFormActivity extends AppCompatActivity {
     }
 
     public void getBoard() {
-
         List<Board> boardList = new ArrayList<Board>();
         BoardDAO boardDAO = new BoardDAO(this);
         boardList = boardDAO.all();
 
-        for (Board tmpBoard: boardList) {
-            if(tmpBoard.getId() == boardId) {
+        for (Board tmpBoard : boardList) {
+            if (tmpBoard.getId() == boardId) {
                 board = tmpBoard;
             }
         }
-
     }
 
     @SuppressLint("SetTextI18n")
@@ -138,19 +134,17 @@ public class BoardFormActivity extends AppCompatActivity {
                 BoardDAO boardDAO = new BoardDAO(BoardFormActivity.this);
                 boardDAO.salvar(board);
 
-                if(boardId == 0) {
-
-                    if(statusIntentAction.contains("adicionarToolbar")) {
-                        Toast.makeText(getApplicationContext(), "Board criado com sucesso!", Toast.LENGTH_LONG) .show();
-                        finish(); //
+                if (boardId == 0) {
+                    if (statusIntentAction.contains("adicionarToolbar")) {
+                        Toast.makeText(getApplicationContext(), "Board criado com sucesso!", Toast.LENGTH_LONG).show();
+                        finish();
                     } else {
-                        Toast.makeText(getApplicationContext(), "Board criado com sucesso!!", Toast.LENGTH_LONG) .show();
+                        Toast.makeText(getApplicationContext(), "Board criado com sucesso!!", Toast.LENGTH_LONG).show();
                         finish();
                     }
-
                 } else {
-                    Toast.makeText(getApplicationContext(), "Board atualizado com sucesso!", Toast.LENGTH_LONG) .show();
-                    finish(); //
+                    Toast.makeText(getApplicationContext(), "Board atualizado com sucesso!", Toast.LENGTH_LONG).show();
+                    finish();
                 }
 
             }
@@ -200,19 +194,27 @@ public class BoardFormActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Bundle pkg = data.getExtras();
-        switch (requestCode){
-
+        Bundle pkg;
+        switch (requestCode) {
             case 0101:
+                Log.e(TAG_PAGE, "resultCode: " + resultCode);
+                pkg = data.getExtras();
                 editTextBluetoothName.setText(pkg.getString("nome"));
                 editTextMacAddress.setText(pkg.getString("mac_address"));
                 break;
             case 202:
-                print.toast(getApplicationContext(), "code: " + pkg.getString("code") + "Mac-Address: " + pkg.getString("mac-address"), true);
-                editTextBluetoothName.setText(pkg.getString("bluetooth-name"));
-                editTextMacAddress.setText(pkg.getString("bluetooth-mac-address"));
+                //print.toast(getApplicationContext(), "code: " + pkg.getString("code") + "Mac-Address: " + pkg.getString("mac-address"), true);
+                Log.e(TAG_PAGE, "202 Code return");
+                Log.e(TAG_PAGE, "resultCode: " + resultCode);
+                if (resultCode == 202) {
+                    pkg = data.getExtras();
+                    if (!pkg.isEmpty()) {
+                        editTextBluetoothName.setText(pkg.getString("bluetooth-name"));
+                        editTextMacAddress.setText(pkg.getString("bluetooth-mac-address"));
+                    }
+                }
                 break;
-           default:
+            default:
 
         }
     }
