@@ -7,6 +7,7 @@ import android.util.Log;
 
 public class ServiceConnectionBluetoothBind implements ServiceConnection {
 
+    private static final String LOG_PAGE = "ServiceConBleBind";
     private ServiceBluetooth serviceBluetooth;
 
     // Estes métodos serão executados quando algum componente
@@ -15,18 +16,21 @@ public class ServiceConnectionBluetoothBind implements ServiceConnection {
     public void onServiceConnected(ComponentName name, IBinder serviceBinder) {
         BinderBluetooth binderBluetooth = (BinderBluetooth) serviceBinder;
         this.serviceBluetooth = binderBluetooth.getServiceBluetooth();
-        Log.e("ServiceConnection", "onServiceConnected(): ... ");
+        Log.e(LOG_PAGE, "onServiceConnected(): ... ");
     }
 
     @Override
     public void onServiceDisconnected(ComponentName name) {
         // Tarefas a serem executadas ao se desconectar do Service
-        Log.e("ServiceConnection", "onServiceDisconnected(): ... ");
+        Log.e(LOG_PAGE, "onServiceDisconnected(): ... ");
     }
 
     public ServiceBluetooth getServiceBluetooth() {
-        Log.e("ServiceConnection", "getServiceBluetooth(): ... ");
-        return serviceBluetooth;
+        if (this.serviceBluetooth != null) {
+            Log.e(LOG_PAGE, "getServiceBluetooth(): ... ");
+        } else {
+            Log.e(LOG_PAGE, " ERROR getServiceBluetooth(): ... ");
+        }
+        return this.serviceBluetooth;
     }
-
 }

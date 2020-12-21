@@ -32,8 +32,7 @@ import br.com.example.andreatto.tccmakerbluetooth.views.listas.bluetoothBonded.B
 import br.com.example.andreatto.tccmakerbluetooth.views.listas.boards.api.DeleteBoardActivity;
 
 public class RecyclerBoardListAdapter extends RecyclerView.Adapter<ViewHolderBluetoothBonded> {
-
-    private final String TAG = "BLUETOOTH";
+    private static final String LOG_PAGE = "RecyclerBoardAdapter";
     private List<Board> boards;
     private ImageView imageViewBoard;
     private ImageView imageViewBluetooth;
@@ -50,10 +49,13 @@ public class RecyclerBoardListAdapter extends RecyclerView.Adapter<ViewHolderBlu
     public RecyclerBoardListAdapter(List<Board> boards, Activity activity) {
         this.boards = boards;
         this.activity = activity;
+        initServiceBluetooth();
+    }
 
+    private void initServiceBluetooth() {
         intentService = new Intent(activity, ServiceBluetooth.class);
         serviceConnection = new ServiceConnectionBluetoothBind();
-        getActivity().getApplicationContext().bindService(intentService, serviceConnection, 0);
+        getActivity().bindService(intentService, serviceConnection, 0);
     }
 
     private Activity getActivity() {
@@ -80,10 +82,10 @@ public class RecyclerBoardListAdapter extends RecyclerView.Adapter<ViewHolderBlu
         viewHolderBluetoothBonded.rede.setText(boardT.getRede());
         viewHolderBluetoothBonded.ip.setText(boardT.getIp());
 
-        if(boardT.getConectedBluetooth() == 1) { // true
+        if (boardT.getConectedBluetooth() == 1) { // true
             viewHolderBluetoothBonded.itemView.findViewById(R.id.cardview_id).setBackgroundColor(viewHolderBluetoothBonded.itemView.getResources().getColor(R.color.board_conected));
             viewHolderBluetoothBonded.imgBoard.setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
-        }else {
+        } else {
             viewHolderBluetoothBonded.imgBoard.setColorFilter(Color.BLUE, PorterDuff.Mode.MULTIPLY);
             //viewHolderBluetoothBonded.itemView.findViewById(R.id.cardview_id).setBackgroundColor(viewHolderBluetoothBonded.itemView.getResources().getColor(R.color.board_desconected));
         }
@@ -92,9 +94,10 @@ public class RecyclerBoardListAdapter extends RecyclerView.Adapter<ViewHolderBlu
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View v) {
-                if(boardT.getMacAddress().isEmpty()) {
-                    Toast.makeText(activity, "Adicionar um mac address", Toast.LENGTH_LONG).show();
+                if (boardT.getMacAddress().isEmpty()) {
+                    Toast.makeText(activity, "click listener connect bluetooth is empty", Toast.LENGTH_LONG).show();
                 } else {
+                    Log.e(LOG_PAGE, "click listener connect bluetooth: " + boardT.getMacAddress());
                     serviceConnection.getServiceBluetooth().conectarBluetooth(boardT.getMacAddress());
                 }
             }
@@ -142,7 +145,7 @@ public class RecyclerBoardListAdapter extends RecyclerView.Adapter<ViewHolderBlu
 
                         Intent i = new Intent(v.getContext().getApplicationContext(), BoardFormActivity.class);
                         i.putExtras(pkg);
-                        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
+                        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         v.getContext().getApplicationContext().startActivity(i);
                     }
                 });
@@ -191,7 +194,7 @@ public class RecyclerBoardListAdapter extends RecyclerView.Adapter<ViewHolderBlu
                                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                     v.getContext().getApplicationContext().startActivity(i);
 
-                                    Log.e("btnDelete", "onClick Remover Board: "+ boardT.getId());
+                                    Log.e("btnDelete", "onClick Remover Board: " + boardT.getId());
 
                                 } catch (Exception e) {
                                     e.getMessage();
@@ -242,7 +245,7 @@ public class RecyclerBoardListAdapter extends RecyclerView.Adapter<ViewHolderBlu
         View snackView = snackbar.getView();
         snackView.setBackgroundColor(v.getResources().getColor(R.color.secondaryTextColor));
 
-        TextView snackActionView  = snackView.findViewById(R.id.snackbar_action);
+        TextView snackActionView = snackView.findViewById(R.id.snackbar_action);
         snackActionView.setTextColor(v.getResources().getColor(android.R.color.white, null));
 
         snackbar.show();

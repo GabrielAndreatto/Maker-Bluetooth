@@ -21,6 +21,7 @@ import java.security.PublicKey;
 import java.util.UUID;
 
 public class ServiceBluetooth extends Service {
+    private static final String LOG_PAGE = "Service Bluetooth";
 
     private IBinder binder = new BinderBluetooth(this);
 
@@ -62,10 +63,14 @@ public class ServiceBluetooth extends Service {
     }
 
     public void conectarBluetooth(String mac_address){
+        Log.e(LOG_PAGE, "conectar Bluetooth mac_address " + mac_address);
         this.bluetoothSocket = conectBluetooth(mac_address);
     }
 
     public BluetoothSocket conectBluetooth(String mac_address) {
+
+        Log.e(LOG_PAGE, "conect Bluetooth: " + mac_address);
+
         bluetoohRemoto = bluetoothAdapter.getRemoteDevice(mac_address);
         new Thread(new Runnable() {
             @Override

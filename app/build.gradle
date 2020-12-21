@@ -44,7 +44,6 @@ dependencies {
 
     // AdMob
     implementation 'com.google.android.gms:play-services-ads:17.0.0'
-
 }
 
 apply plugin: 'com.google.gms.google-services'

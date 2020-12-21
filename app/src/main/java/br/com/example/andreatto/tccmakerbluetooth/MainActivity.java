@@ -2,9 +2,9 @@ package br.com.example.andreatto.tccmakerbluetooth;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -15,7 +15,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.navigation.NavigationView;
 
 import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceBluetooth;
@@ -31,7 +30,8 @@ import br.com.example.andreatto.tccmakerbluetooth.views.listas.boards.BoardListA
 import br.com.example.andreatto.tccmakerbluetooth.views.listas.sensors.SensorListActivity;
 import br.com.example.andreatto.tccmakerbluetooth.views.terminal.chat.TerminalChat;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    private static final String LOG_PAGE = "Main Activity";
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
@@ -85,7 +85,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // 1 - Bluetooth
         intentService = new Intent(this, ServiceBluetooth.class);
         serviceConnection = new ServiceConnectionBluetoothBind();
-        bindService(intentService, serviceConnection, 0);
+        try {
+            bindService(intentService, serviceConnection, 0);
+            Log.e(LOG_PAGE, "SUCCESS bind Service");
+        } catch (Exception e) {
+            Log.e(LOG_PAGE, "ERROR bind Service");
+        }
     }
 
     private void initializeComponentsEvents() {
@@ -121,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
-        }else {
+        } else {
             super.onBackPressed();
         }
     }

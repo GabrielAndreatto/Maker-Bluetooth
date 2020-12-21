@@ -40,7 +40,7 @@ public class BoardListActivity extends AppCompatActivity {
 
     public void initial() {
         BoardDAO boardDAO = new BoardDAO(this);
-        boards  = boardDAO.all();
+        boards = boardDAO.all();
 
         toolbar = findViewById(R.id.toolbar_board);
         // toolbar.setTitle("Lista de Board  (" + boards.size() + ") ");
@@ -100,7 +100,7 @@ public class BoardListActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
 
-        switch (requestCode){
+        switch (requestCode) {
 
             case 201:
                 // Toast.makeText(getApplicationContext(), "Refresh", Toast.LENGTH_LONG).show();
@@ -108,7 +108,7 @@ public class BoardListActivity extends AppCompatActivity {
                 break;
 
             case 202:
-                 Toast.makeText(getApplicationContext(), "bluetooth Mac Address", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "bluetooth Mac Address", Toast.LENGTH_LONG).show();
                 initial();
                 break;
             case 0101:
@@ -118,10 +118,10 @@ public class BoardListActivity extends AppCompatActivity {
 
             case 0102:
                 Bundle pkg = intent.getExtras().getBundle("bluetooth_conection");
-                if(pkg.getString("response").contains("ok")) {
+                if (pkg.getString("response").contains("ok")) {
                     Toast.makeText(getApplicationContext(), "Conectado", Toast.LENGTH_LONG).show();
                     initial();
-                } else if(pkg.getString("response").contains("not")) {
+                } else if (pkg.getString("response").contains("not")) {
                     Toast.makeText(getApplicationContext(), "Deconectado", Toast.LENGTH_LONG).show();
                     initial();
                 } else {
