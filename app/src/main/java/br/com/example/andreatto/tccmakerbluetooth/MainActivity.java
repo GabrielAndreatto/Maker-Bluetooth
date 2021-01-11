@@ -1,10 +1,16 @@
 package br.com.example.andreatto.tccmakerbluetooth;
 
+import android.annotation.SuppressLint;
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.PersistableBundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -17,6 +23,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
+import br.com.example.andreatto.tccmakerbluetooth.jobs.JobServiceBluetoothConn;
 import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceBluetooth;
 import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceConnectionBluetoothBind;
 import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.classes.Print;
@@ -49,6 +56,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Intent intentService;
     private ServiceConnectionBluetoothBind serviceConnection;
 
+    View.OnClickListener connection = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         initializeComponentsEvents();
     }
 
+    @SuppressLint("NewApi")
     private void initializeComponentsViews() {
         toolbar = findViewById(R.id.toolbar_board);
         setSupportActionBar(toolbar);
@@ -83,23 +98,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         // SERVICE
         // 1 - Bluetooth
-        intentService = new Intent(this, ServiceBluetooth.class);
-        serviceConnection = new ServiceConnectionBluetoothBind();
-        try {
-            bindService(intentService, serviceConnection, 0);
-            Log.e(LOG_PAGE, "SUCCESS bind Service");
-        } catch (Exception e) {
-            Log.e(LOG_PAGE, "ERROR bind Service");
-        }
+//        intentService = new Intent(this, ServiceBluetooth.class);
+//        serviceConnection = new ServiceConnectionBluetoothBind();
+//        try {
+//            bindService(intentService, serviceConnection, 0);
+//            Log.e(LOG_PAGE, "SUCCESS bind Service");
+//        } catch (Exception e) {
+//            Log.e(LOG_PAGE, "ERROR bind Service");
+//        }
+
+//        Bundle extras = new Bundle();
+//        extras.putInt("idProducto", 2);
+//        extras.putString("nome", "Firebase");
+//        new JobServiceBluetoothConn();
+
+        JobScheduler jobScheduler =
+                (JobScheduler) getSystemService(Context.JOB_SCHEDULER_SERVICE);
+        jobScheduler.schedule(new JobInfo.Builder(1,
+                new ComponentName(this, JobServiceBluetoothConn.class))
+                .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
+                .setExtras(new PersistableBundle())
+                .build());
     }
 
     private void initializeComponentsEvents() {
-//        btnSendCmd.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                serviceConnection.getServiceBluetooth().sendCommand(commandSending.getText().toString());
-//            }
-//        });
+        btnSendCmd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //serviceConnection.getServiceBluetooth().sendCommand(commandSending.getText().toString());
+            }
+        });
     }
 
     // Toolbar

@@ -1,6 +1,10 @@
 package br.com.example.andreatto.tccmakerbluetooth.views.listas.boards;
 
 import android.app.Activity;
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -24,6 +28,7 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.List;
 
 import br.com.example.andreatto.tccmakerbluetooth.R;
+import br.com.example.andreatto.tccmakerbluetooth.jobs.JobServiceBluetoothConn;
 import br.com.example.andreatto.tccmakerbluetooth.modelo.Board;
 import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceBluetooth;
 import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceConnectionBluetoothBind;
@@ -52,10 +57,21 @@ public class RecyclerBoardListAdapter extends RecyclerView.Adapter<ViewHolderBlu
         initServiceBluetooth();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void initServiceBluetooth() {
-        intentService = new Intent(activity, ServiceBluetooth.class);
-        serviceConnection = new ServiceConnectionBluetoothBind();
-        getActivity().bindService(intentService, serviceConnection, 0);
+        try {
+            JobScheduler jobScheduler =
+                    (JobScheduler) activity.getSystemService(Context.JOB_SCHEDULER_SERVICE);
+            jobScheduler.schedule(new JobInfo.Builder(1,
+                    new ComponentName(activity, JobServiceBluetoothConn.class))
+                    .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
+                    // .setExtras(new PersistableBundle())
+                    .build());
+        } catch (Exception e) {
+            Log.e(LOG_PAGE, "click listener connect bluetooth try/catch: ");
+        } finally {
+        }
+
     }
 
     private Activity getActivity() {
@@ -98,7 +114,25 @@ public class RecyclerBoardListAdapter extends RecyclerView.Adapter<ViewHolderBlu
                     Toast.makeText(activity, "click listener connect bluetooth is empty", Toast.LENGTH_LONG).show();
                 } else {
                     Log.e(LOG_PAGE, "click listener connect bluetooth: " + boardT.getMacAddress());
-                    serviceConnection.getServiceBluetooth().conectarBluetooth(boardT.getMacAddress());
+                    //serviceConnection.getServiceBluetooth().conectarBluetooth(boardT.getMacAddress());
+
+                    Bundle extras = new Bundle();
+                    extras.putString("mac_address", boardT.getMacAddress());
+
+                    try {
+                        JobScheduler jobScheduler =
+                                (JobScheduler) activity.getSystemService(Context.JOB_SCHEDULER_SERVICE);
+                        jobScheduler.schedule(new JobInfo.Builder(1,
+                                new ComponentName(activity, JobServiceBluetoothConn.class))
+                                .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
+                                // .setExtras(new PersistableBundle())
+                                .build());
+                    } catch (Exception e) {
+                        Log.e(LOG_PAGE, "click listener connect bluetooth try/catch: " + boardT.getMacAddress());
+                    } finally {
+                        serviceConnection.getServiceBluetooth().conectarBluetooth(boardT.getMacAddress());
+                    }
+
                 }
             }
         });
