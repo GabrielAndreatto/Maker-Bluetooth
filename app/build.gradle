@@ -8,7 +8,10 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+
     }
     buildTypes {
         release {
@@ -19,7 +22,8 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+
     implementation 'androidx.appcompat:appcompat:1.0.0'
     implementation 'androidx.core:core:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
@@ -29,12 +33,15 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
 
+    // Multidex
+    implementation 'androidx.multidex:multidex:2.0.1'
+
     // Material Design
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
 
-    //GJon
+    // GJon
     implementation 'com.google.code.gson:gson:2.8.6'
 
     //
