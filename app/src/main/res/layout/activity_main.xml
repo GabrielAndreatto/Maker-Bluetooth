@@ -22,6 +22,11 @@
             
             <include layout="@layout/card_send_cmd" />
 
+            <fragment
+                android:name="br.com.example.andreatto.tccmakerbluetooth.adMob.AdMobFragmentBanner"
+                android:id="@+id/fragment_adMob_banner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
             <!--
             <include layout="@layout/card_btn_one_cmd" />
             <include layout="@layout/card_btn_two_cmd" />
