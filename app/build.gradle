@@ -48,6 +48,9 @@ dependencies {
     //
     implementation 'com.google.firebase:firebase-core:17.2.3'
     implementation 'androidx.legacy:legacy-support-v13:1.0.0'
+
+    // AdMob
+    implementation 'com.google.android.gms:play-services-ads:17.0.0'
 }
 
 apply plugin: 'com.google.gms.google-services'

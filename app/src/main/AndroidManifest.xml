@@ -15,6 +15,15 @@
         android:supportsRtl="true"
         android:theme="@style/SuperMaterialTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+
+        <!--
+        This is the sample AdMob App ID. Insert your own AdMob App ID in quotes
+        https://googlemobileadssdk.page.link/admob-android-update-manifest
+        -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/adMob_app_id" />
+
         <activity android:name=".views.listas.sensors.api.DeleteSensorActivity"></activity>
         <activity android:name=".views.listas.boards.api.DeleteBoardActivity" />
         <activity android:name=".views.listas.actuators.api.DeleteActuatorActivity" />
