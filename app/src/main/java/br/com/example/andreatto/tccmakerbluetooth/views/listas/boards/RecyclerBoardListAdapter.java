@@ -101,6 +101,9 @@ public class RecyclerBoardListAdapter extends RecyclerView.Adapter<ViewHolderBlu
         });
 
         imageViewBluetooth = viewHolderBluetoothBonded.itemView.findViewById(R.id.imageView_bluetooth);
+
+        // imageViewBluetooth.setColorFilter(R.color.board_conected);
+
         imageViewBluetooth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

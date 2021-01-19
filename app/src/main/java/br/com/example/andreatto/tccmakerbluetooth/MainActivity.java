@@ -6,7 +6,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -14,6 +16,7 @@ import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -77,8 +80,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) this);
 
         // Card enviar 1 comando
-        btnSendCmd = (AppCompatButton) findViewById(R.id.button_send_cmd);
-        commandSending = (AppCompatEditText) findViewById(R.id.edit_text_cmd);
+//        btnSendCmd = (AppCompatButton) findViewById(R.id.button_send_cmd);
+//        commandSending = (AppCompatEditText) findViewById(R.id.edit_text_cmd);
 
         // SERVICE
         // 1 - Bluetooth
@@ -88,12 +91,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void initializeComponentsEvents() {
-        btnSendCmd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                serviceConnection.getServiceBluetooth().sendCommand(commandSending.getText().toString());
-            }
-        });
+//        btnSendCmd.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                serviceConnection.getServiceBluetooth().sendCommand(commandSending.getText().toString());
+//            }
+//        });
     }
 
     // Toolbar
@@ -184,5 +187,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void showFragment(@NonNull FragmentModel fragment) {
+        showFragment(fragment, R.id.fragment_container, null);
+    }
+
+    public void showFragment(@NonNull FragmentModel fragment, @NonNull String tag) {
+        showFragment(fragment, R.id.fragment_container, tag);
+    }
+
+    public void showFragment(@NonNull FragmentModel fragment, @IdRes int containerId) {
+        showFragment(fragment, containerId, null);
+    }
+
+    public void showFragment(@NonNull FragmentModel fragment, @IdRes int containerId, @Nullable String tag) {
+        FragmentTransaction transition = getSupportFragmentManager().beginTransaction();
+        transition.replace(containerId, fragment, tag);
+        transition.addToBackStack(null);
+        transition.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        transition.commit();
     }
 }

@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:openDrawer="start" >
+    tools:openDrawer="start">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -16,27 +15,40 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <include layout="@layout/toolbar" />
-            
-            <include layout="@layout/card_send_cmd" />
 
+            <!-- Frament Container -->
+            <FrameLayout
+                android:id="@+id/fragment_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <fragment
+                    android:id="@+id/fragment_driving_time_preview_container"
+                    android:name="br.com.example.andreatto.tccmakerbluetooth.frgmnts.FragmentMain"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </FrameLayout>
+
+            <!-- AdMob -->
             <fragment
-                android:name="br.com.example.andreatto.tccmakerbluetooth.adMob.AdMobFragmentBanner"
                 android:id="@+id/fragment_adMob_banner"
+                android:name="br.com.example.andreatto.tccmakerbluetooth.adMob.AdMobFragmentBanner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <!--
+            <include layout="@layout/card_send_cmd" />
             <include layout="@layout/card_btn_one_cmd" />
             <include layout="@layout/card_btn_two_cmd" />
 
             <include layout="@layout/actuator_toggle" />
             <include layout="@layout/actuator_switch" />
             <include layout="@layout/card_sensor" />
-
             -->
+
             <!--
             <TextView
                 android:id="@+id/textView_mensagem_all"
@@ -60,9 +72,7 @@
             -->
 
         </androidx.appcompat.widget.LinearLayoutCompat>
-
     </ScrollView>
-
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationView"
@@ -73,5 +83,4 @@
         app:menu="@menu/menu_nav">
 
     </com.google.android.material.navigation.NavigationView>
-
 </androidx.drawerlayout.widget.DrawerLayout>
