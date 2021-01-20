@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
@@ -22,7 +21,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceBluetooth;
 import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceConnectionBluetoothBind;
-import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.classes.Print;
+import br.com.example.andreatto.tccmakerbluetooth.utils.classes.Print;
 import br.com.example.andreatto.tccmakerbluetooth.views.form.actuator.ActuatorFormActivity;
 import br.com.example.andreatto.tccmakerbluetooth.views.form.board.BoardFormActivity;
 import br.com.example.andreatto.tccmakerbluetooth.views.form.sensor.SensorFormActivity;
@@ -33,13 +32,14 @@ import br.com.example.andreatto.tccmakerbluetooth.views.listas.boards.BoardListA
 import br.com.example.andreatto.tccmakerbluetooth.views.listas.sensors.SensorListActivity;
 import br.com.example.andreatto.tccmakerbluetooth.views.terminal.chat.TerminalChat;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    private final String TAG = "Main Activity";
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
 
-    private Print print = new Print();
+    private final Print print = new Print();
 
     // card que envia comando
     private AppCompatButton btnSendCmd;
@@ -67,21 +67,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         initializeComponentsEvents();
     }
 
+    @Override
+    protected void onDestroy() {
+        try {
+            serviceConnection.getServiceBluetooth().conectarBluetooth();
+            print.logE(TAG, "onDestroy() try");
+        }catch (Exception e) {
+            print.logE(TAG, "onDestroy() catch");
+        }
+        finally {
+            print.logE(TAG, "onDestroy() finally");
+            super.onDestroy();
+        }
+    }
+
     private void initializeComponentsViews() {
         toolbar = findViewById(R.id.toolbar_board);
         setSupportActionBar(toolbar);
 
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        drawerLayout = findViewById(R.id.drawerLayout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        navigationView = (NavigationView) findViewById(R.id.navigationView);
-        navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) this);
+        navigationView = findViewById(R.id.navigationView);
+        navigationView.setNavigationItemSelectedListener(this);
 
         // Card enviar 1 comando
-//        btnSendCmd = (AppCompatButton) findViewById(R.id.button_send_cmd);
-//        commandSending = (AppCompatEditText) findViewById(R.id.edit_text_cmd);
+        // btnSendCmd = (AppCompatButton) findViewById(R.id.button_send_cmd);
+        // commandSending = (AppCompatEditText) findViewById(R.id.edit_text_cmd);
 
         // SERVICE
         // 1 - Bluetooth
@@ -123,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
-        }else {
+        } else {
             super.onBackPressed();
         }
     }
@@ -189,6 +203,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    // Fragment
     public void showFragment(@NonNull FragmentModel fragment) {
         showFragment(fragment, R.id.fragment_container, null);
     }

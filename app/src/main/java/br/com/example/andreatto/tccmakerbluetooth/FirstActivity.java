@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceBluetooth;
-import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.activitys.AppCompatActivityBluetooth;
-import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.classes.Print;
+import br.com.example.andreatto.tccmakerbluetooth.utils.AppCompatActivityBluetooth;
+import br.com.example.andreatto.tccmakerbluetooth.utils.classes.Print;
 
 public class FirstActivity extends AppCompatActivityBluetooth {
 
@@ -19,7 +19,7 @@ public class FirstActivity extends AppCompatActivityBluetooth {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(!verifyBluetoothAdapter()){
+        if (!verifyBluetoothAdapter()) {
             print.toast(getApplicationContext(), "Dispositivo não possui Bluetooth", true);
             finish();
         } else {
@@ -28,7 +28,7 @@ public class FirstActivity extends AppCompatActivityBluetooth {
     }
 
     public void isEnable() {
-        if(enableBluetooth()){
+        if (enableBluetooth()) {
             goMainActivity();
         } else {
             startBluetoothDevice();
@@ -43,9 +43,9 @@ public class FirstActivity extends AppCompatActivityBluetooth {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch(requestCode){
+        switch (requestCode) {
             case CODE_ACTIVATION_BLUETOOTH:
-                if(resultCode == Activity.RESULT_OK){
+                if (resultCode == Activity.RESULT_OK) {
                     Toast.makeText(getApplicationContext(), "Bluetooth foi ativado", Toast.LENGTH_LONG).show();
                     goMainActivity();
                 } else {

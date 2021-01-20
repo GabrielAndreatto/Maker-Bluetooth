@@ -26,8 +26,8 @@ import br.com.example.andreatto.tccmakerbluetooth.modelo.IconsApp;
 import br.com.example.andreatto.tccmakerbluetooth.modelo.Sensor;
 import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceBluetooth;
 import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceConnectionBluetoothBind;
-import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.classes.AgileTools;
-import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.classes.Print;
+import br.com.example.andreatto.tccmakerbluetooth.utils.classes.AgileTools;
+import br.com.example.andreatto.tccmakerbluetooth.utils.classes.Print;
 
 public class SensorValue extends AppCompatActivity {
 

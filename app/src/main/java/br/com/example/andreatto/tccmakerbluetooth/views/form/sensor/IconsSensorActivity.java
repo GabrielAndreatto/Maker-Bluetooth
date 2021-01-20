@@ -16,7 +16,7 @@ import java.util.List;
 import br.com.example.andreatto.tccmakerbluetooth.R;
 import br.com.example.andreatto.tccmakerbluetooth.dao.IconsAppDAO;
 import br.com.example.andreatto.tccmakerbluetooth.modelo.IconsApp;
-import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.classes.Print;
+import br.com.example.andreatto.tccmakerbluetooth.utils.classes.Print;
 
 public class IconsSensorActivity extends AppCompatActivity {
 

@@ -25,7 +25,7 @@ import br.com.example.andreatto.tccmakerbluetooth.dao.IconsAppDAO;
 import br.com.example.andreatto.tccmakerbluetooth.dao.SensorDAO;
 import br.com.example.andreatto.tccmakerbluetooth.modelo.IconsApp;
 import br.com.example.andreatto.tccmakerbluetooth.modelo.Sensor;
-import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.classes.Print;
+import br.com.example.andreatto.tccmakerbluetooth.utils.classes.Print;
 
 public class SensorFormActivity extends AppCompatActivity {
 

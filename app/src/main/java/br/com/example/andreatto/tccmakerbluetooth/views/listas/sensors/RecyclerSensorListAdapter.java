@@ -27,7 +27,7 @@ import br.com.example.andreatto.tccmakerbluetooth.modelo.IconsApp;
 import br.com.example.andreatto.tccmakerbluetooth.modelo.Sensor;
 import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceBluetooth;
 import br.com.example.andreatto.tccmakerbluetooth.services.bluetooth.ServiceConnectionBluetoothBind;
-import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.classes.AgileTools;
+import br.com.example.andreatto.tccmakerbluetooth.utils.classes.AgileTools;
 import br.com.example.andreatto.tccmakerbluetooth.views.form.sensor.SensorFormActivity;
 import br.com.example.andreatto.tccmakerbluetooth.views.listas.sensors.api.DeleteSensorActivity;
 import br.com.example.andreatto.tccmakerbluetooth.views.ui.SensorValue;

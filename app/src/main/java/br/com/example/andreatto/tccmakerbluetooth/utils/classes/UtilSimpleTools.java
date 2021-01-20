@@ -1,4 +1,4 @@
-package br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.classes;
+package br.com.example.andreatto.tccmakerbluetooth.utils.classes;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

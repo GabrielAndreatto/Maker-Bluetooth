@@ -1,5 +1,6 @@
 package br.com.example.andreatto.tccmakerbluetooth.services.bluetooth;
 
+import android.annotation.SuppressLint;
 import android.app.Service;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -21,6 +22,7 @@ import java.util.UUID;
 
 public class ServiceBluetooth extends Service {
 
+    private final String TAG = "Service Bluetooth";
     private IBinder binder = new BinderBluetooth(this);
 
     private static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
@@ -37,10 +39,13 @@ public class ServiceBluetooth extends Service {
     private SharedPreferences sharedPreference;
     private SharedPreferences.Editor sharedPreferenceEditor;
 
+    @SuppressLint("CommitPrefEdits")
     @Override
     public void onCreate() {
         super.onCreate();
-        bluetoothAdapter = bluetoothAdapter.getDefaultAdapter();
+        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        sharedPreference = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        sharedPreferenceEditor = sharedPreference.edit();
     }
 
     @Override
@@ -60,11 +65,16 @@ public class ServiceBluetooth extends Service {
         return binder;
     }
 
-    public void conectarBluetooth(String mac_address){
-        this.bluetoothSocket = conectBluetooth(mac_address);
+    public void conectarBluetooth() {
+        Log.d(TAG, "On Destroy conectar Bluetooth");
+        sharedPreferenceEditor.putString("board_connected", "-1");
     }
 
-    public BluetoothSocket conectBluetooth(String mac_address) {
+    public void conectarBluetooth(String id, String mac_address) {
+        this.bluetoothSocket = conectBluetooth(id, mac_address);
+    }
+
+    public BluetoothSocket conectBluetooth(final String id, String mac_address) {
         bluetoohRemoto = bluetoothAdapter.getRemoteDevice(mac_address);
         new Thread(new Runnable() {
             @Override
@@ -80,22 +90,19 @@ public class ServiceBluetooth extends Service {
                 } catch (IOException e) {
                     Log.d("BLTTH_SERVICE", "... Close socket during connection failure ...");
                 } finally {
-                    sharedPreference = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                    sharedPreferenceEditor = sharedPreference.edit();
-
-                    initialBluetoothIO();
+                    initialBluetoothIO(id);
                 }
             }
-
         }).start();
         return bluetoothSocket;
     }
 
-    public void initialBluetoothIO() {
+    public void initialBluetoothIO(final String id) {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 if (bluetoothSocket.isConnected()) {
+                    sharedPreferenceEditor.putString("board_connected", id);
                     try {
                         //outputStream = bluetoothSocket.getOutputStream();
                         inputStream = bluetoothSocket.getInputStream();
@@ -108,7 +115,10 @@ public class ServiceBluetooth extends Service {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+                } else {
+                    sharedPreferenceEditor.putString("board_connected", "-1");
                 }
+                sharedPreferenceEditor.apply();
             }
         }).start();
     }
@@ -143,8 +153,8 @@ public class ServiceBluetooth extends Service {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                if(bluetoothSocket.isConnected()){
-                    try{
+                if (bluetoothSocket.isConnected()) {
+                    try {
                         //outputStream.write(msgBufferTwo);
                         os.writeUTF(cmd);
                     } catch (Exception e) {
@@ -152,8 +162,8 @@ public class ServiceBluetooth extends Service {
                     }
                 } else {
                     Toast.makeText(getApplicationContext(),
-                                "Bluetooth não está conectado",
-                                Toast.LENGTH_LONG)
+                            "Bluetooth não está conectado",
+                            Toast.LENGTH_LONG)
                             .show();
                 }
 

@@ -1,7 +1,10 @@
 package br.com.example.andreatto.tccmakerbluetooth.views.listas.boards;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,11 +26,17 @@ import br.com.example.andreatto.tccmakerbluetooth.views.form.board.BoardFormActi
 
 public class BoardListActivity extends AppCompatActivity {
 
+    private final String TAG = "_MAKER_BoardActivity";
     private Toolbar toolbar;
 
     private RecyclerView recyclerView;
     private RecyclerBoardListAdapter adapter;
     private List<Board> boards = new ArrayList<>();
+
+    // Preferences
+    private SharedPreferences sharedPreference;
+    private SharedPreferences.Editor sharedPreferenceEditor;
+    private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +44,7 @@ public class BoardListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_board_list);
 
         initial();
+        initialSharedPreferences();
 
     }
 
@@ -52,7 +62,6 @@ public class BoardListActivity extends AppCompatActivity {
 
         adapter = new RecyclerBoardListAdapter(boards, this);
         recyclerView.setAdapter(adapter);
-
     }
 
     // Toolbar
@@ -88,7 +97,7 @@ public class BoardListActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.e("onResume", "onResume");
+        Log.e(TAG, "onResume");
         initial();
     }
 
@@ -134,4 +143,27 @@ public class BoardListActivity extends AppCompatActivity {
         }
 
     }
+
+    @SuppressLint("CommitPrefEdits")
+    private void initialSharedPreferences() {
+
+        sharedPreference = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+        preferenceChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+            @Override
+            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+
+                String msg = sharedPreferences.getString(key, null);
+                Log.e(TAG, "on Shared Preference Changed: " + msg);
+                adapter.notifyDataSetChanged();
+                // recyclerView.setAdapter(adapter);
+
+            }
+        };
+        sharedPreference.registerOnSharedPreferenceChangeListener(preferenceChangeListener);
+
+        // sharedPreferenceTerminal = getSharedPreferences(getString(R.string.pref_msg_terminal), Context.MODE_PRIVATE);
+        sharedPreferenceEditor = sharedPreference.edit();
+    }
+
 }

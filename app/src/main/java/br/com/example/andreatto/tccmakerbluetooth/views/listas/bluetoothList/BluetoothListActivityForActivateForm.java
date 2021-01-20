@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.example.andreatto.tccmakerbluetooth.R;
-import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.activitys.AppCompatActivityBluetooth;
+import br.com.example.andreatto.tccmakerbluetooth.utils.AppCompatActivityBluetooth;
 
 public class  BluetoothListActivityForActivateForm extends AppCompatActivityBluetooth implements AdapterView.OnItemClickListener {
 

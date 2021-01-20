@@ -42,7 +42,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".util.bluetooth.activitys.AppCompatActivityBluetooth" />
+        <activity android:name=".utils.AppCompatActivityBluetooth" />
         <activity android:name=".views.form.board.BoardFormActivity" />
         <activity android:name=".views.listas.bluetoothList.BluetoothListActivityForActivateForm" />
         <activity android:name=".views.listas.boards.BoardListActivity" />

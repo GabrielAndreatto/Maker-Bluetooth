@@ -1,4 +1,4 @@
-package br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.activitys;
+package br.com.example.andreatto.tccmakerbluetooth.utils;
 
 import android.bluetooth.BluetoothAdapter;
 import android.content.SharedPreferences;

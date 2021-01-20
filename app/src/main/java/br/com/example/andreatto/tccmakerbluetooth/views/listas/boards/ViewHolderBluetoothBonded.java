@@ -18,6 +18,7 @@ public class ViewHolderBluetoothBonded extends RecyclerView.ViewHolder{
     public TextView rede;
     public TextView ip;
     public ImageView imgBoard;
+    public TextView starBoardConnected;
 
     public ViewHolderBluetoothBonded(@NonNull View itemView) {
         super(itemView);
@@ -29,5 +30,6 @@ public class ViewHolderBluetoothBonded extends RecyclerView.ViewHolder{
         this.rede = (TextView) itemView.findViewById(R.id.textView_rede);
         this.ip = (TextView) itemView.findViewById(R.id.textView_ip);
         this.imgBoard = (ImageView) itemView.findViewById(R.id.img_board);
+        this.starBoardConnected = (TextView) itemView.findViewById(R.id.star_board_connected);
     }
 }

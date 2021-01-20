@@ -9,7 +9,6 @@ public class Board {
     private String macAddress;
     private String rede;
     private String ip;
-
     private int conectedBluetooth;
     private int conectedWifi;
 

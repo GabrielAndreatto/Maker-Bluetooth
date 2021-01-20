@@ -22,7 +22,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 
 import br.com.example.andreatto.tccmakerbluetooth.R;
-import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.classes.Print;
+import br.com.example.andreatto.tccmakerbluetooth.utils.classes.Print;
 import br.com.example.andreatto.tccmakerbluetooth.views.form.actuator.ActuatorFormActivity;
 import br.com.example.andreatto.tccmakerbluetooth.views.listas.actuators.frgmnts.TabOnOff;
 import br.com.example.andreatto.tccmakerbluetooth.views.listas.actuators.frgmnts.TabToggle;

@@ -1,4 +1,4 @@
-package br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.classes;
+package br.com.example.andreatto.tccmakerbluetooth.utils.classes;
 
 public class TextTools {
     static String toUpperFirstCase(String message) {

@@ -9,7 +9,7 @@ import java.util.List;
 
 import br.com.example.andreatto.tccmakerbluetooth.dao.SensorDAO;
 import br.com.example.andreatto.tccmakerbluetooth.modelo.Sensor;
-import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.classes.Print;
+import br.com.example.andreatto.tccmakerbluetooth.utils.classes.Print;
 
 public class DeleteSensorActivity extends AppCompatActivity {
 

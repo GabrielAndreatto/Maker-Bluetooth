@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.example.andreatto.tccmakerbluetooth.modelo.Actuator;
-import br.com.example.andreatto.tccmakerbluetooth.util.bluetooth.classes.UtilSimpleTools;
+import br.com.example.andreatto.tccmakerbluetooth.utils.classes.UtilSimpleTools;
 
 public class ActuactorDAO {
 
